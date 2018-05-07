@@ -1,0 +1,60 @@
+.profile-section{
+	text-align: center;
+}
+.profile-pic{
+	border: 1px solid silver;
+	height: 100px;
+	width:100px;
+	border-radius: 100%;
+	cursor: pointer;
+}
+.cursor-pointer{
+	cursor: pointer;
+}
+.border-black{
+	border: 1px solid black;
+}
+.photo{
+	border: 1px solid silver;
+	height: 110px;
+	width: 110px;
+	margin: 1px 0px;
+}
+.color-black{
+	color: black;
+}
+#bioTextarea{
+	display: none ; 
+}
+.preference_btn_width{
+	width: 100px !important;
+}
+.display-none{
+	display: none;
+}
+
+.form-width-small{
+	width: 80px !important;
+	float: left;
+}
+.pref{
+	margin: 5px 0px;
+}
+.small-icon{
+	width: 80px;
+	height: 80px;
+	border: 1px solid black;
+	float: left;
+}
+.margin-left{
+	margin: 0px 10px;
+}
+.padding-md{
+	padding: 5px;
+}
+.padding-sm{
+	padding: 3px;
+}
+.border-radius{
+	border-radius: 5%;
+}
