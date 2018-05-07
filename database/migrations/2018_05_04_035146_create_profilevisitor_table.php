@@ -18,6 +18,9 @@ class CreateProfilevisitorTable extends Migration
             $table->string('user_id');
             $table->string('visitor_id');
             $table->string('visitor_name');
+            $table->string('profile_image');
+            $table->string('gender');
+            $table->string('status');
             $table->timestamps();
         });
     }
