@@ -226,6 +226,20 @@ class MainController extends Controller
     ->update([
       'status' => 'Friend'
     ]);
+
+    $visitor = DB::table('users')
+    ->where('id', $request->visitor_id)->first();
+
+    DB::table('customnotification')
+    ->insert([ 
+      'user_id' =>  auth()->user()->id,
+      'visitor_id' => $visitor->id, 
+      'visitor_name'=> $visitor->name, 
+      'visitor_image' => $visitor->profile_image, 
+      'data'=>' have accepted your request. Start chatting right away! ', 
+      'notification_type' => 'requestaccept' , 
+      'read'=> 'unread' ]);
+
       return 11;
 
   }

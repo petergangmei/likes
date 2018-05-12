@@ -52,4 +52,6 @@ Route::post('/addfriend', 'MainController@add_friend');
 
 Route::post('/cancelrequest', 'MainController@cancel_request');
 
-Route::post('/acceptrequest', 'MainController@accept_request');
+Route::Post('/acceptrequest', 'MainController@accept_request');
+
+Route::get('/notify', 'NotificationController@notify');

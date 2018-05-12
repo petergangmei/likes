@@ -36,7 +36,6 @@ class RequestAccepted extends Notification
     public function toDatabase($notifiable)
     {
         return [
-            'repliedTime' =>Carbon::now();
         ];
     }
 
