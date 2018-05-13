@@ -12,18 +12,15 @@ class MainController extends Controller
 {
    public function search(){
    	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
-<<<<<<< HEAD
    	return view('pages/searchindex')->with('mypref', $mypref);
    }
 
       public function search2(){
     $mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
     return view('pages/searchindex2')->with('mypref', $mypref);
-=======
 
    	return view('pages/searchindex')->with('mypref', $mypref);
    	
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
    }
 
    public function searchfilter(Request $request){
@@ -36,11 +33,8 @@ class MainController extends Controller
    	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val);
    }
 
-<<<<<<< HEAD
 
 
-=======
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
    public function viewprofile($id){
       $matched = DB::table('profilevisitor')->where('user_id', $id)->where('visitor_id', auth()->user()->id)->get();
       $matched2 = DB::table('profilevisitor')->where('user_id', $id)->where('visitor_id', auth()->user()->id)->first();

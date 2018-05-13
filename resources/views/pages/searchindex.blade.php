@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @extends('layouts.app4')
 @section('content')
 @if($mypref->coffeeTea == '')
@@ -11,10 +10,6 @@
 
 @else
 
-=======
-@extends('layouts.app3')
-@section('content')
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
 <div class="container" style=" height: 500px; background:url('public/storage/default_image/search-index-image-one.jpg');">
 <div class="pref">
 
@@ -35,12 +30,9 @@
 		</select>
 		<button type="submit" class="btn btn-block btn-outline-info  ">Find</button>
   	</form>
-<<<<<<< HEAD
   	<b style="font-size: 12px;">Search by name?<a href="/search2">Click here</a></b>
 </div>
 
-=======
-  	<b style="font-size: 12px;">Search by name?<a href="">Click here</a></b>
 </div>
 <div class="sbyname" style="display: none;">
 	 <b>Or</b>
@@ -48,7 +40,6 @@
 	<button type="buutton" class="btn btn-block btn-info">Find</button>
 	<br><br>
 </div>
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
 	
 	<div class="result">
 		<img src="">
@@ -56,11 +47,8 @@
 
  </div>
 </div>
-<<<<<<< HEAD
 
 @endif
 
 
-=======
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
 @endsection
