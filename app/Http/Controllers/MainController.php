@@ -12,9 +12,12 @@ class MainController extends Controller
 {
    public function search(){
    	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
-
    	return view('pages/searchindex')->with('mypref', $mypref);
-   	
+   }
+
+      public function search2(){
+    $mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
+    return view('pages/searchindex2')->with('mypref', $mypref);
    }
 
    public function searchfilter(Request $request){
@@ -26,6 +29,8 @@ class MainController extends Controller
 
    	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val);
    }
+
+
 
    public function viewprofile($id){
       $matched = DB::table('profilevisitor')->where('user_id', $id)->where('visitor_id', auth()->user()->id)->get();
@@ -226,6 +231,20 @@ class MainController extends Controller
     ->update([
       'status' => 'Friend'
     ]);
+
+    $visitor = DB::table('users')
+    ->where('id', $request->visitor_id)->first();
+
+    DB::table('customnotification')
+    ->insert([ 
+      'user_id' =>  auth()->user()->id,
+      'visitor_id' => $visitor->id, 
+      'visitor_name'=> $visitor->name, 
+      'visitor_image' => $visitor->profile_image, 
+      'data'=>' have accepted your request. Start chatting right away! ', 
+      'notification_type' => 'requestaccept' , 
+      'read'=> 'unread' ]);
+
       return 11;
 
   }

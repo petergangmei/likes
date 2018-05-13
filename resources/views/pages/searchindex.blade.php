@@ -1,5 +1,15 @@
-@extends('layouts.app3')
+@extends('layouts.app4')
 @section('content')
+@if($mypref->coffeeTea == '')
+<div class="container text-center">
+	<h4>You have not updated your preference</h4>
+	<p>Please set up your preference to find a match..</p>
+	<a href="/preferencepage1"> <button type="button" class="btn btn-info">Set preference</button></a>
+</div>
+
+
+@else
+
 <div class="container" style=" height: 500px; background:url('public/storage/default_image/search-index-image-one.jpg');">
 <div class="pref">
 
@@ -20,14 +30,9 @@
 		</select>
 		<button type="submit" class="btn btn-block btn-outline-info  ">Find</button>
   	</form>
-  	<b style="font-size: 12px;">Search by name?<a href="">Click here</a></b>
+  	<b style="font-size: 12px;">Search by name?<a href="/search2">Click here</a></b>
 </div>
-<div class="sbyname" style="display: none;">
-	 <b>Or</b>
-	<input type="text" name="" class="form-control" placeholder="Searh by name">
-	<button type="buutton" class="btn btn-block btn-info">Find</button>
-	<br><br>
-</div>
+
 	
 	<div class="result">
 		<img src="">
@@ -35,4 +40,8 @@
 
  </div>
 </div>
+
+@endif
+
+
 @endsection

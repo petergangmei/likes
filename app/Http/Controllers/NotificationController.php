@@ -3,15 +3,21 @@
 namespace App\Http\Controllers;
 
 
-
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Notifications\RequestAccepted;
-
-use User;
+use Illuminate\Http\Request;
+use App\Notifications\RequestAccepted;
+use App\User;
 
 
 class NotificationController extends Controller
 {
-    Public function taskcompleted(){
+
+	Public function view(){
+		return view('notification/notificationlist');
+	}
+    Public function notify(){
+
+    	// auth()->user()->notify(new RequestAccepted());
+
+    	return view('notification');
     }
 }

@@ -23,7 +23,16 @@ Route::get('/menu','NavController@index');
 
 Route::get('/search', 'MainController@search');
 
-Route::get('/notification', 'NotificationController@taskcompleted');
+Route::get('/search2', 'MainController@search2');
+
+Route::get('/notification', 'NotificationController@view');
+
+Route::get('/feeds', 'FeedController@feeds');
+
+Route::get('/addfeed', 'FeedController@addfeed');
+
+Route::get('/myfeeds', 'FeedController@myfeeds');
+
 
 
 Route::post('/uploadprofile_img', 'UserdetailController@uploadprofile_img');
@@ -52,4 +61,6 @@ Route::post('/addfriend', 'MainController@add_friend');
 
 Route::post('/cancelrequest', 'MainController@cancel_request');
 
-Route::post('/acceptrequest', 'MainController@accept_request');
+Route::Post('/acceptrequest', 'MainController@accept_request');
+
+

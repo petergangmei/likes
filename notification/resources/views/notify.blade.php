@@ -1,1 +1,0 @@
-<h2>this is notification page</h2>

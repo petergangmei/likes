@@ -28,7 +28,7 @@
         
         <nav class="navbar  navbar-light navbar-laravel" >
             <div class="" >
-
+                <b>News feeds</b>
 
    
             </div>
@@ -38,9 +38,9 @@
             @yield('content')
 
         <nav class="navbar fixed-bottom navbar-light" style="background-color: #F8F2F0;">
-          <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; "></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  "></i></a>
+          <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/home"><i class="fa fa-user" style="font-size:20px; color: #CAC3C1;"></i></a>
         </nav>
