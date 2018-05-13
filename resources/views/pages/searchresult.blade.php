@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @extends('layouts.app4')
+=======
+@extends('layouts.app3')
+>>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
 @section('content')
 <div class="container">
 <div class="pref">
