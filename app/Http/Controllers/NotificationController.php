@@ -12,9 +12,8 @@ class NotificationController extends Controller
 {
 
 	Public function view(){
-		$user = DB::table('notification')->get();
 
-		return view('notification/notificationlist')->with('user', $user);
+		return view('notification/notificationlist');
 	}
 
     	// auth()->user()->notify(new RequestAccepted());
