@@ -39,6 +39,8 @@ class HomeController extends Controller
         ->where('id', auth()->user()->id)
         ->first();
 
+
+
         $visitors = DB::table('profilevisitor')
         ->where('status', 'Requested')
         ->where('user_id', auth()->user()->id)
@@ -49,6 +51,12 @@ class HomeController extends Controller
         ->where('status', 'Friend')
         ->get();
 
+        $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+
     
     return view('home')
     ->with('userdetail', $userdetail)
@@ -56,7 +64,8 @@ class HomeController extends Controller
     ->with('bio', $bio)
     ->with('visitors', $visitors)
     ->with('friends', $friends)
-    ->with('user', $userdetailfirst);
+    ->with('user', $userdetailfirst)
+    ->with('unread', $unread);
     }
     public function preference_page(){
         return view('pages/setpreference');

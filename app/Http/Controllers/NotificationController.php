@@ -5,15 +5,30 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notifications\RequestAccepted;
-use App\User;
+use App\Userdetail;
 use DB;
 
 class NotificationController extends Controller
 {
 
 	Public function view(){
+        $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
 
-		return view('notification/notificationlist');
+		$noti = DB::table('customnotification')
+		->where('user_id', auth()->user()->id)
+        ->orderBy('id', 'desc')
+		->get();
+
+        DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->update([
+            'read' => 'read'
+        ]);
+
+		return view('notification/notificationlist')->with('datas', $noti)->with('unread', $unread);
 	}
 
     	// auth()->user()->notify(new RequestAccepted());
@@ -21,12 +36,8 @@ class NotificationController extends Controller
 
     	DB::table('customnotification')
     	->insert([
-    		'user_id' => auth()->user()->id,
-    		'visitor_id' => '1',
-    		'data' => 'Peter accepted your request',
-    		'read' => 'unread',
-    		'type'=> 'request',
-    		'at' => '1233434'
+
+
     	]);
     	return view('notification');
     }

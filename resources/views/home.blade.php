@@ -8,7 +8,7 @@
                 <div class="card-body  border-blac">
                     <button class="btn btn-default btn-sm" style="opacity: 0.8; background-color: black; color: white; position: absolute; margin: 75px 15px; border-radius: 100%; height: 25px; width: 25px;" data-toggle="modal" data-target="#Model1"><i class="fa fa-plus" style="font-size: 10px;"></i></button>
                     
-                    <?php if("" != auth()->user()->profile_image){ ?>
+                    <?php if('null' !== auth()->user()->profile_image){ ?>
                     <img src="/public/storage/profile_image/{{auth()->user()->id}}/{{auth()->user()->profile_image}} " class="profile-pic">
 
                     <?php } else { ?>
@@ -27,7 +27,10 @@
                     <?php } ?>
                     {{Auth::user()->gender}} </i>                     
                   <br>
-                     
+                  Join on {{Auth::user()->created_at->diffforHumans()}}
+                  <br>
+                  
+                     <br>
                   <span id="bio"><?php echo $bio->bio; ?> </span>
                    <i class="fa fa-edit cursor-pointer" id="bio-edit"></i> 
                 <form method="POST" action="update_bio">
@@ -64,6 +67,7 @@
                       <div style="border:1px solid silver; width: 120px; float:left; margin:2px 2px; " class="border-black  cursor-pointer">
                           <a href="photoid-{{$photo->id}}"><img style="width: 100%; height: 100%;" src='public/storage/photos/{{auth()->user()->id}}/{{ $photo->image }}'>
                             </a>
+                            {{Carbon\Carbon::createFromTimestamp(strtotime($photo->created_at))->diffForHumans()}}
                       </div>
                       @endforeach
                   </div>
@@ -93,7 +97,12 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     @if(count($friends)> 0)
       @foreach($friends as $friend)
-          <li class="list-group-item"><img src="/public/storage/profile_image/{{$friend->visitor_id}}/{{$friend->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
+          <li class="list-group-item">
+      @if($friend->profile_image == 'null')
+        <img src="/public/storage/default_image/avatar.png " class=" float-left" style="width: 50px; height: 50px; border: 1px solid black;>
+      @else
+        <img src="/public/storage/profile_image/{{$friend->visitor_id}}/{{$friend->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
+      @endif
       <b class="magin-left ">{{$friend->visitor_name}}</b> <b style="font-size: 10px;">({{$friend->gender}})</b> <br> 
        <button  class="btn-outline-primary padding-sm border-radius cursor-pointer accept" value="{{$friend->visitor_id}}"><i  class="fa fa-comments "  id="accept"> </i> Message</button> 
     </li>
@@ -110,7 +119,7 @@
     <li class="list-group-item"><img src="/public/storage/profile_image/{{$visitor->visitor_id}}/{{$visitor->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
       <b class="magin-left ">{{$visitor->visitor_name}}</b> <b style="font-size: 10px;">({{$visitor->gender}})</b> <br> 
        <button  class="btn-info padding-sm border-radius cursor-pointer accept" value="{{$visitor->visitor_id}}"><i  class="fa fa-check  " value="1"  id="accept">accept</i></button> 
-       <button  class=" btn-danger border-radius cursor-pointer cancel" value="{{$visitor->visitor_id}}"><i  class="fa fa-close   " value="1"  id="accept">Cancel</i></button> 
+       <button  class=" btn-danger padding-sm border-radius cursor-pointer cancel" value="{{$visitor->visitor_id}}"><i  class="fa fa-close   " value="1"  id="accept">Cancel</i></button> 
     </li>
     @endforeach
   @else

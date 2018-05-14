@@ -11,26 +11,43 @@ use Illuminate\Support\Facades\DB;
 class MainController extends Controller
 {
    public function search(){
+
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
    	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
-   	return view('pages/searchindex')->with('mypref', $mypref);
+   	return view('pages/searchindex')->with('mypref', $mypref)->with('unread', $unread);
    }
+   
 
-      public function search2(){
+  public function search2(){
     $mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
-    return view('pages/searchindex2')->with('mypref', $mypref);
 
-   	return view('pages/searchindex')->with('mypref', $mypref);
+  $unread = DB::table('customnotification')
+  ->where('read', 'unread')
+  ->where('user_id', auth()->user()->id)->get();
+
+    return view('pages/searchindex2')->with('mypref', $mypref)->with('unread', $unread);
+
    	
    }
 
    public function searchfilter(Request $request){
+    $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+       
+
    	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
       $val = $request->pref1;
       $def = $mypref->$val;
       $datas = DB::table('Users')->where($request->pref1, $def)->where('id', '!=' , auth()->user()->id)->orderBy('profile_visits', 'desc')->get();
 
 
-   	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val);
+   	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val)->with('unread', $unread);
    }
 
 
@@ -38,6 +55,11 @@ class MainController extends Controller
    public function viewprofile($id){
       $matched = DB::table('profilevisitor')->where('user_id', $id)->where('visitor_id', auth()->user()->id)->get();
       $matched2 = DB::table('profilevisitor')->where('user_id', $id)->where('visitor_id', auth()->user()->id)->first();
+
+      $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
 
       if(count($matched)>0){
         $visitor_id = "Matchresult";
@@ -57,10 +79,16 @@ class MainController extends Controller
       ->with('data', $data)
       ->with('photos', $photos)
       ->with('coins', $coins)
-      ->with('visitor', $visitor_id);
+      ->with('visitor', $visitor_id)
+      ->with('unread', $unread);
    }
 
    public function matchout(Request $request){
+      
+      $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
 
     // checking if the usered have alreday matched 
     if($request->matched == 'Matchout'){
@@ -93,7 +121,7 @@ class MainController extends Controller
         'visitor_name' => auth()->user()->name, 
         'profile_image' => auth()->user()->profile_image,
         'gender' => auth()->user()->gender,
-        'status' => 'Request' ]);;
+        'status' => 'Request' ]);
       }
 
       $da = DB::table('Users')->where('id', $request->userid)->first();
@@ -204,7 +232,8 @@ class MainController extends Controller
       ->with('vv8', $vv8)
       ->with('vv9', $vv9)
       ->with('vv10', $vv10)
-      ->with('sow', $sow);
+      ->with('sow', $sow)
+      ->with('unread', $unread);
    }
 
   public function add_friend(Request $request){
@@ -235,21 +264,68 @@ class MainController extends Controller
       'status' => 'Friend'
     ]);
 
+
     $visitor = DB::table('users')
     ->where('id', $request->visitor_id)->first();
+    $user = DB::table('users')
+    ->where('id', auth()->user()->id)->first();
 
+     DB::table('profilevisitor')
+      ->insert(['user_id' => $request->visitor_id , 
+        'visitor_id' => $user->id, 
+        'visitor_name' => $user->name, 
+        'profile_image' => $user->profile_image,
+        'gender' => $user->gender,
+        'status' => 'Friend' ]);
+
+
+
+      // notify acception
     DB::table('customnotification')
     ->insert([ 
-      'user_id' =>  auth()->user()->id,
-      'visitor_id' => $visitor->id, 
-      'visitor_name'=> $visitor->name, 
-      'visitor_image' => $visitor->profile_image, 
-      'data'=>' have accepted your request. Start chatting right away! ', 
-      'notification_type' => 'requestaccept' , 
-      'read'=> 'unread' ]);
+        'visitor_id' => auth()->user()->id,
+        'user_id' => $visitor->id,
+        'visitor_name'=> $user->name, 
+        'img'=> $user->profile_image, 
+        'data' => 'accepted your request.',
+        'read' => 'unread',
+        'type'=> 'request',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
+
+    // notify you are not friends
+   DB::table('customnotification')
+    ->insert([ 
+        'visitor_id' => $visitor->id,
+        'user_id' => auth()->user()->id,
+        'visitor_name'=> $visitor->name, 
+        'img'=> $visitor->profile_image, 
+        'data' => 'and you are friends now. Start chatting! ',
+        'read' => 'unread',
+        'type'=> 'request',
+        'created_at' => now(),
+        'updated_at' => now(),
+    ]);
 
       return 11;
 
+  }
+
+  public function search_by_name(Request $request){
+
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+    if($request->username != ""){
+    $user = DB::table('users')
+    ->where('name', 'LIKE', '%'. $request->username . '%')
+    ->get();
+
+    return view('pages/searchresult2')->with('user', $user)->with('unread', $unread)->with('keyword', $request->username);
+  }
   }
 
 }

@@ -17,10 +17,11 @@ class CreateCustomnotificationTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('visitor_id');
+            $table->string('visitor_name');
+            $table->string('img');
             $table->string('data');
             $table->string('read');
             $table->string('type');
-            $table->string('at');
             $table->timestamps();
         });
     }

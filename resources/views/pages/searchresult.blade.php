@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 @extends('layouts.app4')
-=======
-@extends('layouts.app3')
->>>>>>> 09edcf30ca9665c4cf76d2e73fa7ec2936991d34
 @section('content')
 <div class="container">
 <div class="pref">
@@ -66,7 +62,7 @@
 		<a href="/profileid-{{$data->id}}" style="text-decoration: none; color: black; ">
 		<div class="card cursor-pointer" style=" padding: 1px ; text-align: ;">
 			<div class="card-body">
-			<?php if($data->profile_image != "") {?>
+			<?php if($data->profile_image !== "null") {?>
 			<img src="/public/storage/profile_image/{{$data->id}}/{{$data->profile_image}}" class="small-icon">
 			<?php } else{ ?>
 	         <img src="/public/storage/default_image/avatar.png " class="small-icon">

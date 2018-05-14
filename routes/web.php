@@ -65,3 +65,7 @@ Route::Post('/acceptrequest', 'MainController@accept_request');
 
 
 Route::get('/notify', 'NotificationController@notify');
+
+
+Route::post('/searhbyname', 'MainController@search_by_name');
+

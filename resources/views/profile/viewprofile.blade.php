@@ -6,7 +6,7 @@
             <div class="card profile-section">
                 <div class="card-body  border-blac">
                     
-                    <?php if("" != $data->profile_image){ ?>
+                    <?php if("null" !== $data->profile_image){ ?>
                     <img src="/public/storage/profile_image/{{$data->id}}/{{$data->profile_image}} " class="profile-pic" data-toggle="modal" data-target="#Model2">
 
                     <?php } else { ?>

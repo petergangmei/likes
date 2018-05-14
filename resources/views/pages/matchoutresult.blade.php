@@ -5,13 +5,13 @@
         <div class="col-xs-12" style="width: 100%;">
             <div class="card profile-section">
                 <div class="card-body  border-blac">
-                    <?php if("" != $data->profile_image){ ?>
+                    <?php if("null" !== $data->profile_image){ ?>
                     <img src="/public/storage/profile_image/{{$data->id}}/{{$data->profile_image}} " class="profile-pic border-black" data-toggle="modal" data-target="#Model2">
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">
                     <?php } ?>
 
-                    <?php if("" != $data1->profile_image){ ?>
+                    <?php if("null" !== $data1->profile_image){ ?>
                     <img src="/public/storage/profile_image/{{$data1->id}}/{{$data1->profile_image}} " class="profile-pic border-black" data-toggle="modal" data-target="#Model2">
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">

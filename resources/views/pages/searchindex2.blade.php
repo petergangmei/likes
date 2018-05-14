@@ -11,12 +11,12 @@
 @else
 
 <div class="container">
-	<br><br>
-	<h3>Find user by name..</h3>
-	<form method="post" action="">
+	<br>
+	<h3>Search by name..</h3>
+	<form method="post" action="/searhbyname">
        @csrf
-		<input type="text" name="username" class="form-control" placeholder="Enter name">
-		<button type="button" class="btn btn-info">Search</button>
+		<input type="text" name="username" class="form-control float-left" placeholder="Enter name" style="width: 70%;">
+		<button type="submit" class="btn btn-info float-left">Search</button>
 	</form>
 </div>
 

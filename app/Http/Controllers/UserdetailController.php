@@ -89,9 +89,14 @@ public function uploadprofile_img(Request $request){
 
 
 	public function view_photo($id){
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
 		$photo = DB::table('photos')->where('id', $id)->first();
 
-		return view('pages/viewphoto')->with('photo', $photo);
+		return view('pages/viewphoto')->with('photo', $photo)->with('unread', $unread);
 	}
 
 	public function delete_photo($id){
@@ -116,7 +121,7 @@ public function uploadprofile_img(Request $request){
 			'movie'=> $request->input('movie'),
 			'sleepHours'=> $request->input('sleep-hours')
 		]);
-		return redirect('/home');
+		return redirect('/search');
 	}
 
 }
