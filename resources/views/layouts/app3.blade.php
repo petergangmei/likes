@@ -28,7 +28,7 @@
         
         <nav class="navbar  navbar-light navbar-laravel" >
             <div class="" >
-
+                <h3><b>New post</b></h3>
 
    
             </div>
@@ -43,8 +43,6 @@
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  "></i></a>
 
-          <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; "></i></a>
-          <a class="navbar-brand" href="#"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
 
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" style="font-size:20px;  color: #CAC3C1;"></i>
             @if(count($unread)>0)

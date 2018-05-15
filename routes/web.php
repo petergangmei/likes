@@ -31,6 +31,8 @@ Route::get('/feeds', 'FeedController@feeds');
 
 Route::get('/addfeed', 'FeedController@addfeed');
 
+Route::post('/addfeed', 'FeedController@post_feed');
+
 Route::get('/myfeeds', 'FeedController@myfeeds');
 
 

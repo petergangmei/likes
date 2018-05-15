@@ -27,10 +27,9 @@
                     <?php } ?>
                     {{Auth::user()->gender}} </i>                     
                   <br>
-                  Join on {{Auth::user()->created_at->diffforHumans()}}
+                  Join <small>{{Auth::user()->created_at->diffforHumans()}}</small>
                   <br>
                   
-                     <br>
                   <span id="bio"><?php echo $bio->bio; ?> </span>
                    <i class="fa fa-edit cursor-pointer" id="bio-edit"></i> 
                 <form method="POST" action="update_bio">
