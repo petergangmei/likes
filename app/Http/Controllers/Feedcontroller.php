@@ -53,4 +53,31 @@ class Feedcontroller extends Controller
 
       return redirect('myfeeds');
     }
+
+    public function like_post(Request $request){
+      $dacheck = DB::table('likes')
+      ->where('user_id', auth()->user()->id)
+      ->where('post_id', $request->post_id)
+      ->get();
+
+      if(count($dacheck) == 0){
+      DB::table('likes')
+      ->insert([
+        'user_id' => auth()->user()->id,
+        'post_id' => $request->post_id,
+      ]);
+      }else{
+
+        DB::table('likes')
+        ->where('user_id', auth()->user()->id)
+        ->where('post_id', $request->post_id)
+        ->delete();
+
+      }
+
+
+
+
+      return 3;
+    }
 }

@@ -117,8 +117,8 @@
     @foreach($visitors  as $visitor)
     <li class="list-group-item"><img src="/public/storage/profile_image/{{$visitor->visitor_id}}/{{$visitor->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
       <b class="magin-left ">{{$visitor->visitor_name}}</b> <b style="font-size: 10px;">({{$visitor->gender}})</b> <br> 
-       <button  class="btn-info padding-sm border-radius cursor-pointer accept" value="{{$visitor->visitor_id}}"><i  class="fa fa-check  " value="1"  id="accept">accept</i></button> 
-       <button  class=" btn-danger padding-sm border-radius cursor-pointer cancel" value="{{$visitor->visitor_id}}"><i  class="fa fa-close   " value="1"  id="accept">Cancel</i></button> 
+       <button  class="btn-info padding-sm border-radius cursor-pointer accept" value="{{$visitor->visitor_id}}"><i  class="fa fa-check  "  id="accept">accept</i></button> 
+       <button  class=" btn-danger padding-sm border-radius cursor-pointer cancel" value="{{$visitor->visitor_id}}"><i  class="fa fa-close"   id="accept">Cancel</i></button> 
     </li>
     @endforeach
   @else

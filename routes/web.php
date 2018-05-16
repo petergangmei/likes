@@ -36,6 +36,8 @@ Route::post('/addfeed', 'FeedController@post_feed');
 Route::get('/myfeeds', 'FeedController@myfeeds');
 
 
+Route::post('/likepost', 'FeedController@like_post');
+
 
 Route::post('/uploadprofile_img', 'UserdetailController@uploadprofile_img');
 

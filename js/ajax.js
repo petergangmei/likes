@@ -91,3 +91,39 @@ $(document).ready(function(){
 		});
 	});
 });
+
+$(document).ready(function(){
+
+    $('.like').each(function(){
+        $(this).click(function(){
+
+        var token = $('input[name=_token ').val();
+        var post_id = $(this).val();
+
+        $.ajax({
+            url: 'likepost',
+            type: 'post',
+            data: {
+                '_token': token,
+                'post_id': post_id,
+            },
+        })
+        .done(function(data) {
+
+            console.log(data);
+            // location.reload(true);
+            // $('.request_list').load(location.href + ' .request_list')
+        })
+        .fail(function() {
+            console.log('fail');
+
+        })
+        .always(function() {
+            console.log("complete");
+        });
+
+        console.log($(this).val());
+
+        });
+    });
+});
