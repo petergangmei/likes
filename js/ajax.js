@@ -112,7 +112,7 @@ $(document).ready(function(){
 
             console.log(data);
             // location.reload(true);
-            // $('.request_list').load(location.href + ' .request_list')
+            $('.refresh').load(location.href  + ' .refresh');
         })
         .fail(function() {
             console.log('fail');
@@ -120,9 +120,11 @@ $(document).ready(function(){
         })
         .always(function() {
             console.log("complete");
+
         });
 
         console.log($(this).val());
+
 
         });
     });

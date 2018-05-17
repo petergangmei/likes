@@ -24,11 +24,31 @@ class Feedcontroller extends Controller
 
         $post = DB::table('post')
         ->where('user_id', auth()->user()->id)
+        ->orderBy('id', 'desc')
         ->get();
 
    	return view('feeds/myfeeds')
     ->with('unread', $unread)
     ->with('post', $post);
+   }
+
+   public function view_post($id){
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+        $post = DB::table('post')
+        ->where('id', $id)
+        ->first();
+
+        $comments = DB::table('comment')
+        ->where('post_id', $id)
+        ->get();
+
+    return view('feeds/viewpost')
+    ->with('post', $post)
+    ->with('unread', $unread)
+    ->with('comments', $comments);
    }
 
     public function addfeed(){
@@ -61,23 +81,64 @@ class Feedcontroller extends Controller
       ->get();
 
       if(count($dacheck) == 0){
+
       DB::table('likes')
       ->insert([
         'user_id' => auth()->user()->id,
         'post_id' => $request->post_id,
       ]);
+      // update like count +
+      $checklike = DB::table('likes')
+      ->where('post_id', $request->post_id)
+      ->get();
+      $count = $checklike->count();
+      if($count == 1){
+        $newcount = '1';
       }else{
+      $newcount = $count + '1';
+      }
+      DB::table('post')
+      ->where('id', $request->post_id)
+      ->update([
+        'likes' => $newcount,
+      ]);
+
+      }else{
+
+      // update like count -
+     $checklike = DB::table('likes')
+      ->where('post_id', $request->post_id)
+      ->get();
+      $count = $checklike->count();
+      if($count == 1){
+        $newcount = '0';
+      }else{
+      $newcount = $count - '1';
+      }
+      DB::table('post')
+      ->where('id', $request->post_id)
+      ->update([
+        'likes' => $newcount,
+      ]);
 
         DB::table('likes')
         ->where('user_id', auth()->user()->id)
         ->where('post_id', $request->post_id)
         ->delete();
-
       }
-
-
-
-
       return 3;
+    }
+
+    public function post_comment(Request $request){
+      DB::table('comment')
+      ->insert([
+        'post_id' => $request->postid,
+        'user_id' => auth()->user()->id,
+        'user_name' => auth()->user()->name,
+        'comment' => $request->comment,
+        'created_at' => now()
+      ]);
+      $id = $request->postid;
+      return redirect('/viewpost'.$id);
     }
 }

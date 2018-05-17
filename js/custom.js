@@ -285,3 +285,7 @@ $matchedval = $('#matched').val();
  }
  
 });
+
+
+//display comment and post comment.
+
