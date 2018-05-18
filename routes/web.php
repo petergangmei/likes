@@ -51,6 +51,8 @@ Route::get('/photoid-{id}', 'UserdetailController@view_photo');
 
 Route::get('/deletephotoid-{id}', 'UserdetailController@delete_photo');
 
+Route::get('/deletepostid-{id}', 'FeedController@delete_post');
+
 Route::get('/preferencepage1', 'HomeController@preference_page');
 
 Route::post('/update_preference', 'UserdetailController@update_preference');

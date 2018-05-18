@@ -10,24 +10,24 @@
 </div>
 </div>
 
-                <div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
+    <div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
 
-          					<div class="card" style="width: 100%; text-align:center;">
-								  <ul class="list-group list-group-flush">
-								    <a href="/deletephotoid-{{$photo->id}}">
-								    <li class="list-group-item cursor-pointer color-black">Share</li></a>
-								    <a href="/deletephotoid-{{$photo->id}}">
-								    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
-								    <a href="/deletephotoid-{{$photo->id}}">
-								    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
-								  </ul>
-								</div>
+					<div class="card" style="width: 100%; text-align:center;">
+					  <ul class="list-group list-group-flush">
+					    <a href="/deletephotoid-{{$photo->id}}">
+					    <li class="list-group-item cursor-pointer color-black">Share</li></a>
+					    <a href="/deletephotoid-{{$photo->id}}">
+					    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
+					    <a href="/deletephotoid-{{$photo->id}}">
+					    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
+					  </ul>
+					</div>
 
-                      </div>
-                    </div>
-                  </div>
+          </div>
+        </div>
+      </div>
  </div>                 
 @endsection
 

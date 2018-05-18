@@ -97,8 +97,10 @@ $(document).ready(function(){
     $('.like').each(function(){
         $(this).click(function(){
 
+
         var token = $('input[name=_token ').val();
         var post_id = $(this).val();
+
 
         $.ajax({
             url: 'likepost',
@@ -112,7 +114,7 @@ $(document).ready(function(){
 
             console.log(data);
             // location.reload(true);
-            $('.refresh').load(location.href  + ' .refresh');
+            // $('.refresh').load(location.href  + ' .refresh');
         })
         .fail(function() {
             console.log('fail');

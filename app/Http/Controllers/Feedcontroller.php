@@ -138,7 +138,47 @@ class Feedcontroller extends Controller
         'comment' => $request->comment,
         'created_at' => now()
       ]);
+
+       $dacheck = DB::table('comment')
+      ->where('user_id', auth()->user()->id)
+      ->where('post_id', $request->postid)
+      ->get();
+
+      $dacheckcomment = DB::table('post')
+      ->where('user_id', auth()->user()->id)
+      ->where('id', $request->postid)
+      ->first();
+
+
+      if($dacheckcomment->comments == 0){
+
+        $commentcount = '1';
+
+      }else{
+
+      $count = $dacheck->count();
+
+        $commentcount = $dacheckcomment->comments + '1';
+
+      }
+
+      DB::table('post')
+      ->where('user_id', auth()->user()->id)
+      ->where('id', $request->postid)
+      ->update([
+        'comments' => $commentcount
+      ]);
+
       $id = $request->postid;
       return redirect('/viewpost'.$id);
+    }
+
+    public function delete_post($id){
+
+      DB::table('post')
+      ->where('id', $id)
+      ->delete();
+
+      return redirect('/myfeeds');
     }
 }
