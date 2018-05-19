@@ -1,4 +1,15 @@
+
+
+
 $(document).ready(function(){
+
+$(".cmt").click(function(){
+  var comment_id = ($(this).attr("id"));
+  var link = 'deletecommentid-' + comment_id;
+ console.log(comment_id);
+ $('#deletelink').attr('href', link);
+});
+
     $("#bio-edit").click(function(){
     	$('#bio').hide();
     	$('#bio-edit').hide();

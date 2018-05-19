@@ -29,6 +29,8 @@ class MainController extends Controller
   ->where('read', 'unread')
   ->where('user_id', auth()->user()->id)->get();
 
+
+
     return view('pages/searchindex2')->with('mypref', $mypref)->with('unread', $unread);
 
    	

@@ -1,10 +1,12 @@
+
+
 $(document).ready(function () {
 
-	$('#addrequest').click(function() {
-		var token = $('input[name=_token ').val();
-		var user_id = $('#user_id').val();
+   $('#addrequest').click(function() {
+       var token = $('input[name=_token ').val();
+       var user_id = $('#user_id').val();
 
-		$.ajax({
+       $.ajax({
             url: 'addfriend',
             type: 'post',
             data: {
@@ -23,9 +25,10 @@ $(document).ready(function () {
         .always(function() {
             console.log("complete");
         });
-	});
+   });
 
 });
+
 $(document).ready(function(){
 
 	$('#cancelrequest').click(function() {

@@ -121,7 +121,13 @@ public function uploadprofile_img(Request $request){
 			'movie'=> $request->input('movie'),
 			'sleepHours'=> $request->input('sleep-hours')
 		]);
-		return redirect('/search');
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+        		
+		return redirect('/search')
+		->with('unread', $unread);
 	}
 
 }

@@ -68,6 +68,12 @@ class HomeController extends Controller
     ->with('unread', $unread);
     }
     public function preference_page(){
-        return view('pages/setpreference');
+
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+        return view('pages/setpreference')->with('unread', $unread);
     }
 }

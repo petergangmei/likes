@@ -8,12 +8,18 @@ class Feedcontroller extends Controller
 {
 
    public function feeds(){
+    $posts = DB::table('post')
+    ->orderBy('created_at', 'DESC')
+    ->get();
+
   $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
         ->get();
 
-    return view('feeds/newsfeed')->with('unread', $unread);
+    return view('feeds/newsfeed')
+    ->with('posts', $posts)
+    ->with('unread', $unread);
    }
 
    public function myfeeds(){
@@ -145,7 +151,7 @@ class Feedcontroller extends Controller
       ->get();
 
       $dacheckcomment = DB::table('post')
-      ->where('user_id', auth()->user()->id)
+      ->where('user_id', $request->userid)
       ->where('id', $request->postid)
       ->first();
 
@@ -163,7 +169,6 @@ class Feedcontroller extends Controller
       }
 
       DB::table('post')
-      ->where('user_id', auth()->user()->id)
       ->where('id', $request->postid)
       ->update([
         'comments' => $commentcount
@@ -180,5 +185,18 @@ class Feedcontroller extends Controller
       ->delete();
 
       return redirect('/myfeeds');
+    }
+
+    public function delete_comment($id){
+
+      $postid = DB::table('comment')
+      ->where('id', $id)
+      ->first();
+
+      DB::table('comment')
+      ->where('id', $id)
+      ->delete();
+
+      return redirect('viewpost'.$postid->post_id);
     }
 }

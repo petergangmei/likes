@@ -35,11 +35,10 @@
   	<span class="float-left" style="margin: 4px -7px;" id="">{{$p->likes}}</span>
   	<a href="/viewpost{{$p->id}}"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px; color: black;"></i></a>
   	<span class="float-left" style="margin: 4px -2px;" id="">{{$p->comments}}</span>
-  	
     @csrf
-
   </div>
 </div>
+
 </div>
 
  @endforeach

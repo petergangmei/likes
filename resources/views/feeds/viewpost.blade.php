@@ -12,7 +12,9 @@
   	<i class="fa fa-heart-o" value="1" style="font-size: 20px;"></i>
   	</button>
   	<span class="float-left" style="margin: 4px -7px;">{{$post->likes}} </span>
-  	<a href="/viewpost" class="color-black"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px;"></i></a>
+  	<a href="#" class="color-black"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px;"></i></a>
+
+
   	<span class="float-left" style="margin: 4px -2px;">{{$post->comments}} </span>
 </div>
 <div class="card">
@@ -20,6 +22,18 @@
 	@foreach($comments as $comment)
 	<ul class="list-group">
   	<li class="list-group-item">
+
+	@guest
+	<i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
+	    @csrf
+
+	@else
+	<i class="fa fa-ellipsis-v cursor-pointer cmt" id="{{$comment->id}}" data-toggle="modal" data-target="#Model1" style="float: right;"></i>
+
+
+	@endguest
+
+
   	<a href="/profileid-{{$comment->user_id}}"><small><b>{{$comment->user_name}}</b></small></a>
 	{{$comment->comment}}
 	</li>
@@ -34,10 +48,19 @@
     @csrf
   		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 70%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
   		<input type="hidden" name="postid" value="{{$post->id}}">
+  		<input type="hidden" name="userid" value="{{$post->user_id}}">
   		<button type="submit" class="btn btn-primary btn-sm float-left" style=" margin: -5px 0px; ">Post</button>
   	</form>	
 <br>
+<br>
+<br>
 </div>
+
+<span class="a" id="span1">First</span>
+<span class="a" id="span2">Second</span>
+<span class="a" id="span3">Third</span>
+<span class="a" id="span4">Fourth</span>
+
 </div>
 
     <div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
@@ -54,7 +77,24 @@
 					    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
 					  </ul>
 					</div>
+          </div>
+        </div>
+      </div>
 
+    <div class="modal fade" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+
+					<div class="card" style="width: 100%; text-align:center;">
+					  <ul class="list-group list-group-flush">
+					    <a href="/deletepostid-{{$post->id}}">
+					    <li class="list-group-item cursor-pointer color-black">Share</li></a>
+					    <a href="/deletepostid-{{$post->id}}">
+					    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
+					    <a href="/deletecommentid-" id="deletelink">
+					    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
+					  </ul>
+					</div>
           </div>
         </div>
       </div>
