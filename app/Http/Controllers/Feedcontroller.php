@@ -92,22 +92,73 @@ class Feedcontroller extends Controller
       ->insert([
         'user_id' => auth()->user()->id,
         'post_id' => $request->post_id,
+        'created_at' => now(),
       ]);
       // update like count +
       $checklike = DB::table('likes')
       ->where('post_id', $request->post_id)
       ->get();
+
       $count = $checklike->count();
       if($count == 1){
         $newcount = '1';
-      }else{
-      $newcount = $count + '1';
       }
+      if($count >= 2){
+      $newcount = $count;
+      }
+
+$uid = DB::table('post')
+      ->where('id', $request->post_id)
+      ->first();
+      $ncount = $count -'1';
+      if($count == 1){
+      $likenotify =  'liked your post';
+      }else{
+      $likenotify =  'and other '.$ncount.' person have like your post';
+      }
+
+      if($count == 1){
+
+      DB::table('customnotification')
+      ->insert([
+        'user_id' => $uid->user_id,
+        'visitor_id' => auth()->user()->id,
+        'visitor_name' => auth()->user()->name,
+        'img' => auth()->user()->profile_image,
+        'data' => $likenotify,
+        'read' => 'unread',
+        'type' => 'likes',
+        'post_id' => $request->post_id,
+        'created_at' => now()
+      ]);
+
+      }else{
+
+      DB::table('customnotification')
+      ->where('post_id', $request->post_id)
+      ->update([
+        'user_id' => $uid->user_id,
+        'visitor_id' => auth()->user()->id,
+        'visitor_name' => auth()->user()->name,
+        'img' => auth()->user()->profile_image,
+        'data' => $likenotify,
+        'read' => 'unread',
+        'type' => 'likes',
+        'post_id' => $request->post_id,
+        'created_at' => now()
+      ]);
+
+      }
+
+
+
       DB::table('post')
       ->where('id', $request->post_id)
       ->update([
         'likes' => $newcount,
       ]);
+
+      
 
       }else{
 
@@ -132,6 +183,9 @@ class Feedcontroller extends Controller
         ->where('post_id', $request->post_id)
         ->delete();
       }
+
+
+
       return 3;
     }
 
@@ -155,17 +209,11 @@ class Feedcontroller extends Controller
       ->where('id', $request->postid)
       ->first();
 
-
       if($dacheckcomment->comments == 0){
-
         $commentcount = '1';
-
       }else{
-
       $count = $dacheck->count();
-
         $commentcount = $dacheckcomment->comments + '1';
-
       }
 
       DB::table('post')
@@ -192,6 +240,29 @@ class Feedcontroller extends Controller
       $postid = DB::table('comment')
       ->where('id', $id)
       ->first();
+
+       $dacheck = DB::table('comment')
+      ->where('user_id', $postid->user_id)
+      ->where('post_id', $postid->post_id)
+      ->get();
+
+      $dacheckcomment = DB::table('post')
+      ->where('user_id', $postid->user_id)
+      ->where('id', $postid->post_id)
+      ->first();
+
+      if($dacheckcomment->comments == 0){
+        $commentcount = '1';
+      }else{
+      $count = $dacheck->count();
+        $commentcount = $dacheckcomment->comments - '1';
+      }
+
+      DB::table('post')
+      ->where('id', $postid->post_id)
+      ->update([
+        'comments' => $commentcount
+      ]);      
 
       DB::table('comment')
       ->where('id', $id)

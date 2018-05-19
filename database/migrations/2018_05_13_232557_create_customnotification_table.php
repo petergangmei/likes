@@ -22,6 +22,7 @@ class CreateCustomnotificationTable extends Migration
             $table->string('data');
             $table->string('read');
             $table->string('type');
+            $table->string("post_id")->nullable();
             $table->timestamps();
         });
     }

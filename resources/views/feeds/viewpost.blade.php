@@ -2,13 +2,15 @@
 @section('content')
 <div class="card">
 <div class="card-body">
+	    @csrf
+
 	<!-- <i class="	fa fa-ellipsis-v cursor-pointer" style="float: right;"></i> -->
     <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model2" ></i>
 
 	{{$post->post}}
 </div>
 <div class="card-footer">
-  	<button class="like btn btn-light cursor-pointer float-left" value="">
+  	<button class="like btn btn-light cursor-pointer float-left" value="{{$post->id}}">
   	<i class="fa fa-heart-o" value="1" style="font-size: 20px;"></i>
   	</button>
   	<span class="float-left" style="margin: 4px -7px;">{{$post->likes}} </span>
@@ -56,10 +58,6 @@
 <br>
 </div>
 
-<span class="a" id="span1">First</span>
-<span class="a" id="span2">Second</span>
-<span class="a" id="span3">Third</span>
-<span class="a" id="span4">Fourth</span>
 
 </div>
 

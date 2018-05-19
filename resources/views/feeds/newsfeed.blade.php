@@ -41,7 +41,7 @@
 	    @csrf
 	  </div>
 	</div>
-
+	<br><br>
 	</div>
 	
 	@endforeach
