@@ -6,21 +6,23 @@
 
 <ul class="list-group">
 	@foreach($datas as $data)
+  
   <li class="list-group-item">
-  	
+  	<a href="/profileid-{{$data->visitor_id}}">
   		@if($data->img == 'null')
         <img src="/public/storage/default_image/avatar.png " class="noti-ico float-left">
   		@else
         <img src="/public/storage/profile_image/{{$data->visitor_id}}/{{$data->img}} " class="noti-ico float-left">
   		@endif
-		<a href="/profileid-{{$data->visitor_id}}"><span class="margin-" style="margin-left: 5px;"><b>{{$data->visitor_name}}</b> </span> </a> {{$data->data}}<br>
+		<span class="margin-" ><b>{{$data->visitor_name}}</b> </span> </a> <a href="/viewpost{{$data->post_id}}" class="color-black" style="text-decoration: none;"> {{$data->data}} 
+    <br>
 
         <small class="margin-left">{{Carbon\Carbon::createFromTimestamp(strtotime($data->created_at))->diffForHumans()}}</small>
   </li>
 	@endforeach  	
 
 </ul>
-
+<br><br>
 @else
 
 <ul class="list-group text-center">

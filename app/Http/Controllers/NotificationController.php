@@ -18,8 +18,8 @@ class NotificationController extends Controller
         ->get();
 
 		$noti = DB::table('customnotification')
-		->where('user_id', auth()->user()->id)
-        ->orderBy('id', 'desc')
+        ->where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'desc')
 		->get();
 
         DB::table('customnotification')

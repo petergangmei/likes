@@ -22,7 +22,12 @@ class Feedcontroller extends Controller
     ->with('unread', $unread);
    }
 
-   public function myfeeds(){
+// view my feeds controller 
+   // 
+   // 
+   // 
+   // 
+public function myfeeds(){
   $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
@@ -38,7 +43,12 @@ class Feedcontroller extends Controller
     ->with('post', $post);
    }
 
-   public function view_post($id){
+// view individual post controller starts here
+   // 
+   // 
+   // 
+   // 
+public function view_post($id){
   $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
@@ -57,7 +67,12 @@ class Feedcontroller extends Controller
     ->with('comments', $comments);
    }
 
-    public function addfeed(){
+
+// add feed section starts here
+//  
+//
+// 
+public function addfeed(){
 
   $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
@@ -68,7 +83,13 @@ class Feedcontroller extends Controller
 
     }
 
-    public function post_feed(Request $request){
+
+// post feed to the data basename
+    // 
+    // 
+    // 
+    // 
+public function post_feed(Request $request){
       DB::table('post')
       ->insert([
         'user_id' => auth()->user()->id,
@@ -80,7 +101,12 @@ class Feedcontroller extends Controller
       return redirect('myfeeds');
     }
 
-    public function like_post(Request $request){
+// like post controller starts here
+    // 
+    // 
+    // 
+    // 
+public function like_post(Request $request){
       $dacheck = DB::table('likes')
       ->where('user_id', auth()->user()->id)
       ->where('post_id', $request->post_id)
@@ -136,6 +162,7 @@ $uid = DB::table('post')
 
       DB::table('customnotification')
       ->where('post_id', $request->post_id)
+      ->where('type', 'likes')
       ->update([
         'user_id' => $uid->user_id,
         'visitor_id' => auth()->user()->id,
@@ -150,15 +177,11 @@ $uid = DB::table('post')
 
       }
 
-
-
       DB::table('post')
       ->where('id', $request->post_id)
       ->update([
         'likes' => $newcount,
       ]);
-
-      
 
       }else{
 
@@ -184,12 +207,16 @@ $uid = DB::table('post')
         ->delete();
       }
 
-
-
       return 3;
     }
 
-    public function post_comment(Request $request){
+// post comment in post controller starts here
+    // 
+    // 
+    // 
+    // 
+
+public function post_comment(Request $request){
       DB::table('comment')
       ->insert([
         'post_id' => $request->postid,
@@ -198,6 +225,12 @@ $uid = DB::table('post')
         'comment' => $request->comment,
         'created_at' => now()
       ]);
+
+      $getcommentid = DB::table('comment')
+      ->where('post_id', $request->postid)
+      ->where('user_id', auth()->user()->id)
+      ->orderBy('id', 'DESC')
+      ->first();
 
        $dacheck = DB::table('comment')
       ->where('user_id', auth()->user()->id)
@@ -222,11 +255,35 @@ $uid = DB::table('post')
         'comments' => $commentcount
       ]);
 
+      $uid = DB::table('post')
+      ->where('id', $request->postid)
+      ->first();
+
+      DB::table('customnotification')
+      ->insert([
+        'user_id' => $uid->user_id,
+        'visitor_id' => auth()->user()->id,
+        'visitor_name' => auth()->user()->name,
+        'img' => auth()->user()->profile_image,
+        'data' => 'have commented in your post',
+        'read' => 'unread',
+        'type' => 'comment',
+        'post_id' => $request->postid,
+        'comment_id' => $getcommentid->id,
+        'created_at' => now()
+
+      ]);
+
       $id = $request->postid;
       return redirect('/viewpost'.$id);
     }
 
-    public function delete_post($id){
+// Delete post from data base controller starts here
+    // 
+    // 
+    // 
+    // 
+public function delete_post($id){
 
       DB::table('post')
       ->where('id', $id)
@@ -235,27 +292,37 @@ $uid = DB::table('post')
       return redirect('/myfeeds');
     }
 
-    public function delete_comment($id){
+// Delete comment from post controller starts here
+    // 
+    // 
+    // 
+    // 
+public function delete_comment($id){
 
       $postid = DB::table('comment')
       ->where('id', $id)
       ->first();
 
-       $dacheck = DB::table('comment')
-      ->where('user_id', $postid->user_id)
-      ->where('post_id', $postid->post_id)
-      ->get();
+      if($postid->user_id != auth()->user()->id){
+        return $postid->user_id . $id;
+      }
 
-      $dacheckcomment = DB::table('post')
-      ->where('user_id', $postid->user_id)
+      //  $dacheck = DB::table('comment')
+      // ->where('post_id', $postid->post_id)
+      // ->where('user_id', $postid->user_id)
+      // ->get();
+
+      // $count = $dacheck->count();
+
+
+      $checkcomment = DB::table('post')
       ->where('id', $postid->post_id)
       ->first();
 
-      if($dacheckcomment->comments == 0){
+      if($checkcomment->comments == '0'){
         $commentcount = '1';
       }else{
-      $count = $dacheck->count();
-        $commentcount = $dacheckcomment->comments - '1';
+        $commentcount = $checkcomment->comments - '1';
       }
 
       DB::table('post')
@@ -266,8 +333,12 @@ $uid = DB::table('post')
 
       DB::table('comment')
       ->where('id', $id)
+      ->where('user_id', $postid->user_id)
       ->delete();
 
+      DB::table('customnotification')
+      ->where('comment_id', $id)
+      ->delete();
       return redirect('viewpost'.$postid->post_id);
     }
 }
