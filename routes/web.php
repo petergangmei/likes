@@ -79,3 +79,11 @@ Route::get('/notify', 'NotificationController@notify');
 
 Route::post('/searhbyname', 'MainController@search_by_name');
 
+
+// chatting section
+
+Route::get('/messages/{username}{id}', 'ChatController@messageindex');
+Route::post('/messages/sendMessage', 'ChatController@sendMessage');
+Route::post('/messages/checkunseen', 'ChatController@checkunseen');
+
+Route::get('/messageslist', 'ChatController@messages_list');

@@ -26,13 +26,14 @@
 
     <div id="app">
         
-        <nav class="navbar  navbar-light navbar-laravel" >
-            <div class="" >
-                <b>News feeds</b>
-
-   
+        <nav class="navbar navbar-light navbar-laravel" style="border: 1px solid silver;" >
+            <i class="fa fa-filter cursor-pointer" style="font-size: 20px;"></i>
+            <div class="  mx-auto" >
+                <b>Wafe - Find me!</b>
             </div>
+           <a href="/messageslist"> <i class="fa fa-envelope-o cursor-pointer" style="font-size: 20px;"></i> </a>
         </nav>
+        <br>
 
         <main class="">
             @yield('content')

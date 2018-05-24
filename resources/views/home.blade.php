@@ -103,7 +103,7 @@
         <img src="/public/storage/profile_image/{{$friend->visitor_id}}/{{$friend->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
       @endif
       <b class="magin-left ">{{$friend->visitor_name}}</b> <b style="font-size: 10px;">({{$friend->gender}})</b> <br> 
-       <button  class="btn-outline-primary padding-sm border-radius cursor-pointer accept" value="{{$friend->visitor_id}}"><i  class="fa fa-comments "  id="accept"> </i> Message</button> 
+       <a href="/messages/{{$friend->visitor_name}}{{$friend->visitor_id}}"> <button  class="btn-outline-primary padding-sm border-radius cursor-pointer " value="{{$friend->visitor_id}}"><i  class="fa fa-comments "  id=""> </i> Message</button></a>
     </li>
       @endforeach
     @else
