@@ -40,14 +40,9 @@ $(document).ready(function () {
 setInterval(
 function()
 	{
-
        var token = $('input[name=_token ').val();
        var user2 = $('#user2').val();
        var uid2 = $('#uid2').val();
-		// $('#messagecontent').load(' Gouri2');
-            // location.reload(true);
-
-            // window.scrollTo(0,1000);
 
 $.ajax({
             url: 'checkunseen',
@@ -60,16 +55,11 @@ $.ajax({
         })
         .done(function(data) {
             console.log(data);
-            // $('#addrequest').text(' Requested');
-            // $('#cancelrequest').text('Looking to cancel Request, clcik here!');
                    if (data == 'available'){
                    	$.when( $('#messagecontent').load(' #messagecontent') ).then(function( data, textStatus, jqXHR ) {
    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 });
             
-
-
-
             }
         })
         .fail(function() {
@@ -82,7 +72,7 @@ $.ajax({
 
 	
 	console.log('sec1');
-	}, 1000);
+	}, 800);
 
 });
 

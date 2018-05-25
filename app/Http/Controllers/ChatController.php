@@ -62,7 +62,12 @@ class ChatController extends Controller
     	->first();
 
     	if(count($check1)> 0){
-
+    		DB::table('chats')
+    		->where('uid1', $request->uid2)
+    		->where('uid2', auth()->user()->id)
+    		->update([
+    			'seen' => 'unseen'
+    		]);
     	}else{
     	
  $rdm = rand(0,100);
@@ -77,6 +82,7 @@ class ChatController extends Controller
     			'user2' => $request->user2,
     			'uid1' => auth()->user()->id,
     			'uid2' => $request->uid2,
+    			'seen' => 'unseen',
     			'created_at' => now()
     		]);
     		DB::table('chats')
@@ -86,6 +92,7 @@ class ChatController extends Controller
     			'user2' => auth()->user()->name,
     			'uid1' => $request->uid2,
     			'uid2' => auth()->user()->id,
+    			'seen' => 'unseen',
     			'created_at' => now()    			
     		]);
 
@@ -140,22 +147,57 @@ class ChatController extends Controller
     	->where('seen', 'unseen')
     	->get();
 
+    	$checkunseen2 = $checkunseen = DB::table('chats')
+    	->where('chat_id', $getcid->chat_id)
+    	->where('uid1',  auth()->user()->id)
+    	->where('seen', 'unseen')
+    	->get();
+
+    	if(count($checkunseen2)>0){
+    	DB::table('chats')
+    		->where('chat_id', $getcid->chat_id)
+    		->where('uid1', auth()->user()->id)
+    		->update([
+    			'seen' => 'seen'
+    		]); 
+    	}else{
+
+    	}
+
+
     	if(count($checkunseen)>0){
-    		$result = "available";
     		DB::table('chats_messages')
     		->where('chat_id', $getcid->chat_id)
     		->update([
     			'seen' => 'seen'
     		]);
+
+    	
+    		$result = "available";
+
     	}else{
     		$result = "none";
     	}
     	return $result;
     }
+    public function check_inbox(Request $request){
+    	$check = DB::table('chats')
+    	->where('uid1', auth()->user()->id)
+    	->where('seen', 'unseen')
+    	->get();
+    	if(count($check)>0){
+    		$data = 'available';
+    	}else{
+    		$data = 'none';
+
+    	}
+    	return $data;
+    }
 
     public function messages_list(){
     	$messageslist = DB::table('chats')
     	->where('uid1', auth()->user()->id)
+    	->orderBy('created_at', 'DESC')
     	->get();
     	$user2 = DB::table('users')
     	->get();

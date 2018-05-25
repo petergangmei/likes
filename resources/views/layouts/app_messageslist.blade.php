@@ -73,7 +73,7 @@
     </div>
     <script src="{{ asset('js/custom.js') }}" defer></script>
     <script src="{{ asset('js/ajax.js') }}" defer></script>
-    <script src="{{ asset('js/chat.js') }}" defer></script>
+    <script src="{{ asset('js/checkinbox.js') }}"></script>
     
 </body>
 </html>
