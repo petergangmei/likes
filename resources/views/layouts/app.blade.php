@@ -27,11 +27,11 @@
     <div id="app">
         
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+            <div class="container ">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     @guest
                     @else
-                    <b>{{ Auth::user()->name }}</b>
+                    <b class="">{{ Auth::user()->name }}</b>
                     @endguest
                 </a>
 

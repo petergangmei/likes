@@ -1,19 +1,14 @@
 @extends('layouts.app5')
 @section('content')
 
-<div class="container">
-	<button type="button" class="btn btn-primary">Global Feed</button>
-	<button type="button" class="btn btn-outline-primary">Friends Feed</button>
-	<a href="/myfeeds"><button type="button" class="btn btn-outline-primary">My Feed</button></a>
 
-</div>
-<br>
 <div class="container-fluid">
 	@if(count($posts)>0)
 	
 	@foreach($posts as $post)
 	<div class="card">
 	<div class="card-body">
+<a href="/viewpost{{$post->id}}" style="text-decoration: none; color: black;">
 		
 	@guest
 	 <i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
@@ -29,6 +24,7 @@
 	<footer class="blockquote-footer">Posted by <cite title="Source Title"><a href="/profileid-{{$post->user_id}}">{{$post->user_name}}</a></cite></footer>
 		
 	</div>
+</a>
 	
 	  <div class="refresh">
 	  <div class="card-footer ">
@@ -50,5 +46,27 @@
 	@endif
 </div>
 
+	@csrf
+<input type="hidden" id="uid2" value="{{auth()->user()->id}}">
 
+<script>
+$(document).ready(function(){
+
+// maintain filter gobal news feed
+$('.g1').hide();
+$('.l2').hide();
+$('.f2').hide();
+$('.m2').hide();
+
+
+$('[data-toggle="popover"]').popover(); 
+});
+
+$(function () {
+  $('.example-popover').popover({
+    container: 'body'
+  })
+})
+
+</script>
 @endsection

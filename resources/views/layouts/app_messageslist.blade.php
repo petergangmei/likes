@@ -28,6 +28,8 @@
         
         <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-laravel">
             <div class="container">
+            <a href="/feeds"><i class="fa fa-arrow-left" style="font-size:20px; color: black;"></i></a>
+
                 <a class="navbar-brand mx-auto" href="{{ url('/') }}">
                     @guest
                     @else

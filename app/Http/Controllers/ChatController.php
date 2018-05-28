@@ -8,6 +8,8 @@ class ChatController extends Controller
 {
 
 	public function messageindex($username, $id){
+        $supercheck = DB::table('chats')->get();
+
     	$check1 = DB::table('chats')
     	->where('uid1', auth()->user()->id )
     	->where('uid2', $id)
@@ -51,6 +53,10 @@ class ChatController extends Controller
 
     public function sendMessage(Request $request){
 
+        $supercheck = DB::table('chats')->get();
+        if(count($supercheck)>0){
+
+        // check if sender and receiver id is avilale in chats table
     	$check1 = DB::table('chats')
     	->where('uid1', auth()->user()->id)
     	->where('uid2', $request->uid2)
@@ -66,14 +72,17 @@ class ChatController extends Controller
     		->where('uid1', $request->uid2)
     		->where('uid2', auth()->user()->id)
     		->update([
-    			'seen' => 'unseen'
+    			'seen' => 'unseen',
+                'created_at' => now()
     		]);
     	}else{
     	
- $rdm = rand(0,100);
+ $rdm = rand(0,9);
  $tim = time();
  $ui = auth()->user()->id;
- $cid = $ui + $tim + $rdm;
+ $date = date('Ymd');
+ $dfb  = auth()->user()->year;
+ $cid =  $ui . $date . $dfb . $rdm . $tim  ;
 
     		DB::table('chats')
     		->insert([
@@ -98,7 +107,6 @@ class ChatController extends Controller
 
     	}
 
-
     	$check2 = DB::table('chats')
     	->where('uid1', auth()->user()->id )
     	->where('uid2', $request->uid2)
@@ -113,40 +121,80 @@ class ChatController extends Controller
     	'created_at' => now()
     	]);
 
-    	// $check22 = DB::table('chats')
-    	// ->where('uid1', $request->uid2)
-    	// ->where('uid2', auth()->user()->id)
-    	// ->first();
-
-    	// DB::table('chats_messages')
-    	// ->insert([
-    	// 'chat_id' => $check22->id,
-    	// 'sender_username' => auth()->user()->name,
-    	// 'message' => $request->message,
-    	// 'created_at' => now()
-    	// ]);
-
-
-    	$name = $request->user2;
-    	$uid = $request->uid2;
-
-    	$link =  ' $name + $uid ';
 
     	return 123;
+        
+        }else{
+
+ $rdm = rand(0,9);
+ $tim = time();
+ $ui = auth()->user()->id;
+ $date = date('Ymd');
+ $dfb  = auth()->user()->year;
+ $cid =  $ui . $date . $dfb .  $rdm . $tim;
+
+            DB::table('chats')
+            ->insert([
+                'chat_id' => $cid,
+                'user1' => auth()->user()->name,
+                'user2' => $request->user2,
+                'uid1' => auth()->user()->id,
+                'uid2' => $request->uid2,
+                'seen' => 'unseen',
+                'created_at' => now()
+            ]);
+            DB::table('chats')
+            ->insert([
+                'chat_id' => $cid,
+                'user1' => $request->user2,
+                'user2' => auth()->user()->name,
+                'uid1' => $request->uid2,
+                'uid2' => auth()->user()->id,
+                'seen' => 'unseen',
+                'created_at' => now()               
+            ]);
+
+        $check2 = DB::table('chats')
+        ->where('uid1', auth()->user()->id )
+        ->where('uid2', $request->uid2)
+        ->first();
+
+        DB::table('chats_messages')
+        ->insert([
+        'chat_id' => $check2->chat_id,
+        'sender_username' => auth()->user()->name,
+        'message' => $request->message,
+        'seen' => 'unseen',
+        'created_at' => now()
+        ]);
+
+        return 234;
+
+        }
+
     }
 
     public function checkunseen(Request $request){
+
+        // check any data available in chats table
+        $supercheck = DB::table('chats')->get();
+
+        if(count($supercheck)>0){
+
+        // get the chat id for sender and receiver
     	$getcid = DB::table('chats')
     	->where('uid1', auth()->user()->id)
     	->where('uid2', $request->uid2)
     	->first();
 
+        // check if message is available in chat_messages table is unseen
     	$checkunseen = DB::table('chats_messages')
     	->where('chat_id', $getcid->chat_id)
     	->where('sender_username', '!=', auth()->user()->name)
     	->where('seen', 'unseen')
     	->get();
 
+        // check if the message in the chats table is seen or unseen
     	$checkunseen2 = $checkunseen = DB::table('chats')
     	->where('chat_id', $getcid->chat_id)
     	->where('uid1',  auth()->user()->id)
@@ -164,7 +212,6 @@ class ChatController extends Controller
 
     	}
 
-
     	if(count($checkunseen)>0){
     		DB::table('chats_messages')
     		->where('chat_id', $getcid->chat_id)
@@ -179,13 +226,22 @@ class ChatController extends Controller
     		$result = "none";
     	}
     	return $result;
+
+        }else{
+             $result = 'none';
+        }
+
     }
+
+
+
     public function check_inbox(Request $request){
     	$check = DB::table('chats')
     	->where('uid1', auth()->user()->id)
     	->where('seen', 'unseen')
     	->get();
-    	if(count($check)>0){
+
+    	if(count($check) > 0){
     		$data = 'available';
     	}else{
     		$data = 'none';

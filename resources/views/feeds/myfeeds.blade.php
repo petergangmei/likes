@@ -2,11 +2,6 @@
 @section('content')
 
 <div class="container">
-	<button type="button" class="btn btn-outline-primary">Global Feed</button>
-	<button type="button" class="btn btn-outline-primary">Friends Feed</button>
-	<button type="button" class="btn btn-primary">My Feed</button>
-<br>
-<div class="">
 @if(count($post)>0)
  
  @foreach($post as $p)
@@ -51,5 +46,15 @@
 
 </div>
 
+<script>
+$(document).ready(function(){
+// maintain filter gobal news feed
+$('.g2').hide();
+$('.l2').hide();
+$('.f2').hide();
+$('.m1').hide();
+
+});
+</script>
 
 @endsection

@@ -5,8 +5,11 @@
 	    @csrf
 
 	<!-- <i class="	fa fa-ellipsis-v cursor-pointer" style="float: right;"></i> -->
-    <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model2" ></i>
-
+    @if($post_by->user_id == auth()->user()->id)
+    <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model_auth" ></i> 
+    @else
+    <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model_guest" ></i> 
+    @endif
 	{{$post->post}}
 </div>
 <div class="card-footer">
@@ -25,19 +28,22 @@
 	<ul class="list-group">
   	<li class="list-group-item">
 
-	@guest
+<!-- 	@guest
 	<i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
 	    @csrf
-
 	@else
 	<i class="fa fa-ellipsis-v cursor-pointer cmt" id="{{$comment->id}}" data-toggle="modal" data-target="#Model1" style="float: right;"></i>
+	@endguest -->
+
+	@if($comment->user_id == auth()->user()->id)
+    <i class="fa fa-ellipsis-v cursor-pointer color-black cmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_auth" ></i> 
+    @else
+    <i class="fa fa-ellipsis-v cursor-pointer color-black cmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_guest" ></i> 
+    @endif
 
 
-	@endguest
-
-
-  	<a href="/profileid-{{$comment->user_id}}"><small><b>{{$comment->user_name}}</b></small></a>
-	{{$comment->comment}}
+  	<a href="/profileid-{{$comment->user_id}}"><small><b>{{$comment->user_name}}</b></a>
+	{{$comment->comment}}</small>
 	</li>
 	</ul>
 	@endforeach
@@ -61,38 +67,73 @@
 
 </div>
 
-    <div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+    <div class="modal fade" id="Model_auth"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
 
-					<div class="card" style="width: 100%; text-align:center;">
-					  <ul class="list-group list-group-flush">
-					    <a href="/deletepostid-{{$post->id}}">
-					    <li class="list-group-item cursor-pointer color-black">Share</li></a>
-					    <a href="/deletepostid-{{$post->id}}">
-					    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
-					    <a href="/deletepostid-{{$post->id}}">
-					    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
-					  </ul>
-					</div>
+			<div class="card" style="width: 100%; text-align:center;">
+				<div class="card-head" style="background-color: #60C1BE; padding: 8px;"><b style="color: white;">Post</b></div>
+			  <ul class="list-group list-group-flush">
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointer color-black">Share</li></a>
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
+			  </ul>
+			</div>
           </div>
         </div>
       </div>
 
-    <div class="modal fade" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+    <div class="modal fade" id="Model_guest"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
+			<div class="card" style="width: 100%; text-align:center;">
+			<div class="card-head" style="background-color: #60C1BE; padding: 8px;"><b style="color: white;">Post</b></div>
 
-					<div class="card" style="width: 100%; text-align:center;">
-					  <ul class="list-group list-group-flush">
-					    <a href="/deletepostid-{{$post->id}}">
-					    <li class="list-group-item cursor-pointer color-black">Share</li></a>
-					    <a href="/deletepostid-{{$post->id}}">
-					    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
-					    <a href="/deletecommentid-" id="deletelink">
-					    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
-					  </ul>
-					</div>
+			  <ul class="list-group list-group-flush">
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointer color-black">Share</li></a>
+			    <!-- <a href="/deletepostid-{{$post->id}}"> -->
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointe color-black">Report</li></a>
+			  </ul>
+			</div>
+          </div>
+        </div>
+      </div>      
+
+<!-- comments models -->
+    <div class="modal fade" id="Model1_auth"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+			<div class="card" style="width: 100%; text-align:center;">
+				<div class="card-head" style="background-color: #60C1BE; padding: 5px; color:white;"> <b>Comments</b> </div>
+			  <ul class="list-group list-group-flush">
+			    <a href="/deletepostid-{{$post->id}}">
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointer color-black">Edit</li></a>
+			    <a href="/deletecommentid-" id="deletelink" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointe color-black">Delete</li></a>
+			  </ul>
+			</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="Model1_guest"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+			<div class="card" style="width: 100%; text-align:center;">
+				<div class="card-head" style="background-color: #60C1BE; padding: 5px; color:white;"> <b>Comments</b> </div>
+			  <ul class="list-group list-group-flush">
+			    <a href="/deletepostid-{{$post->id}}">
+			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
+			    <a href="/deletecommentid-{{$post->id}}" id="" style="text-decoration: none;">
+			    <li class="list-group-item cursor-pointe color-black">Report</li></a>
+			  </ul>
+			</div>
           </div>
         </div>
       </div>

@@ -31,6 +31,7 @@ $(document).ready(function () {
 
 
             $('#messagecontent').load(' #messagecontent');
+            $('#messagecontent2').load(' #messagecontent');
             $('#message').val('');
  $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 
@@ -56,6 +57,7 @@ $.ajax({
         .done(function(data) {
             console.log(data);
                    if (data == 'available'){
+                    $('#messagecontent2').load(' #messagecontent');
                    	$.when( $('#messagecontent').load(' #messagecontent') ).then(function( data, textStatus, jqXHR ) {
    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 });
@@ -72,7 +74,7 @@ $.ajax({
 
 	
 	console.log('sec1');
-	}, 800);
+	}, 700);
 
 });
 

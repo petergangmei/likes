@@ -12,6 +12,15 @@ class Feedcontroller extends Controller
     ->orderBy('created_at', 'DESC')
     ->get();
 
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();
+
+
+
+
   $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
@@ -19,6 +28,7 @@ class Feedcontroller extends Controller
 
     return view('feeds/newsfeed')
     ->with('posts', $posts)
+    ->with('messages', $messageslist)
     ->with('unread', $unread);
    }
 
@@ -33,6 +43,12 @@ public function myfeeds(){
         ->where('read', 'unread')
         ->get();
 
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();        
+
         $post = DB::table('post')
         ->where('user_id', auth()->user()->id)
         ->orderBy('id', 'desc')
@@ -40,6 +56,7 @@ public function myfeeds(){
 
    	return view('feeds/myfeeds')
     ->with('unread', $unread)
+    ->with('messages', $messageslist)
     ->with('post', $post);
    }
 
@@ -57,14 +74,25 @@ public function view_post($id){
         ->where('id', $id)
         ->first();
 
-        $comments = DB::table('comment')
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();   
+
+     $comments = DB::table('comment')
         ->where('post_id', $id)
         ->get();
+     $post_by = DB::table('post')
+     ->where('id', $id)
+     ->first();
 
     return view('feeds/viewpost')
     ->with('post', $post)
+    ->with('messages', $messageslist)
     ->with('unread', $unread)
-    ->with('comments', $comments);
+    ->with('comments', $comments)
+    ->with('post_by', $post_by);
    }
 
 
@@ -133,9 +161,10 @@ public function like_post(Request $request){
       $newcount = $count;
       }
 
-$uid = DB::table('post')
+      $uid = DB::table('post')
       ->where('id', $request->post_id)
       ->first();
+      
       $ncount = $count -'1';
       if($count == 1){
       $likenotify =  'liked your post';
@@ -145,6 +174,9 @@ $uid = DB::table('post')
 
       if($count == 1){
 
+      if($uid->user_id == auth()->user()->id){
+
+      }else{
       DB::table('customnotification')
       ->insert([
         'user_id' => $uid->user_id,
@@ -156,10 +188,13 @@ $uid = DB::table('post')
         'type' => 'likes',
         'post_id' => $request->post_id,
         'created_at' => now()
-      ]);
-
+      ]);        
+      }
       }else{
 
+      if($uid->user_id == auth()->user()->id){
+
+      }else{
       DB::table('customnotification')
       ->where('post_id', $request->post_id)
       ->where('type', 'likes')
@@ -174,8 +209,8 @@ $uid = DB::table('post')
         'post_id' => $request->post_id,
         'created_at' => now()
       ]);
-
-      }
+     }  
+     }
 
       DB::table('post')
       ->where('id', $request->post_id)
@@ -201,10 +236,59 @@ $uid = DB::table('post')
         'likes' => $newcount,
       ]);
 
+      // check linkes  - 
+      $checklike = DB::table('likes')
+      ->where('post_id', $request->post_id)
+      ->get();
+
         DB::table('likes')
         ->where('user_id', auth()->user()->id)
         ->where('post_id', $request->post_id)
         ->delete();
+
+      $count = $checklike->count();
+      if($count == 1){
+        $newcount = '0';
+        DB::table('customnotification')
+        ->where('post_id', $request->post_id)
+        ->delete();        
+      }
+      if($count >= 1){
+      $newcount = $count - '1';
+      }
+
+      $uid = DB::table('post')
+      ->where('id', $request->post_id)
+      ->first();
+      $lastlikerid = DB::table('likes')
+      ->where('post_id', $request->post_id)
+      ->first();
+      $lastlikerdetails = DB::table('users')
+      ->where('id', $lastlikerid->user_id)
+      ->first();
+
+      if($count == 2){
+      $likenotify =  'liked your post';
+      }else{
+      $likenotify =  'and other '.$newcount.' person have like your post';
+      }
+
+      DB::table('customnotification')
+      ->where('post_id', $request->post_id)
+      ->where('type', 'likes')
+      ->update([
+        'user_id' => $uid->user_id,
+        'visitor_id' => $lastlikerdetails->id,
+        'visitor_name' => $lastlikerdetails->name,
+        'img' => $lastlikerdetails->profile_image,
+        'data' => $likenotify,
+        'read' => 'read',
+        'type' => 'likes'
+        // 'post_id' => $request->post_id,
+        // 'created_at' => now()
+      ]);
+
+
       }
 
       return 3;
@@ -259,20 +343,23 @@ public function post_comment(Request $request){
       ->where('id', $request->postid)
       ->first();
 
+      if($uid->user_id == auth()->user()->id){
+      // send notification 
+      }else{
       DB::table('customnotification')
       ->insert([
         'user_id' => $uid->user_id,
         'visitor_id' => auth()->user()->id,
         'visitor_name' => auth()->user()->name,
         'img' => auth()->user()->profile_image,
-        'data' => 'have commented in your post',
+        'data' => 'commented on your post',
         'read' => 'unread',
         'type' => 'comment',
         'post_id' => $request->postid,
         'comment_id' => $getcommentid->id,
         'created_at' => now()
-
       ]);
+      }
 
       $id = $request->postid;
       return redirect('/viewpost'.$id);
@@ -307,13 +394,6 @@ public function delete_comment($id){
         return $postid->user_id . $id;
       }
 
-      //  $dacheck = DB::table('comment')
-      // ->where('post_id', $postid->post_id)
-      // ->where('user_id', $postid->user_id)
-      // ->get();
-
-      // $count = $dacheck->count();
-
 
       $checkcomment = DB::table('post')
       ->where('id', $postid->post_id)
@@ -331,13 +411,15 @@ public function delete_comment($id){
         'comments' => $commentcount
       ]);      
 
-      DB::table('comment')
-      ->where('id', $id)
-      ->where('user_id', $postid->user_id)
-      ->delete();
+
 
       DB::table('customnotification')
       ->where('comment_id', $id)
+      ->delete();
+
+      DB::table('comment')
+      ->where('id', $id)
+      ->where('user_id', $postid->user_id)
       ->delete();
       return redirect('viewpost'.$postid->post_id);
     }

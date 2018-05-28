@@ -54,63 +54,7 @@
                 <b>Wafe - Find me!</b>
             </div>
 
-        <div id="noti">
-            @if(count($messages) == 0)
-           <a href="/messageslist" style="color: black;"> 
-            <i class="fa fa-envelope-o cursor-pointer" style="font-size: 20px;"></i> 
-           </a>
-            @endif
 
-            @if(count($messages) == 1 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/1.png" class="noti-icons">
-            @endif
-            </a>
-            @if(count($messages) == 2 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/2.png" class="noti-icons">
-            </a>
-            @endif            
-            @if(count($messages) == 3 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/3.png" class="noti-icons">
-            @endif 
-            @if(count($messages) == 4 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/4.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) == 5 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/5.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) ==6 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/6.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) ==7 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/7.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) ==8 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/8.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) ==9 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/9.png" class="noti-icons">
-            </a>
-            @endif 
-            @if(count($messages) > 9 )
-            <a href="/messageslist" style="color: black;"> 
-            <img src="public/storage/default_image/icons/10.png" class="noti-icons">
-            </a>
-            @endif 
-        </div>
 
         </nav>
         <br>

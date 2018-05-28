@@ -17,7 +17,7 @@ $.ajax({
         .done(function(data) {
             console.log(data);
              if (data == 'available'){
-             	$('#message').load(' #message');
+             	$('#noti').load(' #noti');
              	// $('#message2').load(' #message2');
                    	// $.when(  ).then(function( data, textStatus, jqXHR ) {
    			// $("html, body").animate({ scrollTop: $(document).height() }, 1000);
@@ -25,7 +25,7 @@ $.ajax({
             }else{
 
                 console.log('no message');
-                $('#message').load(' #message');
+                $('#noti').load(' #noti');
 
             }
         })

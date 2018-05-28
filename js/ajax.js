@@ -135,6 +135,24 @@ $(document).ready(function(){
     });
 
 
+    $('.deleteComment').each(function(){
+        $(this).click(function(){
+
+
+        var token = $('input[name=_token ').val();
+        var comment_id = $(this).val();
+
+        $('#deletelink').val(comment_id);
+
+
+
+        console.log($(this).val());
+
+
+        });
+    });
+
+
         
 
 });

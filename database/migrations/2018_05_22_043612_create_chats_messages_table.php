@@ -18,7 +18,7 @@ class CreateChatsMessagesTable extends Migration
             $table->string('chat_id');
             $table->string('sender_username');
             $table->string('message');
-            $table->boolean('read')->default(false);
+            $table->boolean('seen');
             $table->timestamps();
         });
     }

@@ -20,6 +20,7 @@ class CreateChatsTable extends Migration
             $table->string('user2');
             $table->string('uid1');
             $table->string('uid2');
+            $table->string('seen');
             $table->boolean('user1_is_typing')->default(false);
             $table->boolean('user2_is_typing')->default(false);
             $table->timestamps();
