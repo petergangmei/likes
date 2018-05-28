@@ -39,7 +39,11 @@
  @endforeach
 
 @else
-<p>You haven't post anything yet..</p>
+<div class=" text-center">
+  <p>You haven't post anything yet..</p>
+
+  <img src="/public/storage/default_image/icons/suggestpost.png" style="float: bottom;">
+</div>
 @endif
 </div>
 

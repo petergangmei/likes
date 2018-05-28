@@ -28,7 +28,9 @@ class NotificationController extends Controller
             'read' => 'read'
         ]);
 
-		return view('notification/notificationlist')->with('datas', $noti)->with('unread', $unread);
+		return view('notification/notificationlist')
+        ->with('datas', $noti)
+        ->with('unread', $unread);
 	}
 
     	// auth()->user()->notify(new RequestAccepted());

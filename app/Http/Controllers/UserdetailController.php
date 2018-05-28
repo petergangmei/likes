@@ -72,7 +72,14 @@ public function uploadprofile_img(Request $request){
 	     }
 
 			 // add profile image to user_profile_img table
-			DB::table('photos')->insert([ 'image' => $fileNameToStore, 'user_id' => $u_id, 'user_name'=>$u_name, 'deleted'=> 'false' ]);
+			DB::table('photos')
+			->insert([ 
+				'image' => $fileNameToStore,
+				 'user_id' => $u_id,
+				  'user_name'=>$u_name,
+				   'deleted'=> 'false',
+				   'created_at' => now()
+				    ]);
 
     	return redirect('/home')->with('success','Post created!');
 	}
@@ -103,6 +110,100 @@ public function uploadprofile_img(Request $request){
 		DB::table('photos')->where('id', $id)->update(['deleted' => 'true']);
 		return redirect('/home');
 	}
+
+	public function report_photo($id){
+		// check if report have already submited by the same user
+		$check1 = DB::table('reports')
+		->where('reporter_id', auth()->user()->id)
+		->where('post_id', $id)
+		->get();
+		if(count($check1)>0){
+		
+		return view('pages/reported_already');
+
+		}else{
+		$userid = DB::table('photos')
+		->where('id', $id)
+		->first();
+
+		$userdetail = DB::table('users')
+		->where('id', $userid->user_id)
+		->first();
+
+		DB::table('reports')
+		->insert([
+			'user_id' => $userid->user_id,
+			'post_id' => $id,
+			'type' => 'feature_photo',
+			'reporter_id' => auth()->user()->id,
+			'reporter_name' => auth()->user()->name, 
+			'reason' => 'not appropriate ',
+			'status' => 'justReported',
+			'created_at' =>now()
+		]);
+		DB::table('customnotification')
+		->insert([
+			'user_id' => $userdetail->id,
+			'visitor_id' => auth()->user()->id,
+			'visitor_name' => auth()->user()->name,
+			'img' => auth()->user()->profile_image,
+			'data' => 'reported your photo as Inappropriate',
+			'read' => 'unread',
+			'type' => 'report',
+			'post_id' => $id,
+			'created_at' => now()
+		]);
+		}
+
+		return view('pages/reportsuccess');
+	}
+	// report comment
+	public function report_comment($id){
+		// check if report have already submited by the same user
+		$check1 = DB::table('reports')
+		->where('reporter_id', auth()->user()->id)
+		->where('post_id', $id)
+		->get();
+		if(count($check1)>0){
+		
+		return view('pages/reported_already');
+
+		}else{
+		$userid = DB::table('comment')
+		->where('id', $id)
+		->first();
+
+		$userdetail = DB::table('users')
+		->where('id', $userid->user_id)
+		->first();
+
+		DB::table('reports')
+		->insert([
+			'user_id' => $userid->user_id,
+			'post_id' => $id,
+			'type' => 'comment',
+			'reporter_id' => auth()->user()->id,
+			'reporter_name' => auth()->user()->name, 
+			'reason' => 'not appropriate ',
+			'status' => 'justReported',
+			'created_at' =>now()
+		]);
+		DB::table('customnotification')
+		->insert([
+			'user_id' => $userdetail->id,
+			'visitor_id' => auth()->user()->id,
+			'visitor_name' => auth()->user()->name,
+			'img' => auth()->user()->profile_image,
+			'data' => 'reported your comment as Inappropriate from one post. Tap here to see the post',
+			'read' => 'unread',
+			'type' => 'report',
+			'post_id' => $id,
+			'created_at' => now()
+		]);
+		}
+
+		return view('pages/reportsuccess');
+	}	
 
 	// update preference
 	public function update_preference(Request $request){

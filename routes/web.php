@@ -51,6 +51,10 @@ Route::get('/photoid-{id}', 'UserdetailController@view_photo');
 
 Route::get('/deletephotoid-{id}', 'UserdetailController@delete_photo');
 
+Route::get('/reportphotoid-{id}', 'UserdetailController@report_photo');
+
+Route::get('/reportcommentid-{id}', 'UserdetailController@report_comment');
+
 Route::get('/deletepostid-{id}', 'FeedController@delete_post');
 
 Route::get('/deletecommentid-{id}', 'FeedController@delete_comment');

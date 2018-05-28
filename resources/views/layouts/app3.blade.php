@@ -27,10 +27,8 @@
     <div id="app">
         
         <nav class="navbar  navbar-light navbar-laravel" >
-            <div class="" >
-                <h3><b>New post</b></h3>
-
-   
+            <div class="mx-auto" >
+                <b>New post</b>
             </div>
         </nav>
 

@@ -143,10 +143,7 @@ $(document).ready(function(){
         var comment_id = $(this).val();
 
         $('#deletelink').val(comment_id);
-
-
-
-        console.log($(this).val());
+        // console.log($(this).val());
 
 
         });

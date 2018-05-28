@@ -14,6 +14,13 @@ $(".cmt").click(function(){
  $('#deletelink').attr('href', link);
 });
 
+$(".reportcmt").click(function(){
+  var comment_id = ($(this).attr("id"));
+  var link = 'reportcommentid-' + comment_id;
+ console.log(comment_id);
+ $('#reportlink').attr('href', link);
+});
+
     $("#bio-edit").click(function(){
     	$('#bio').hide();
     	$('#bio-edit').hide();

@@ -38,7 +38,7 @@
 	@if($comment->user_id == auth()->user()->id)
     <i class="fa fa-ellipsis-v cursor-pointer color-black cmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_auth" ></i> 
     @else
-    <i class="fa fa-ellipsis-v cursor-pointer color-black cmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_guest" ></i> 
+    <i class="fa fa-ellipsis-v cursor-pointer color-black reportcmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_guest" ></i> 
     @endif
 
 
@@ -130,7 +130,7 @@
 			  <ul class="list-group list-group-flush">
 			    <a href="/deletepostid-{{$post->id}}">
 			    <a href="/deletepostid-{{$post->id}}" style="text-decoration: none;">
-			    <a href="/deletecommentid-{{$post->id}}" id="" style="text-decoration: none;">
+			    <a href="/deletecommentid-{{$post->id}}" id="reportlink" style="text-decoration: none;">
 			    <li class="list-group-item cursor-pointe color-black">Report</li></a>
 			  </ul>
 			</div>

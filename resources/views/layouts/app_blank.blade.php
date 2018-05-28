@@ -29,13 +29,14 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Notification
 
                     @guest
                     @else
+
                     @endguest
                      
                 </a>
+
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -73,9 +74,7 @@
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" style="font-size:20px;  "></i>
-            @if(count($unread)>0)
-            <span class="badge badge-light">{{$unread->count()}}</span>
-            @endif
+
           </a>
           <a class="navbar-brand" href="/home"><i class="fa fa-user" style="font-size:20px; color: #CAC3C1;"></i></a>
         </nav>

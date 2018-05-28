@@ -29,14 +29,19 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Notification
 
                     @guest
                     @else
+
                     @endguest
                      
                 </a>
 
+                    @if($photo->user_id == auth()->user()->id)
+                    <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px;" data-toggle="modal" data-target="#Model2_auth"></i>
+                    @else
+                    <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px;" data-toggle="modal" data-target="#Model2_guest"></i>
+                    @endif
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
