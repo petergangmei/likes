@@ -115,7 +115,7 @@ $(document).ready(function(){
         })
         .done(function(data) {
 
-            console.log(data);
+            // console.log(data);
             // location.reload(true);
             // $('.refresh').load(location.href  + ' .refresh');
         })
@@ -128,7 +128,7 @@ $(document).ready(function(){
 
         });
 
-        console.log($(this).val());
+        // console.log($(this).val());
 
 
         });

@@ -11,17 +11,16 @@ class Feedcontroller extends Controller
     $posts = DB::table('post')
     ->orderBy('created_at', 'DESC')
     ->get();
+    $likes = DB::table('likes')
+    ->get();
 
       $messageslist = DB::table('chats')
       ->where('uid1', auth()->user()->id)
       ->where('seen', 'unseen')
       ->orderBy('created_at', 'DESC')
       ->get();
-
-
-
-
-  $unread = DB::table('customnotification')
+    
+      $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
         ->get();
@@ -29,6 +28,7 @@ class Feedcontroller extends Controller
     return view('feeds/newsfeed')
     ->with('posts', $posts)
     ->with('messages', $messageslist)
+    ->with('likes', $likes)
     ->with('unread', $unread);
    }
 
@@ -73,6 +73,8 @@ public function view_post($id){
         $post = DB::table('post')
         ->where('id', $id)
         ->first();
+      $likes = DB::table('likes')
+    ->get();
 
       $messageslist = DB::table('chats')
       ->where('uid1', auth()->user()->id)
@@ -91,6 +93,7 @@ public function view_post($id){
     ->with('post', $post)
     ->with('messages', $messageslist)
     ->with('unread', $unread)
+    ->with('likes', $likes)
     ->with('comments', $comments)
     ->with('post_by', $post_by);
    }

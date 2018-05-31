@@ -12,16 +12,28 @@
     @endif
 	{{$post->post}}
 </div>
-<div class="card-footer">
-  	<button class="like btn btn-light cursor-pointer float-left" value="{{$post->id}}">
-  	<i class="fa fa-heart-o" value="1" style="font-size: 20px;"></i>
+
+	<div class="card-footer " id="">
+  	<button class="like btn btn-light cursor-pointer float-left" id="{{$post->id}}" value="{{$post->id}}" style="padding: ;">
+
+  	<img src="public/storage/default_image/icons/heart1.png" class="like-heart"  id="{{$post->id}}" value="{{$post->likes}}"  style="margin:-15px 0px;  ">
+  	
+  		@if(count($likes)>0)
+	@foreach($likes as $like)
+	@if($like->post_id == $post->id)
+	@if($like->user_id == auth()->user()->id)
+  	<img src="public/storage/default_image/icons/heart2.png" class="like-heart"  id="{{$post->id}}"  value="{{$post->likes}}" style="margin: 4px -20px; position: absolute;">
+
+	@endif
+	@endif
+	@endforeach
+	@endif
   	</button>
-  	<span class="float-left" style="margin: 4px -7px;">{{$post->likes}} </span>
-  	<a href="#" class="color-black"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px;"></i></a>
-
-
-  	<span class="float-left" style="margin: 4px -2px;">{{$post->comments}} </span>
-</div>
+  	<span class="float-left _{{$post->id}}" style="margin: 4px -7px;" id="_{{$post->id}}">{{$post->likes}}</span>
+  	<a href="/viewpost{{$post->id}}"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px; color: black;"></i></a>
+  	<span class="float-left" style="margin: 4px -2px;" id="">{{$post->comments}}</span>
+    @csrf
+    </div>
 <div class="card">
 	@if(count($comments)> 0)
 	@foreach($comments as $comment)
