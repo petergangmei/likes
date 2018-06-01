@@ -4,7 +4,7 @@
 
 @if(count($datas)> 0)
 
-<ul class="list-group">
+<ul class="list-group" id="notificationlist">
 	@foreach($datas as $data)
   
   <li class="list-group-item">
@@ -83,6 +83,7 @@ No Notification..
 
 @endif
 
+       @csrf
 
 
 

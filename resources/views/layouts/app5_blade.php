@@ -37,7 +37,7 @@
 <i class="fa fa-filter  cursor-pointer" role="button" id="dropdownMenuLink" data-toggle="dropdown"   style="font-size: 20px;"></i>
 
 
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+  <div class="dropdown-menu navi-bar" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item g1" href="feeds">Global feeds </a>
     <a class="dropdown-item g2" href="feeds">Global feeds <i class="fa fa-check-circle-o"></i></a>
     <a class="dropdown-item l1" href="localfeeds">Local feeds </a>
@@ -62,7 +62,7 @@
         <main class="">
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light" style="background-color: #F8F2F0;">
+        <nav class="navbar fixed-bottom navbar-light"  id="navibar" style="background-color: #F8F2F0;">
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; "></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
@@ -79,6 +79,7 @@
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
     <script src="{{ asset('js/check_msg_from_feed.js') }}" ></script>
+    <script src="{{ asset('js/notification_check.js') }}" ></script>
 
     
     

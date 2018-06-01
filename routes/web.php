@@ -90,4 +90,5 @@ Route::get('/messages/{username}{id}', 'ChatController@messageindex');
 Route::post('/messages/sendMessage', 'ChatController@sendMessage');
 Route::post('/messages/checkunseen', 'ChatController@checkunseen');
 Route::post('/checkinbox', 'ChatController@check_inbox');
+Route::post('/checknotification', 'NotificationController@check_notification');
 Route::get('/messageslist', 'ChatController@messages_list');

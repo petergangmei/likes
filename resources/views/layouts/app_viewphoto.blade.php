@@ -73,7 +73,7 @@
         <main class="">
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light" style="background-color: #F8F2F0;">
+        <nav class="navbar fixed-bottom navbar-light"  id="navibar" style="background-color: #F8F2F0;">
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
@@ -87,8 +87,9 @@
 
         </main>
     </div>
-    <script src="{{ asset('js/custom.js') }}" defer></script>
-    <script src="{{ asset('js/ajax.js') }}" defer></script>
+    <script src="{{ asset('js/custom.js') }}" ></script>
+    <script src="{{ asset('js/ajax.js') }}" ></script>
+    <script src="{{ asset('js/notification_check.js') }}" ></script>
     
 </body>
 </html>

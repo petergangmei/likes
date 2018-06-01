@@ -426,4 +426,5 @@ public function delete_comment($id){
       ->delete();
       return redirect('viewpost'.$postid->post_id);
     }
+
 }

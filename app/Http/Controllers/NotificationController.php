@@ -43,4 +43,17 @@ class NotificationController extends Controller
     	]);
     	return view('notification');
     }
+
+    Public function check_notification(Request $request){
+        $noti = DB::table('customnotification')
+                ->where('user_id', auth()->user()->id)
+                ->where('read', 'unread')
+                ->get();
+        if(count($noti)>0){
+            $result = 'available';
+        }else{
+            $result = 'none';
+        }
+        return $result;
+    }
 }

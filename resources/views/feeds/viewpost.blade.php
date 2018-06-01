@@ -29,23 +29,21 @@
 	@endforeach
 	@endif
   	</button>
+ <span id="viewupdatedpost">
   	<span class="float-left _{{$post->id}}" style="margin: 4px -7px;" id="_{{$post->id}}">{{$post->likes}}</span>
   	<a href="/viewpost{{$post->id}}"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px; color: black;"></i></a>
   	<span class="float-left" style="margin: 4px -2px;" id="">{{$post->comments}}</span>
     @csrf
+</span>
+
     </div>
+
 <div class="card">
+
 	@if(count($comments)> 0)
 	@foreach($comments as $comment)
 	<ul class="list-group">
   	<li class="list-group-item">
-
-<!-- 	@guest
-	<i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
-	    @csrf
-	@else
-	<i class="fa fa-ellipsis-v cursor-pointer cmt" id="{{$comment->id}}" data-toggle="modal" data-target="#Model1" style="float: right;"></i>
-	@endguest -->
 
 	@if($comment->user_id == auth()->user()->id)
     <i class="fa fa-ellipsis-v cursor-pointer color-black cmt" id="{{$comment->id}}" style="font-size: 15px; float: right;" data-toggle="modal" data-target="#Model1_auth" ></i> 

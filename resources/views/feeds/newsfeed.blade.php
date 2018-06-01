@@ -1,12 +1,11 @@
 @extends('layouts.app5')
 @section('content')
-<div class="reload">
+<div class="reload" id="feeds">
 <div class="container-fluid">
 	@if(count($posts)>0)
 	@foreach($posts as $post)
 <div class="card">
 	<div class="card-body">
-		{{$post->id}}
 	<a href="/viewpost{{$post->id}}" style="text-decoration: none; color: black;">
 	 <i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
 	<span style="font-size: 20px;">{{$post->post}}</span>
