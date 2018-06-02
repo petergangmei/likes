@@ -1,6 +1,20 @@
+
 $(document).ready(function(){
-console.log('ready');
-$(document).ready(function(){
+
+$(".glclick").click(function(){
+    var status = ($(this).attr("id"));
+    var gl = ($(this).attr("value"));
+    if(gl == 'List'){
+        $('.fdivs').css('width', '100%');
+        $('.fphotos').css('width', '100%');
+        $('.fphotos').css('height', '100%');
+    }else{
+        $('.fdivs').css('width', '140');
+        $('.fphotos').css('width', '140px');
+        $('.fphotos').css('height', '140px');
+    }
+    console.log(gl);
+});
 
 setInterval(
 function()
@@ -46,5 +60,4 @@ $.ajax({
 	
 	}, 3000);
 
-});
 });

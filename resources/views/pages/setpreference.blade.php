@@ -1,6 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.app_blank')
 @section('content')
 <div class="containter" style="text-align: center;">
+	<b>Set Preference</b>
 	<form method="POST" action="/update_preference">
           @csrf
 		<!-- coffee/tea -->

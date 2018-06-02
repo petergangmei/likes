@@ -17,6 +17,8 @@ class CreateLikesTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('post_id');
+            $table->string('posted_by');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -43,6 +43,10 @@ public function uploadprofile_img(Request $request){
             ->where('id', auth()->user()->id)
             ->update(['profile_image' => $fileNameToStore]);
 
+			 DB::table('profilevisitor')
+            ->where('visitor_id', auth()->user()->id)
+            ->update(['profile_image' => $fileNameToStore]);            
+
     	return redirect('/home')->with('success','Post created!');
 	}
 

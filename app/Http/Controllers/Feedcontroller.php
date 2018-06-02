@@ -142,6 +142,9 @@ public function like_post(Request $request){
       ->where('user_id', auth()->user()->id)
       ->where('post_id', $request->post_id)
       ->get();
+      $postuserid = DB::table('post')
+                  ->where('id', $request->post_id)
+                  ->first();
 
       if(count($dacheck) == 0){
 
@@ -149,6 +152,8 @@ public function like_post(Request $request){
       ->insert([
         'user_id' => auth()->user()->id,
         'post_id' => $request->post_id,
+        'posted_by' => $postuserid->user_id,
+        'status' => 'fresh',
         'created_at' => now(),
       ]);
       // update like count +
@@ -286,9 +291,8 @@ public function like_post(Request $request){
         'img' => $lastlikerdetails->profile_image,
         'data' => $likenotify,
         'read' => 'read',
-        'type' => 'likes'
-        // 'post_id' => $request->post_id,
-        // 'created_at' => now()
+        'type' => 'likes',
+        'created_at' => $lastlikerid->created_at
       ]);
 
 

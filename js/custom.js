@@ -1,10 +1,9 @@
-$(function () {
-  $('.example-popover').popover({
-    container: 'body'
-  })
-})
+
 
 $(document).ready(function(){
+console.log('readynnow');
+
+
 $(".like-heart").click(function(){
   var link = ($(this).attr("src"));
   var post = ($(this).attr("id"));

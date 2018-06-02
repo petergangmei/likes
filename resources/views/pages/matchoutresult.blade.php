@@ -22,10 +22,21 @@
                    <input type="hidden" id="result_val" value="{{$result_val}}">
                    <b style="font-size: 50px;">{{$result_val}}%</b><br> 
                     {{ csrf_field() }}
-                   <button type="button"  class="btn btn-outline-secondary btn-md"><i class="fa fa-user-plus" id="addrequest"> {{$status->status}} </i></button><br>
+
+                    @if($status->status == "Friend")
+                   <button type="button"  class="btn btn-light btn-md" style="background-color: #9FFFAE; "><i class=" fa fa-check-circle-o" id="addrequest"> Friend </i></button><br>
+
+                   <b id="cancelrequest" style="font-size: 12px; color: red; cursor: pointer;"></b>
+                   <input type="hidden" name="" id="user_id" value="{{$data1->id}}">
+                   @endif
+                   @if($status->status == "Request")
+                    <button type="button" class="btn btn-light btn-md" style="background-color: #28A5ED; color: white; "><i class="  fa fa-user-plus" id="addrequest"> Follow </i></button><br>
+
                    <b id="cancelrequest" style="font-size: 12px; color: red; cursor: pointer;"></b>
                    <input type="hidden" name="" id="user_id" value="{{$data1->id}}">
 
+
+                   @endif
                 </div>
                 <hr>
                 <div class="card-body border-blac" style="min-height: 150px; text-align: left;">

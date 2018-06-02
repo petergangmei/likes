@@ -24,7 +24,7 @@
 </head>
 <body>
 
-    <div id="app">
+    <div id="">
         
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" >
             <div class="container" >
@@ -83,9 +83,10 @@
 
         </main>
     </div>
-    <script src="{{ asset('js/custom.js') }}" ></script>
-    <script src="{{ asset('js/ajax.js') }}" ></script>
+    
+    <!-- <script src="{{ asset('js/ajax.js') }}" ></script> -->
     <script src="{{ asset('js/notification_check.js') }}" ></script>
+    <!-- <script src="{{ asset('js/custom.js') }}" ></script> -->
     
 </body>
 </html>

@@ -23,23 +23,70 @@
                     {{$data->gender}} </i>                     
                   <br>
                      
-                  <span id="bio"><?php echo $data->bio; ?> </span><br>
+                  <span id="bio"><?php echo $data->bio; ?> </span><hr>
+                  <div style="border:0px solid black; height: 50px;">
+                  <article class="float-left cuswidth1" style="background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+                  {{count($likes)}} <br> Likes
+                  </article>      
+                  <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+                  {{count($posts)}} <br> Posts
+                  </article>
+                  <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+                  {{count($photos)}} <br> Photos
+                  </article>                                                  
+                  <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+                  {{$data->friends}} <br> Friends
+                  </article>
 
-                  <button type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#Model-matchout">{{$visitor}}</button>
-                  
+
+
+                  </div>
+                  <br>
+
+                  @if($visitor == 'Matchresult')
+                  <br>
+                  <span data-toggle="modal" data-target="#Model-matchout" style="border:1px solid silver; border-radius:5px; padding: 10px; margin-right: 5px;" class="cursor-pointer"></i>
+                    <i class="fa fa-bar-chart" style="font-size: 20px;"></i>
+                  View Match Result
+                </span>
+                  <a href="/messages/{{$data->name}}{{$data->id}}" style="text-decoration: none; color: black;">
+                  <span  style="border:1px solid silver; border-radius:5px; padding: 10px;"></i>
+                  <i class="fa fa-comments-o" style="font-size: 25px;"></i>Message
+                </span>
+                </a>
+
+                  @else
+                  <div style="border:1px solid #F9FFFE;  border-radius: 5px; background-color: #F9FFFE;" class="cursor-pointer" data-toggle="modal" data-target="#Model-matchout">
+                  <span style="font-size: 15px;">
+                    You
+                  <img src="/public/storage/default_image/icons/logo1.png" height="80" width="80">
+                   {{$data->name}}
+                  </span>
+                  <p><i>Click here to unvail the truth!</i></p>
+                  </div>
+                  @endif
+
+                  <div style="border:0px solid silver;">
                 </div>
-                <hr>
-                <div class="card-body border-blac" style="min-height: 150px;">
-                    @if(count($photos)> 0 )
-                                <div class="col-md-12">
-                                  @foreach($photos as $photo)
 
-                                    <div style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="border-black  cursor-pointer">
-                                        <a href="photoid-{{$photo->id}}"><img style="width: 100%; height: 100%;" src='public/storage/photos/{{$data->id}}/{{ $photo->image }}'>
-                                          </a>
-                                    </div>
-                                    @endforeach
-                                </div>
+
+                </div>
+                  <article class="text-center" style="border:1px solid #F6F3F3; padding: 5px;">
+                  <i class="fa fa-object-group glclick" id="active" value="Grid" style="font-size: 21px; color:#A0A0A0;">Grid</i>
+                  <i class="fa fa-navicon glclick" id="notactive" value="List" style="font-size: 21px; margin-left: 8px; color:#CBCBCB;">List</i>
+                  </article>
+                <div class="card-body border-blac" style="min-height: 150px; height: 100%;">
+                    @if(count($photos)> 0 )
+                      <div class="col-md-12">
+                        @foreach($photos as $photo)
+
+                          <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                              <a href="photoid-{{$photo->id}}">
+                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{$data->id}}/{{ $photo->image }}'>
+                                </a>
+                          </div>
+                          @endforeach
+                      </div>
                     @else
                         <div class="text-center padding-lg">
                         <p>Feature photos not uploated by, {{$data->name}}</p>
@@ -52,6 +99,7 @@
         </div>
     </div>
 </div>
+<br><br>
 
   <div class="modal fade" id="Model-matchout"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">

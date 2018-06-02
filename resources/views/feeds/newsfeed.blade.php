@@ -18,13 +18,13 @@
 	<div class="card-footer " id="">
   	<button class="like btn btn-light cursor-pointer float-left" id="{{$post->id}}" value="{{$post->id}}" style="padding: ;">
 
-  	<img src="public/storage/default_image/icons/heart1.png" class="like-heart"  id="{{$post->id}}" value="{{$post->likes}}"  style="margin:-15px 0px;  ">
+  	<img src="public/storage/default_image/icons/heart1.png" class="like-heart"  id="{{$post->id}}" value="{{$post->likes}}" alt="{{$post->id}}" style="margin:-15px 0px;  ">
   	
   		@if(count($likes)>0)
 	@foreach($likes as $like)
 	@if($like->post_id == $post->id)
 	@if($like->user_id == auth()->user()->id)
-  	<img src="public/storage/default_image/icons/heart2.png" class="like-heart"  id="{{$post->id}}"  value="{{$post->likes}}" style="margin: 4px -20px; position: absolute;">
+  	<img src="public/storage/default_image/icons/heart2.png" class="like-heart"  id="{{$post->id}}"  value="{{$post->likes}}" alt="{{$post->id}}" style="margin: 4px -20px; position: absolute;">
 
 	@endif
 	@endif

@@ -96,14 +96,47 @@
   <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
     @if(count($friends)> 0)
       @foreach($friends as $friend)
+
           <li class="list-group-item">
+<div class="">
+  <div class="row">
+    <div class="col-2" style="width: 50px;">
+      <a href="/profileid-{{$friend->visitor_id}}" style="text-decoration: none; color: black;">
+
       @if($friend->profile_image == 'null')
-        <img src="/public/storage/default_image/avatar.png " class=" float-left" style="width: 50px; height: 50px; border: 1px solid black;>
-      @else
-        <img src="/public/storage/profile_image/{{$friend->visitor_id}}/{{$friend->profile_image}}" class="float-left" style="width: 50px; height: 50px; border: 1px solid black;"> 
+        <img src="/public/storage/default_image/avatar.png" style="width: 50px; height: 50px; border: 1px solid silver;">
       @endif
-      <b class="magin-left ">{{$friend->visitor_name}}</b> <b style="font-size: 10px;">({{$friend->gender}})</b> <br> 
-       <a href="/messages/{{$friend->visitor_name}}{{$friend->visitor_id}}"> <button  class="btn-outline-primary padding-sm border-radius cursor-pointer " value="{{$friend->visitor_id}}"><i  class="fa fa-comments "  id=""> </i> Message</button></a>
+
+      @if($friend->profile_image !== 'null')
+        <img src="/public/storage/profile_image/{{$friend->visitor_id}}/{{$friend->profile_image}}"
+        style="width: 50px; height: 50px; border: 1px solid silver;"> 
+      @endif
+
+      </a>
+
+    </div>
+    <div class="col-6 text-left" style="">
+      <a href="/profileid-{{$friend->visitor_id}}" style="text-decoration: none; color: black;">
+
+      <b class=" margin-left">{{$friend->visitor_name}}</b>
+      <br>
+      <b style="font-size: 10px; position: absolute; margin: -5px 10px;">
+      ({{$friend->gender}})</b>   
+      </a>
+
+    </div>
+
+  <div class="col-4" style="padding: 10px;">
+  <a href="/messages/{{$friend->visitor_name}}{{$friend->visitor_id}}" style="text-decoration: none; color: black;"> 
+    <button  class="btn-outline-dark padding-sm border-radius cursor-pointer"  value="{{$friend->visitor_id}}" style="margin: -5px -50px; border-radius: 3px;" ><i  class="fa fa-comments"   id=""> </i> Message</button>
+    </a>     
+  </div>
+
+  </div>
+</div>
+
+ <br>
+       
     </li>
       @endforeach
     @else
@@ -151,77 +184,70 @@
   </div>
 </div>
 
-
                     <!-- <img src="public/storage/photos/{{auth()->user()->id}} " class="photo" style="float: left;"> -->
-
-
                 </div>
             </div>
 
-                <div class="modal fade" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Uploade profile image</h5>
+<div class="modal fade" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Uploade profile image</h5>
 
-                          <form method="POST" enctype='multipart/form-data' action="/uploadprofile_img">
-                        @csrf
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <input type="hidden" name="profile_type", value="profile_image">
+          <form method="POST" enctype='multipart/form-data' action="/uploadprofile_img">
+        @csrf
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="profile_type", value="profile_image">
 
-                          <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="profile_pic" id="validatedCustomFile" required>
-                          <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
-                          <div class="invalid-feedback">Example invalid custom file feedback</div>
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-default">Upload</button>
-                        </form>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-
-                <div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="exampleModalLongTitle">Add Photo</h5>
-
-                          <form method="POST" enctype='multipart/form-data' action="/add_photo">
-                        @csrf
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                          </button>
-                        </div>
-                        <div class="modal-body">
-                          <input type="hidden" name="profile_type", value="profile_image">
-
-                          <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="profile_pic2" id="validatedCustomFile" required>
-                          <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
-                          <div class="invalid-feedback">Example invalid custom file feedback</div>
-                        </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-default" name="" value="Upload">
-                        </form>
-                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="custom-file">
+          <input type="file" class="custom-file-input" name="profile_pic" id="validatedCustomFile" required>
+          <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
+          <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-default">Upload</button>
+        </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
+<div class="modal fade" id="Model2"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Add Photo</h5>
 
+          <form method="POST" enctype='multipart/form-data' action="/add_photo">
+        @csrf
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="profile_type", value="profile_image">
 
+          <div class="custom-file">
+          <input type="file" class="custom-file-input" name="profile_pic2" id="validatedCustomFile" required>
+          <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
+          <div class="invalid-feedback">Example invalid custom file feedback</div>
+        </div>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" class="btn btn-default" name="" value="Upload">
+        </form>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
         </div>
     </div>

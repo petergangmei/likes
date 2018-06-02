@@ -7,7 +7,7 @@
 <div style="padding: 5px;">
 </div>
 </div>
-
+@csrf
     <div class="modal fade" id="Model2_auth"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
@@ -28,7 +28,7 @@
     <div class="modal fade" id="Model2_guest"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="width: 100%;">
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-
+          	<div class="text-center" style="background-color: #60C1BE; color: white; padding: 8px; "><b>Photo</b></div>
 			<div class="card" style="width: 100%; text-align:center;">
 			  <ul class="list-group list-group-flush">
 			    <a href="/sharephotoid-{{$photo->id}}">

@@ -1,6 +1,6 @@
 @extends('layouts.app5')
 @section('content')
-
+@csrf
 <div class="container">
 @if(count($post)>0)
  

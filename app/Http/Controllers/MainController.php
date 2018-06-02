@@ -68,9 +68,15 @@ class MainController extends Controller
       }else{
         $visitor_id = "Matchout";
       }
+
       $photos = DB::table('photos')->where('user_id', $id)->where('deleted', 'false')->get();
       $data = DB::table('Users')->where('id', $id)->first();
+      
       $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
+
+      $post = DB::table('post')->where('user_id', $id)->get();
+
+      $likes = DB::table('likes')->where('posted_by', $id)->get();
 
       $visitor = $data->profile_visits;
       $newvisitor = $visitor + '10';
@@ -82,6 +88,8 @@ class MainController extends Controller
       ->with('photos', $photos)
       ->with('coins', $coins)
       ->with('visitor', $visitor_id)
+      ->with('posts', $post)
+      ->with('likes', $likes)
       ->with('unread', $unread);
    }
 
@@ -271,6 +279,28 @@ class MainController extends Controller
     ->where('id', $request->visitor_id)->first();
     $user = DB::table('users')
     ->where('id', auth()->user()->id)->first();
+
+    if($visitor->friends == 0){
+      $newfriends = '1';
+    }else{
+      $newfriends = $visitor->friends + '1';
+    }
+    if($user->friends == 0){
+      $newfriends2 = '1';
+    }else{
+      $newfriends2 = $user->friends + '1';
+    }
+
+    DB::table('users')
+        ->where('id', $request->visitor_id)
+        ->update([
+          'friends' => $newfriends
+          ]);
+    DB::table('users')
+        ->where('id', auth()->user()->id)
+        ->update([
+          'friends' => $newfriends2
+          ]);        
 
      DB::table('profilevisitor')
       ->insert(['user_id' => $request->visitor_id , 

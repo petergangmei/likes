@@ -29,12 +29,12 @@
 	@endforeach
 	@endif
   	</button>
- <span id="viewupdatedpost">
-  	<span class="float-left _{{$post->id}}" style="margin: 4px -7px;" id="_{{$post->id}}">{{$post->likes}}</span>
-  	<a href="/viewpost{{$post->id}}"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px; color: black;"></i></a>
-  	<span class="float-left" style="margin: 4px -2px;" id="">{{$post->comments}}</span>
-    @csrf
-</span>
+	 <span id="viewupdatedpost">
+	  	<span class="float-left _{{$post->id}}" style="margin: 4px -7px;" id="_{{$post->id}}">{{$post->likes}}</span>
+	  	<a href="/viewpost{{$post->id}}"> <i class="fa fa-comment-o cursor-pointer float-left" style="font-size: 21px; margin: 3px 7px; color: black;"></i></a>
+	  	<span class="float-left" style="margin: 4px -2px;" id="">{{$post->comments}}</span>
+	    @csrf
+	</span>
 
     </div>
 

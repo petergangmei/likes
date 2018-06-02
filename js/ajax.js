@@ -97,12 +97,13 @@ $(document).ready(function(){
 
 $(document).ready(function(){
 
-    $('.like').each(function(){
+    $('.like-heart').each(function(){
         $(this).click(function(){
 
 
         var token = $('input[name=_token ').val();
-        var post_id = $(this).val();
+        // var post_id = $(this).val();
+        var post_id = ($(this).attr("alt"));
 
 
         $.ajax({
