@@ -69,12 +69,16 @@ class MainController extends Controller
         $visitor_id = "Matchout";
       }
 
-      $photos = DB::table('photos')->where('user_id', $id)->where('deleted', 'false')->get();
+      $photos = DB::table('photos')->where('user_id', $id)
+                ->orderBy('created_at', 'DESC')
+                ->where('deleted', 'false')->get();
       $data = DB::table('Users')->where('id', $id)->first();
       
       $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
 
-      $post = DB::table('post')->where('user_id', $id)->get();
+      $post = DB::table('post')->where('user_id', $id)
+              ->orderBy('created_at', 'DESC')
+              ->get();
 
       $likes = DB::table('likes')->where('posted_by', $id)->get();
 

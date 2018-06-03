@@ -13,6 +13,11 @@
 @else
  <i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
 @endguest
+
+@if($p->image == 'null')
+@else
+<img src="/public/storage/posts_image/{{$p->user_id}}/{{$p->image}}" class="w-100" style="margin: 5px 0px;">
+@endif
 <span style="font-size: 20px;">{{$p->post}}</span>
 <br>
 

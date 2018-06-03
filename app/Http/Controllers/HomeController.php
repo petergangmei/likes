@@ -33,29 +33,37 @@ class HomeController extends Controller
         $userdetailfirst = DB::table('users')->where('id', auth()->user()->id)->first();
         $photos = DB::table('photos')
         ->where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'DESC')
         ->where('deleted', 'false')
         ->get();
         $bio = DB::table('users')
         ->where('id', auth()->user()->id)
         ->first();
 
-
-
         $visitors = DB::table('profilevisitor')
         ->where('status', 'Requested')
         ->where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'DESC')
+
         ->get();
 
         $friends = DB::table('profilevisitor')
         ->where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'DESC')
         ->where('status', 'Friend')
         ->get();
+        $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
 
         $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)
         ->where('read', 'unread')
         ->get();
 
+      $post = DB::table('post')->where('user_id', auth()->user()->id)
+        ->orderBy('created_at', 'DESC')
+        ->get();
+
+      $likes = DB::table('likes')->where('posted_by', auth()->user()->id)->get();
 
     
     return view('home')
@@ -64,7 +72,10 @@ class HomeController extends Controller
     ->with('bio', $bio)
     ->with('visitors', $visitors)
     ->with('friends', $friends)
+    ->with('likes', $likes)
+    ->with('posts', $post)
     ->with('user', $userdetailfirst)
+    ->with('coins', $coins)
     ->with('unread', $unread);
     }
     public function preference_page(){

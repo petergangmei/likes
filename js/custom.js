@@ -1,4 +1,27 @@
+$(document).ready(function(){
+    $(".likeimage").dblclick(function(){
+  var link = ($(this).attr("src"));
+  var post = ($(this).attr("id"));
+  var likes = parseInt($(this).attr("value"));
 
+  if(link == "public/storage/default_image/icons/heart1.png"){
+    var newlink = "public/storage/default_image/icons/heart2.png";
+    var newlikes = likes + 1;
+  }else{
+    var newlink = "public/storage/default_image/icons/heart1.png";
+    var newlikes = likes - 1;
+  }
+  ($(this).attr("src", newlink));
+
+  var post_id = '#_' + post;
+   console.log(post_id);
+  console.log(likes);
+  console.log(newlikes);
+
+  $(post_id).html(newlikes);
+  ($(this).attr("value", newlikes));
+    });
+});
 
 $(document).ready(function(){
 console.log('readynnow');
@@ -28,6 +51,7 @@ $(".like-heart").click(function(){
 
  // $('#deletelink').attr('href', link);
 });
+
 
 });
 

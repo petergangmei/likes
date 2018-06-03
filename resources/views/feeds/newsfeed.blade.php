@@ -4,13 +4,21 @@
 <div class="container-fluid">
 	@if(count($posts)>0)
 	@foreach($posts as $post)
-<div class="card">
+
+	<div class="card">
 	<div class="card-body">
 	<a href="/viewpost{{$post->id}}" style="text-decoration: none; color: black;">
-	 <i class="fa fa-ellipsis-v cursor-pointer" style="float: right;"></i>
-	<span style="font-size: 20px;">{{$post->post}}</span>
+	@if($post->image == 'null')
+
+	@else
+	<img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100">		
+	@endif
+	
+	<span style="font-size: 15px;">{{$post->post}}</span>
+
 	<br>
-	<small>{{Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}}</small>
+	<small style="color: silver; font-size: 10px;">{{Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}}</small>
+	
 	<footer class="blockquote-footer">Posted by <cite title="Source Title"><a href="/profileid-{{$post->user_id}}">{{$post->user_name}}</a></cite></footer>
 	</a></div>
 
@@ -36,9 +44,10 @@
   	<span class="float-left" style="margin: 4px -2px;" id="">{{$post->comments}}</span>
     @csrf
     </div>
+	</div>
+
 	@endforeach
-	<br><br>
-</div>
+	<br><br><br>
 </div>
 	@else
 	no post

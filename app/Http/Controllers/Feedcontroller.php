@@ -88,9 +88,13 @@ public function view_post($id){
      $post_by = DB::table('post')
      ->where('id', $id)
      ->first();
+     $userimg = DB::table('users')
+              ->where('id', $post->user_id)
+              ->first();
 
     return view('feeds/viewpost')
     ->with('post', $post)
+    ->with('userimg', $userimg)
     ->with('messages', $messageslist)
     ->with('unread', $unread)
     ->with('likes', $likes)
@@ -121,11 +125,36 @@ public function addfeed(){
     // 
     // 
 public function post_feed(Request $request){
+        $this->validate($request, [
+    'post_image'=>'required',
+    'post_image'=> 'image|nullable|max:1999'
+  ]);
+      $u_id = auth()->user()->id;
+      $u_name = auth()->user()->name;
+
+         // handle file upload
+       if($request->hasFile('post_image')){
+          //Get Filename with the extentionn
+          $filenameWithExt = $request->file('post_image')->getClientOriginalName();
+          // Get just file name
+          $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+          // Get just ext
+          $extension = $request->file('post_image')->getClientOriginalExtension();
+          //file name to store
+
+          $fileNameToStore = $filename.'_'.auth()->user()->id.'_'.time().'.'.$extension;
+          //upload image
+          $path = $request->file('post_image')->storeAs('public/posts_image/'.$u_id.'/', $fileNameToStore);
+       }else{
+          $fileNameToStore = 'null';
+       }      
+
       DB::table('post')
       ->insert([
         'user_id' => auth()->user()->id,
         'user_name' => auth()->user()->name,
         'post' => $request->post,
+        'image' => $fileNameToStore,
         'created_at' => now(),
       ]);
 

@@ -34,8 +34,11 @@
                     <b class="">{{ Auth::user()->name }}</b>
                     @endguest
                 </a>
-
+                    <span class="float-left">
+                    {{$coins->coins}}
+                    <img src="/public/storage/default_image/icons/coin.jpg" width="20" height="20">_
                     <a href="/menu"><i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; "></i></a>
+                    </span>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

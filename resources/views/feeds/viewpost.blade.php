@@ -3,12 +3,22 @@
 <div class="card">
 <div class="card-body">
 	    @csrf
-
-	<!-- <i class="	fa fa-ellipsis-v cursor-pointer" style="float: right;"></i> -->
+	 <div style="border:0px solid black;">
+	 <a href="/profileid-{{$post->user_id}}" style="text-decoration: none; color: black; font-size: 17px;" >
+	 	<img src="/public/storage/profile_image/{{$post->user_id}}/{{$userimg->profile_image}}" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
+	 	<b style="">{{$post->user_name}}</b>
+	 </a> 
+	<small style="color: silver; font-size: 10px;">{{Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}}</small>
     @if($post_by->user_id == auth()->user()->id)
     <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model_auth" ></i> 
     @else
     <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model_guest" ></i> 
+    @endif
+    </div>
+
+    @if($post->image == 'null')
+    @else
+    <img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100 " style="margin: 5px 0px;" id="likeimage">
     @endif
 	{{$post->post}}
 </div>

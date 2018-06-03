@@ -40,8 +40,21 @@
                   <button type="submit" id="update-bio" class="btn btn-default btn-sm" style="display: none;">Update</button>
                 </form>
                 </div>
- 
-                <div class="card-body border-blac" style="min-height: 150px;">
+       <div class="container" style="border:0px solid black; height: 50px;">
+      <article class="float-left cuswidth1" style="background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+      {{count($likes)}} <br> Likes
+      </article>      
+      <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+      {{count($posts)}} <br> Posts
+      </article>
+      <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+      {{count($photos)}} <br> Photos
+      </article>                                                  
+      <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
+      {{count($friends)}} <br> Friends
+      </article>
+      </div>
+  <div class="card-body border-blac" style="min-height: 150px;">
 
 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
   <li class="nav-item">
@@ -60,14 +73,19 @@
   <!-- photo -->
   <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
       @if(count($photos)> 0 )
-                  <div class="col-md-12">
+                  <article class="text-center" style="border:1px solid #F6F3F3; padding: 5px;">
+                  <i class="fa fa-object-group glclick" id="active" value="Grid" style="font-size: 21px; color:#A0A0A0;">Grid</i>
+                  <i class="fa fa-navicon glclick" id="notactive" value="List" style="font-size: 21px; margin-left: 8px; color:#A0A0A0;">List</i>
+                  </article>
+                        
+                  <div class="">
                     @foreach($photos as $photo)
 
-                      <div style="border:1px solid silver; width: 120px; float:left; margin:2px 2px; " class="border-black  cursor-pointer">
-                          <a href="photoid-{{$photo->id}}"><img style="width: 100%; height: 100%;" src='public/storage/photos/{{auth()->user()->id}}/{{ $photo->image }}'>
-                            </a>
-                            {{Carbon\Carbon::createFromTimestamp(strtotime($photo->created_at))->diffForHumans()}}
-                      </div>
+                     <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                              <a href="photoid-{{$photo->id}}">
+                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{auth()->user()->id}}/{{ $photo->image }}'>
+                                </a>
+                          </div>
                       @endforeach
                   </div>
       @else
