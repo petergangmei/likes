@@ -60,6 +60,91 @@ public function myfeeds(){
     ->with('post', $post);
    }
 
+public function friendsfeeds(){
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();        
+
+      $ids = DB::table('profilevisitor')
+                  ->where('user_id', auth()->user()->id)
+                  ->where('status', 'Friend')
+                  ->get();
+
+  $items[] = "";
+
+foreach ($ids as $key ) {
+  $items[] = $key->visitor_id;
+}
+// print_r($items);
+        $post = DB::table('post')
+        ->whereIn('user_id', [1,2,3])
+        ->orderBy('id', 'desc')
+        ->get();
+
+ return view('feeds/friendsfeeds')
+      ->with('unread', $unread)
+      ->with('messages', $messageslist)
+      ->with('post', $post); 
+}
+
+public function local_post(){
+    $posts = DB::table('post')
+    ->where('location', auth()->user()->location)
+    ->orderBy('created_at', 'DESC')
+    ->get();
+    $likes = DB::table('likes')
+    ->get();
+
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();
+    
+      $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+    return view('feeds/localpost')
+    ->with('posts', $posts)
+    ->with('messages', $messageslist)
+    ->with('likes', $likes)
+    ->with('unread', $unread);
+}
+public function national_post(){
+    $posts = DB::table('post')
+    ->where('country', auth()->user()->country)
+    ->orderBy('created_at', 'DESC')
+    ->get();
+    $likes = DB::table('likes')
+    ->get();
+
+      $messageslist = DB::table('chats')
+      ->where('uid1', auth()->user()->id)
+      ->where('seen', 'unseen')
+      ->orderBy('created_at', 'DESC')
+      ->get();
+    
+      $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+    return view('feeds/nationalpost')
+    ->with('posts', $posts)
+    ->with('messages', $messageslist)
+    ->with('likes', $likes)
+    ->with('unread', $unread);
+}
+
 // view individual post controller starts here
    // 
    // 
@@ -126,6 +211,7 @@ public function addfeed(){
     // 
 public function post_feed(Request $request){
         $this->validate($request, [
+    'post' => 'required||max:200',
     'post_image'=>'required',
     'post_image'=> 'image|nullable|max:1999'
   ]);
@@ -145,9 +231,21 @@ public function post_feed(Request $request){
           $fileNameToStore = $filename.'_'.auth()->user()->id.'_'.time().'.'.$extension;
           //upload image
           $path = $request->file('post_image')->storeAs('public/posts_image/'.$u_id.'/', $fileNameToStore);
+
+               DB::table('photos')
+      ->insert([ 
+        'image' => $fileNameToStore,
+         'user_id' => $u_id,
+          'user_name'=>$u_name,
+           'image_type' => 'posts_photo',
+           'deleted'=> 'false',
+           'created_at' => now()
+            ]); 
        }else{
           $fileNameToStore = 'null';
        }      
+
+       
 
       DB::table('post')
       ->insert([
@@ -155,6 +253,8 @@ public function post_feed(Request $request){
         'user_name' => auth()->user()->name,
         'post' => $request->post,
         'image' => $fileNameToStore,
+        'location' => auth()->user()->location,
+        'country' => auth()->user()->country,
         'created_at' => now(),
       ]);
 
@@ -407,11 +507,14 @@ public function post_comment(Request $request){
     // 
     // 
 public function delete_post($id){
+      $getimg_name = DB::table('post')->where('id', $id)->first();
 
-      DB::table('post')
+
+      
+    DB::table('photos')->where('image', $getimg_name->image)->update(['deleted' => 'true']);
+DB::table('post')
       ->where('id', $id)
       ->delete();
-
       return redirect('/myfeeds');
     }
 

@@ -48,7 +48,7 @@
       {{count($posts)}} <br> Posts
       </article>
       <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
-      {{count($photos)}} <br> Photos
+      {{count($tphotosc)}} <br> Photos
       </article>                                                  
       <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
       {{count($friends)}} <br> Friends
@@ -189,16 +189,17 @@
   <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
   <h3>{{$user->name}}</h3>
 
+   <b> {{$user->zodiac}}</b><br>
+
+
     <?php if('Mars' == auth()->user()->gender){ ?>
-  <br> <i class="fa fa-mars"> 
-
+   <i class="fa fa-mars"> 
     <?php } else { ?>
-
-  <br> <i class="fa fa-venus"> 
+   <i class="fa fa-venus"> 
 
     <?php } ?>
     {{Auth::user()->gender}} </i> <br>
-  {{$user->date}}/{{$user->month}}/{{$user->year}}    
+  {{$user->date}}/{{$user->month}}/{{$user->year}} <br>
   </div>
 </div>
 

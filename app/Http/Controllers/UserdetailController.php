@@ -33,11 +33,21 @@ public function uploadprofile_img(Request $request){
 	        $fileNameToStore = $filename.'_'.auth()->user()->id.'_'.time().'.'.$extension;
 	        //upload image
 	        $path = $request->file('profile_pic')->storeAs('public/profile_image/'.$u_id.'/', $fileNameToStore);
+	        $path2 = $request->file('profile_pic')->storeAs('public/photos/'.$u_id.'/', $fileNameToStore);
 	     }else{
-	        $fileNameToStore = 'nofile';
+	        $fileNameToStore = 'null';
 	     }
 
 
+            DB::table('photos')
+			->insert([ 
+				'image' => $fileNameToStore,
+				 'user_id' => $u_id,
+				  'user_name'=>$u_name,
+				   'image_type' => 'featured_photo',
+				   'deleted'=> 'false',
+				   'created_at' => now()
+				    ]);    
 
 			 DB::table('users')
             ->where('id', auth()->user()->id)
@@ -45,7 +55,9 @@ public function uploadprofile_img(Request $request){
 
 			 DB::table('profilevisitor')
             ->where('visitor_id', auth()->user()->id)
-            ->update(['profile_image' => $fileNameToStore]);            
+            ->update(['profile_image' => $fileNameToStore]);  
+
+
 
     	return redirect('/home')->with('success','Post created!');
 	}
@@ -81,6 +93,7 @@ public function uploadprofile_img(Request $request){
 				'image' => $fileNameToStore,
 				 'user_id' => $u_id,
 				  'user_name'=>$u_name,
+				   'image_type' => 'featured_photo',
 				   'deleted'=> 'false',
 				   'created_at' => now()
 				    ]);

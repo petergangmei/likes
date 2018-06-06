@@ -40,12 +40,19 @@
   <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
     <a class="dropdown-item g1" href="feeds">Global feeds </a>
     <a class="dropdown-item g2" href="feeds">Global feeds <i class="fa fa-check-circle-o"></i></a>
-    <a class="dropdown-item l1" href="localfeeds">Local feeds </a>
-    <a class="dropdown-item l2" href="localfeeds">Local feeds <i class="fa fa-check-circle-o"></i></a>
-    <a class="dropdown-item f1" href="friendsfeeds">Friends feeds </a>
-    <a class="dropdown-item f2" href="friendsfeeds">Friends feeds <i class="fa fa-check-circle-o"></i></a>
+
+    <a class="dropdown-item n1" href="/nationalpost">National feeds </a>
+    <a class="dropdown-item n2" href="/nationalpost">National feeds 
+        <i class="fa fa-check-circle-o"></i>
+    </a>    
+    
+    <a class="dropdown-item l1" href="/localfeeds">Local feeds </a>
+    <a class="dropdown-item l2" href="/localfeeds">Local feeds <i class="fa fa-check-circle-o"></i>
+    </a>
+
     <a class="dropdown-item m1" href="/myfeeds">My feeds </a>
     <a class="dropdown-item m2" href="/myfeeds">My feeds <i class="fa fa-check-circle-o"></i></a>
+    <a class="dropdown-item viewpost" href="/myfeeds" style="display: none;">View Post <i class="fa fa-eye"></i></a>
   </div>
 </div>
   

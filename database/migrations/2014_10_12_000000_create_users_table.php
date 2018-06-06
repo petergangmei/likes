@@ -22,6 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('month');
             $table->string('year');
             $table->string('zodiac')->default('null');
+            $table->string('location')->default('null');
+            $table->string('country')->default('null');
             $table->string('friends')->default('0');
             $table->string('bio')->nullable();;
             $table->string('profile_image')->default('null');

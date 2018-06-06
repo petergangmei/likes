@@ -35,6 +35,10 @@ Route::post('/addfeed', 'FeedController@post_feed');
 
 Route::get('/myfeeds', 'FeedController@myfeeds');
 
+Route::get('/friendsfeeds', 'FeedController@friendsfeeds');
+Route::get('/localfeeds', 'FeedController@local_post');
+Route::get('/nationalpost', 'FeedController@national_post');
+
 Route::get('/viewpost{id}', 'FeedController@view_post');
 
 Route::post('/likepost', 'FeedController@like_post');
@@ -92,3 +96,15 @@ Route::post('/messages/checkunseen', 'ChatController@checkunseen');
 Route::post('/checkinbox', 'ChatController@check_inbox');
 Route::post('/checknotification', 'NotificationController@check_notification');
 Route::get('/messageslist', 'ChatController@messages_list');
+
+Route::get('/addfriendsid', 'MainController@addfriendsid');
+
+Route::get('/suggestlocation', 'MainController@suggest_location');
+
+Route::get('/try', function(){
+	// DB::table('suggestlocation')
+ //                ->insert([
+ //                    'location' => '$data['location']'
+ //                ]);
+	return view('try');
+});

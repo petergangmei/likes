@@ -33,8 +33,14 @@ class HomeController extends Controller
         $userdetailfirst = DB::table('users')->where('id', auth()->user()->id)->first();
         $photos = DB::table('photos')
         ->where('user_id', auth()->user()->id)
+        ->where('image_type', 'featured_photo')
         ->orderBy('created_at', 'DESC')
         ->where('deleted', 'false')
+        ->get();
+        $totalphotos = DB::table('photos')
+        ->where('user_id', auth()->user()->id)
+        ->where('deleted', 'false')
+        ->orderBy('created_at', 'DESC')
         ->get();
         $bio = DB::table('users')
         ->where('id', auth()->user()->id)
@@ -69,6 +75,7 @@ class HomeController extends Controller
     return view('home')
     ->with('userdetail', $userdetail)
     ->with('photos', $photos)
+    ->with('tphotosc', $totalphotos)
     ->with('bio', $bio)
     ->with('visitors', $visitors)
     ->with('friends', $friends)

@@ -17,8 +17,10 @@ class CreatePostTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('user_name');
-            $table->string('post');
+            $table->string('post')->default('null');
             $table->string('image');
+            $table->string('location');
+            $table->string('country');
             $table->string('likes')->default('0');
             $table->string('comments')->default('0');
             $table->timestamps();

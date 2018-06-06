@@ -71,7 +71,14 @@ class MainController extends Controller
 
       $photos = DB::table('photos')->where('user_id', $id)
                 ->orderBy('created_at', 'DESC')
-                ->where('deleted', 'false')->get();
+                ->where('deleted', 'false')
+                ->paginate(4);
+      $totalphotos = DB::table('photos')
+                ->where('user_id', $id)
+                ->where('deleted', 'false')
+                ->orderBy('created_at', 'DESC')
+                ->get();
+
       $data = DB::table('Users')->where('id', $id)->first();
       
       $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
@@ -90,6 +97,7 @@ class MainController extends Controller
       return view('profile/viewprofile')
       ->with('data', $data)
       ->with('photos', $photos)
+      ->with('tphotosc', $totalphotos)
       ->with('coins', $coins)
       ->with('visitor', $visitor_id)
       ->with('posts', $post)
@@ -340,12 +348,86 @@ class MainController extends Controller
         'data' => 'and you are friends now. Start chatting! ',
         'read' => 'unread',
         'type'=> 'request',
-        'created_at' => now(),
-        'updated_at' => now(),
+        'created_at' => now()
     ]);
+
+        $cfriendlist = DB::table('friendlist')
+    ->where('user_id', auth()->user()->id)
+    ->get(); 
+
+    $cfriendlist2 = DB::table('profilevisitor')
+    ->where('user_id', auth()->user()->id)
+    ->where('status', 'Friend')->get();
+    
+    $friendlist = DB::table('friendlist')
+    ->where('user_id', auth()->user()->id)
+    ->first();
+    
+    if(count($cfriendlist) == 0){
+      DB::table('friendlist')
+          ->insert([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'friendsid' => '[' . $visitor->id .']' ,
+            'numberoffriends' => '1'
+          ]);
+    }
+    if(count($cfriendlist) > 0){
+      $numberoffriends = count($cfriendlist2);
+
+      $myfriendsid = '['. $friendlist->friendsid .' , ' . $visitor->id . ']';
+
+      DB::table('friendlist')
+          ->where('user_id', auth()->user()->id)
+          ->update([
+            'friendsid' => $myfriendsid,
+            'numberoffriends' => $numberoffriends
+          ]);
+    }
+
+
 
       return 11;
 
+  }
+
+  public function addfriendsid(){
+    $visitor_id = '1';
+        $cfriendlist = DB::table('friendlist')
+    ->where('user_id', auth()->user()->id)
+    ->get(); 
+
+    $cfriendlist2 = DB::table('profilevisitor')
+    ->where('user_id', auth()->user()->id)
+    ->where('status', 'Friend')->get();
+    
+    $friendlist = DB::table('friendlist')
+    ->where('user_id', auth()->user()->id)
+    ->first();
+    
+    if(count($cfriendlist) == 0){
+      DB::table('friendlist')
+          ->insert([
+            'user_id' => auth()->user()->id,
+            'user_name' => auth()->user()->name,
+            'friendsid' => '['.  $visitor_id . ']' ,
+            'numberoffriends' => '1'
+          ]);
+    }
+    if(count($cfriendlist) > 0){
+      $numberoffriends = count($cfriendlist2);
+
+      $myfriendsid = '[' . $friendlist->friendsid .' , ' . $visitor_id . ']';
+
+      DB::table('friendlist')
+          ->where('user_id', auth()->user()->id)
+          ->update([
+            'friendsid' => $myfriendsid,
+            'numberoffriends' => $numberoffriends
+          ]);
+    }
+
+    return 123;
   }
 
   public function search_by_name(Request $request){
@@ -362,6 +444,49 @@ class MainController extends Controller
 
     return view('pages/searchresult2')->with('user', $user)->with('unread', $unread)->with('keyword', $request->username);
   }
+  }
+  public function suggest_location(Request $request){
+    $suggested = DB::table('suggestlocation')
+                  ->where('location', 'LIKE', '%'.$request->term.'%')
+                  ->take(10)
+                  ->get();
+      if(count($suggested) == 0){
+        $results[] = "";
+      }else{
+        foreach ($suggested as $key => $value) {
+          $results[] = $value->location;
+        }
+      }
+      return $results;
+    // $result = array();
+    // foreach ($suggested as $key => $v) {
+    //   $result[] = ['location' =>$v->location];
+    // }
+    // return  $availableTags = [
+    //   "ActionScript",
+    //   "AppleScript",
+    //   "Asp",
+    //   "BASIC",
+    //   "C",
+    //   "C++",
+    //   "Clojure",
+    //   "COBOL",
+    //   "ColdFusion",
+    //   "Erlang",
+    //   "Fortran",
+    //   "Groovy",
+    //   "Haskell",
+    //   "Java",
+    //   "JavaScript",
+    //   "Lisp",
+    //   "Perl",
+    //   "PHP",
+    //   "Python",
+    //   "Ruby",
+    //   "Scala",
+    //   "Scheme"
+    // ];
+
   }
 
 }

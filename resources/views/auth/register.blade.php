@@ -1,21 +1,20 @@
-@extends('layouts.appp')
+@extends('layouts.app_register')
 
 @section('content')
-<div class="container">
+<div class="" style="opacity: 0.99;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}" autocomplete="off">
                         @csrf
                         <input type="hidden" name="bio" value="Hey, I am new here! Let us be friend.">
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right"><b>{{ __('Name') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your full name" name="name" value="{{ old('name') }}"  required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
@@ -26,10 +25,10 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right"><b>{{ __('E-Mail Address') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="Your email address" name="email" value="{{ old('email') }}" required>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -40,7 +39,7 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Gender') }}</label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right"><b>{{ __('Gender') }}</b></label>
 
                             <div class="col-md-6">
                                 <input name="gender" type="radio" class="{{ $errors->has('gender') ? ' is-invalid' : '' }}" name="gender"  value="Venus" checked="checked" required>Female
@@ -51,11 +50,13 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="gender" class="col-md-4 col-form-label text-md-right">{{ __('Birthday') }}</label>
+                            <label for="gender" class="col-md-4 col-form-label text-md-right"><b>{{ __('Birthday') }}</b></label>
 
                             <div class="col-md-6">
-                                <select class="form-control form-control-sm form-width-small" name="date">
-                                  <option value="Day">Day</option>
+
+
+                                <select class="form-control form-control-sm form-width-small date" name="date" id="date">
+                                  <option value="none">Day</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
                                   <option value="3">3</option>
@@ -89,7 +90,8 @@
                                   <option value="31">31</option>
                                 </select>
 
-                                <select class="form-control form-control-sm form-width-small" name="month">
+                                <select class="form-control form-control-sm form-width-small month" name="month" id="month">
+                                   <option value="none">Month</option>
                                    <option value="1">Jan</option>
                                    <option value="2">Feb</option>
                                    <option value="3">Mar</option>
@@ -104,8 +106,8 @@
                                    <option value="12">Dec</option>
                                 </select>
 
-                                <select class="form-control form-control-sm form-width-small" name="year">
-                                    <option value="Year">Year</option>
+                                <select class="form-control form-control-sm form-width-small year" name="year">
+                                    <option value="none">Year</option>
                                     <option value="1999">1999</option>
                                     <option value="1998">1998</option>
                                     <option value="1997">1997</option>
@@ -122,15 +124,31 @@
                                     <option value="1986">1986</option>
                                 
                                 </select>
+                                <!-- <span  id="zodiac">zodiac</span> -->
+                                <input type="hidden" name="zodiac" id="zodiac" value="Not selected">
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Location') }}</b></label>
+
+                            <div class="col-md-6">
+                                <input id="location" type="text" placeholder="State/Town/Province" class="form-control float-left" name="location" required style="width: 65%;">
+                            <select class="form-control float-left" name="country" style="width: 35%;">
+                                    <option value="country">Country</option>
+                                    <option value="India">India</option>
+                                    <option value="China">China</option>
+                                
+                                </select>
 
                             </div>
                         </div>
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Your new Password" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -141,23 +159,28 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><b>{{ __('Confirm Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Re-enter your password" required>
                             </div>
                         </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                              <small style="font-size: 11px;">
+                                By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.
+                              </samll><br>
+
+                                <button type="submit" class="btn btn-success" style="width: 40%; margin-top: 10px;">
+                                    <b>Sign up</b>
                                 </button>
                             </div>
                         </div>
-                    </form><br><br><br><br>
+                    </form>
                 </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -5,10 +5,17 @@
 	    @csrf
 	 <div style="border:0px solid black;">
 	 <a href="/profileid-{{$post->user_id}}" style="text-decoration: none; color: black; font-size: 17px;" >
+	 	@if($userimg->profile_image == "null")
+	 	<img src="/public/storage/default_image/avatar.png" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
+
+	 	@else
 	 	<img src="/public/storage/profile_image/{{$post->user_id}}/{{$userimg->profile_image}}" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
+
+	 	@endif
 	 	<b style="">{{$post->user_name}}</b>
 	 </a> 
 	<small style="color: silver; font-size: 10px;">{{Carbon\Carbon::createFromTimestamp(strtotime($post->created_at))->diffForHumans()}}</small>
+
     @if($post_by->user_id == auth()->user()->id)
     <i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; float: right;" data-toggle="modal" data-target="#Model_auth" ></i> 
     @else
@@ -17,22 +24,24 @@
     </div>
 
     @if($post->image == 'null')
+
     @else
     <img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100 " style="margin: 5px 0px;" id="likeimage">
     @endif
-	{{$post->post}}
+    <div class="" style="padding: 5px;">
+	{{$post->post}}</div>
 </div>
 
 	<div class="card-footer " id="">
   	<button class="like btn btn-light cursor-pointer float-left" id="{{$post->id}}" value="{{$post->id}}" style="padding: ;">
 
-  	<img src="public/storage/default_image/icons/heart1.png" class="like-heart"  id="{{$post->id}}" value="{{$post->likes}}"  style="margin:-15px 0px;  ">
+  	<img src="public/storage/default_image/icons/heart1.png" class="like-heart"  id="{{$post->id}}" value="{{$post->likes}}" alt="{{$post->id}}"  style="margin:-15px 0px;  ">
   	
   		@if(count($likes)>0)
 	@foreach($likes as $like)
 	@if($like->post_id == $post->id)
 	@if($like->user_id == auth()->user()->id)
-  	<img src="public/storage/default_image/icons/heart2.png" class="like-heart"  id="{{$post->id}}"  value="{{$post->likes}}" style="margin: 4px -20px; position: absolute;">
+  	<img src="public/storage/default_image/icons/heart2.png" class="like-heart" alt="{{$post->id}}"  id="{{$post->id}}"  value="{{$post->likes}}" style="margin: 4px -20px; position: absolute;">
 
 	@endif
 	@endif
@@ -74,7 +83,7 @@
 
   	<form class="comment-form" method="post" action="/postcomment">
     @csrf
-  		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 70%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
+  		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 78%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
   		<input type="hidden" name="postid" value="{{$post->id}}">
   		<input type="hidden" name="userid" value="{{$post->user_id}}">
   		<button type="submit" class="btn btn-primary btn-sm float-left" style=" margin: -5px 0px; ">Post</button>
@@ -157,5 +166,15 @@
           </div>
         </div>
       </div>
-
+<script>
+	$(document).ready(function(){
+// maintain filter gobal news feed
+$('.g2').hide();
+$('.n2').hide();
+$('.l2').hide();
+$('.m2').hide();
+$('.viewpost').show();
+$('[data-toggle="popover"]').popover(); 
+});
+</script>
 @endsection

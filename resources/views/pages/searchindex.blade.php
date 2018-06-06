@@ -13,7 +13,7 @@
 <div class="container" style=" height: 500px; background:url('public/storage/default_image/search-index-image-one.jpg');">
 <div class="pref">
 
-	<span class=""><b style="font-size: 19px;">Select what your friend and you should have in common...</b></span>
+	<span class=""><b style="font-size: 15px;">Select what your friend and you should have in common...</b></span>
 	<form method="post" action="/searchfilter">
        @csrf
 		<select class="form-control form-control " name="pref1" style="width: 100%;">

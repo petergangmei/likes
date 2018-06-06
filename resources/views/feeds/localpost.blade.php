@@ -57,10 +57,11 @@
 <script>
 $(document).ready(function(){
 // maintain filter gobal news feed
-$('.g1').hide();
+$('.g2').hide();
 $('.n2').hide();
-$('.l2').hide();
+$('.l1').hide();
 $('.m2').hide();
+
 $('[data-toggle="popover"]').popover(); 
 });
 $(function () {

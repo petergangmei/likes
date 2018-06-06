@@ -29,7 +29,7 @@
                   {{count($posts)}} <br> Posts
                   </article>
                   <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
-                  {{count($photos)}} <br> Photos
+                  {{count($tphotosc)}} <br> Photos
                   </article>                                                  
                   <article class="float-left cuswidth1" style="margin-left: 5px; background-color: #F4FCFB; width: 20%; border-radius: 5px;">
                   {{$data->friends}} <br> Friends
@@ -72,11 +72,20 @@
                   </article>                    
                       <div class="col-md-12 " >
                         @foreach($photos as $photo)
-                          <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                        @if($photo->image_type == 'featured_photo')
+                        <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
                               <a href="photoid-{{$photo->id}}">
                                 <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{$data->id}}/{{ $photo->image }}'>
                                 </a>
+                          </div> 
+                        @else
+                        <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                              <a href="photoid-{{$photo->id}}">
+                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/posts_image/{{$data->id}}/{{ $photo->image }}'>
+                                </a>
                           </div>
+                        @endif
+                          
                           @endforeach
                           <div class="cursor-pointer">
                           <p>See more</p>

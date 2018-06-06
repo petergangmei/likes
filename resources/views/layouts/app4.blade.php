@@ -27,9 +27,9 @@
     <div id="app">
         
         <nav class="navbar  navbar-light navbar-laravel" >
-            <div class="" >
+            <div class="mx-auto" >
 
-
+                <b>Search</b>
    
             </div>
         </nav>

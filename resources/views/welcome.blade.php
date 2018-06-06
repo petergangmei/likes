@@ -5,9 +5,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>Zianbam</title>
 
         <!-- Fonts -->
+        <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
@@ -58,36 +60,55 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            .links{
 
+            }
             .m-b-md {
-                margin-bottom: 30px;
+                margin-bottom: 40px;
             }
         </style>
     </head>
     <body>
+
         <div class="flex-center position-ref full-height">
+
             @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
-                </div>
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Like
-                </div>
+                    @auth
+                        <a href="{{ url('/home') }}">
+                            <button type="button" class="btn btn-dark">Profile</button>
+                        </a>
+                    @else
 
+                <div class=" m-b-md">
+                    <img src="/public/storage/default_image/icons/applogo.png" style="width: 50%; height: 50%; border:0px solid black; border-top-left-radius: 50px; border-bottom-right-radius: 50px; ">
+                    <br><br>
+                   <img src="/public/storage/default_image/icons/zianbam.png">
+                </div>
+                    
+                    <a href="{{ route('register') }} " style='text-decoration:none; '>
+                    <button type="button" class="btn btn-block btn-lg btn-info" style="border: 0px solid black ; background-color: #13949B !important;">
+                        Create a new Account 
+                    </button>
+                    </a>
+                    <a href="{{ route('login') }}" style='text-decoration:none; '>
+                    <button type="button" class="btn btn-block btn-lg btn-dark" id="login" style="border-top: 0px solid black !important; margin-top:1px;">
+                       Sign in to existing account
+                    </button></a>
+                    @endauth
+                    <br><br>
+                    <br><br>
                 <div class="links">
-                    <a href="https://laravel.com/docs">home</a>
-                    <a href="https://laracasts.com">likes</a>
-                    <a href="https://laravel-news.com">News</a>
+                    <a href="#">home</a>
+                    <a href="#">likes</a>
+                    <a href="#">News</a>
                 </div>
             </div>
         </div>
+        <script>
+
+        </script>
     </body>
 </html>

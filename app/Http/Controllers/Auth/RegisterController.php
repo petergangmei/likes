@@ -57,6 +57,8 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'gender' => 'required|string|max:255',
+            'location' => 'required|string|max:255',
+            'country' => 'required|string',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -70,6 +72,20 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         
+          $cloca = DB::table('suggestlocation')->where('location', $data['location'])->get();
+        if(count($cloca)>0){
+
+        }else{
+            DB::table('suggestlocation')
+                ->insert([
+                    'location' => $data['location'],
+                    'country' => $data['country'],
+                    'createdby' => $data['name'],
+                    'creator_email' => $data['email'],
+                    'created_at' => now()
+                ]);
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -78,8 +94,13 @@ class RegisterController extends Controller
             'date' => $data['date'],
             'month' => $data['month'],
             'year' => $data['year'],
+            'zodiac' => $data['zodiac'],
+            'location' => $data['location'],
+            'country' => $data['country'],
             'password' => Hash::make($data['password']),
         ]);
+
+
 
     }
 }

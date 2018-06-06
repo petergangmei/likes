@@ -68,8 +68,8 @@
 	         <img src="/public/storage/default_image/avatar.png " class="small-icon">
 			<?php } ?>
 			<b class="margin-left">{{$data->name}}</b> <span style="font-size: 13px;">({{$data->gender}})</span> <br>
-			<i class="margin-left">{{$data->bio}}</i><br>
-			<span class="margin-left">New delhi</span>
+			<i class="margin-left"><small>{{substr($data->bio, 0,25)}}..</small></i><br>
+			<span class="margin-left"><small>{{$data->location}}, {{$data->country}}</small></span>
 				
 			</div>
 		</div>
