@@ -28,50 +28,27 @@
         
         <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-laravel">
             <div class="container">
-            <a href="/feeds"><i class="fa fa-arrow-left" style="font-size:20px; color: black;"></i></a>
+            <a href="/feeds"><i class="fa fa-arrow-left" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: black;"></i></a>
 
-                <a class="navbar-brand mx-auto" href="{{ url('/') }}">
-                    @guest
-                    @else
+                <a class="navbar-brand mx-auto" href="#">
                     <b>Messages</b>
-                    @endguest
                 </a>
-
-                    <a href="/menu"><i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; "></i></a>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
             </div>
         </nav>
         <br><br><br>
         <main class="">
             @yield('content')
 
-
         </main>
+<!-- spinner/loader -->
+<div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="mx-auto">
+    <i class="fa fa-spinner fa-spin" style="font-size:50px; color:white;"></i>
+    </div>
+  </div>
+</div>
+<!-- spinner/loader -->        
     </div>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>

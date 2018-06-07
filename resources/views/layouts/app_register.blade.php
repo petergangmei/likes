@@ -27,56 +27,29 @@
 </head>
 <body>
 
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel" style="background-color: #3355B9; top: 0px;">
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top" style="background-color: #3355B9; top: 0px;">
                 <a class="navbar-brand mx-auto" style=" color: white;"  href="{{ url('#') }}">
                     <span class="">
                    <b> Create a new account.</b>
                     </span>
-                    @guest
-                    @else
-
-                    @endguest
-                     
                 </a>
 
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
         </nav>
 
-        <main class="" style="background-color: #3355B9;">
+        <main class="" style="background-color: #3355B9; margin-top: 35px;">
             @yield('content')
 
-
-
         </main>
+<!-- spinner/loader -->
+<div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="mx-auto">
+    <i class="fa fa-spinner fa-spin" style="font-size:50px; color:white;"></i>
     </div>
+  </div>
+</div>
+<!-- spinner/loader -->        
     <script>
         
     </script>

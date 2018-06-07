@@ -1,7 +1,7 @@
-@extends('layouts.app_blank')
+@extends('layouts.app_edit')
 @section('content')
 <div class="containter" style="text-align: center;">
-	<b>Set Preference</b>
+	<br>
 	<form method="POST" action="/update_preference">
           @csrf
 		<!-- coffee/tea -->
@@ -9,6 +9,7 @@
 		<b style="position: absolute;">(1)</b>
     	<div class="card-body">
     		What would you prefer?<br><br>
+    		<input type="checkbox" name="coffee-tea" id="default_value1" value="null" class="display-none" checked>
     		<input type="checkbox" name="coffee-tea" id="coffee_" value="Coffee" class="display-none">
     		<input type="checkbox" name="coffee-tea" id="tea_" value="Tea" class="display-none">
     		<button type="button" id="coffee" class="btn btn-outline-info btn-prefered preference_btn_width" value="false">Coffee</button>
@@ -21,6 +22,7 @@
 		<b style="position: absolute;">(2)</b>
     	<div class="card-body">
     		You like:-<br><br>
+    		<input type="checkbox" name="softdrinks-harddrinks" id="default_value2" value="null" class="display-none" checked>
     		<input type="checkbox" name="softdrinks-harddrinks" id="softdrinks_" value="Softdrinks" class="display-none">
     		<input type="checkbox" name="softdrinks-harddrinks" id="harddrinks_" value="Harddrinks" class="display-none">    		
     		<button type="button" id="softdrinks" class="btn btn-outline-info preference_btn_width">soft drinks</button>
@@ -33,6 +35,7 @@
 		<b style="position: absolute;">(3)</b>
     	<div class="card-body">
     		What do you like eating?<br><br>
+    		<input type="checkbox" name="veg-nonveg" id="default_value3" value="null" class="display-none" checked>
     		<input type="checkbox" name="veg-nonveg" id="veg_" value="Veg." class="display-none">
     		<input type="checkbox" name="veg-nonveg" id="nonveg_" value="Non-veg." class="display-none">
     		<button type="button" id="veg" class="btn btn-outline-info preference_btn_width">Veg. </button>
@@ -45,6 +48,7 @@
 		<b style="position: absolute;">(4)</b>
     	<div class="card-body">
     		You prefer travelling on:-<br><br>
+    		<input type="checkbox" name="bike-car" id="default_value4" value="null" class="display-none" checked>
     		<input type="checkbox" name="bike-car" id="bike_" value="Bike" class="display-none">
     		<input type="checkbox" name="bike-car" id="car_" value="Car" class="display-none">
     		<button type="button" id="bike" class="btn btn-outline-info preference_btn_width">Bike</button>
@@ -56,6 +60,7 @@
 		<b style="position: absolute;">(5)</b>
     	<div class="card-body">
     		Which vacation you like more?<br><br>
+    		<input type="checkbox" name="summer-winter" id="default_value5" value="null" class="display-none" checked>
     		<input type="checkbox" name="summer-winter" id="summer_" value="Summer" class="display-none">
     		<input type="checkbox" name="summer-winter" id="winter_" value="Winter" class="display-none">
     		<button type="button" id="summer" class="btn btn-outline-info preference_btn_width">Summer</button>
@@ -67,6 +72,7 @@
 		<b style="position: absolute;">(6)</b>
     	<div class="card-body">
     		Which time do youu consider as the best hours to hang out with firends :-<br><br>
+    		<input type="checkbox" name="day-night" id="default_value6" value="null" class="display-none" checked>
     		<input type="checkbox" name="day-night" id="day_" value="Day" class="display-none">
     		<input type="checkbox" name="day-night" id="night_" value="Night" class="display-none">    		
     		<button type="button" id="day" class="btn btn-outline-info preference_btn_width">Day</button>
@@ -78,6 +84,7 @@
 		<b style="position: absolute;">(7)</b>
     	<div class="card-body">
     		If you were to have at least one of this as your pet, what would that be?<br><br>
+    		<input type="checkbox" name="cat-dog" id="default_value7" value="null" class="display-none" checked>
     		<input type="checkbox" name="cat-dog" id="cat_" value="Cat" class="display-none">
     		<input type="checkbox" name="cat-dog" id="dog_" value="Dog" class="display-none">
     		<button type="button" id="cat" class="btn btn-outline-info preference_btn_width">Cat</button>
@@ -89,6 +96,7 @@
 		<b style="position: absolute;">(8)</b>
     <div class="card-body">
     		Do you like hagging out with:-<br><br>
+    		<input type="checkbox" name="family-friends" id="default_value8" value="null" class="display-none" checked>
     		<input type="checkbox" name="family-friends" id="family_" value="Family" class="display-none">
     		<input type="checkbox" name="family-friends" id="friends_" value="Friends" class="display-none">
     		<button type="button" id="family" class="btn btn-outline-info preference_btn_width">Family</button>
@@ -100,6 +108,7 @@
 		<b style="position: absolute;">(9)</b>
     	<div class="card-body">
     		Movies you loves to watch:-<br><br>
+    		<input type="checkbox" name="movie" id="default_value9" value="null" class="display-none" checked>
     		<input type="checkbox" name="movie" id="lovestory_" value="Lovestory" class="display-none">
     		<input type="checkbox" name="movie" id="horror_" value="Horror film" class="display-none">
     		<input type="checkbox" name="movie" id="war_" value="War film" class="display-none">
@@ -113,8 +122,7 @@
     	<div class="card-body">
     		Once you have slept for this long you are good to gofor another day, choose the hours:-<br><br>
     		<select class="sleep-hours form-control" name="sleep-hours" id="sleephours">
-			    <option selected>Choose...</option>
-			    <option value="4">4 (four hours)</option>
+			    <option value="4" selected>4 (four hours)</option>
 			    <option value="5">5 (five hours)</option>
 			    <option value="6">6 (six hours)</option>
 			    <option value="7">7 (seven hours)</option>
@@ -124,12 +132,14 @@
 			  </select>
 		</div>
 	</div>
-		<button type="Submit" class="btn-primary btn-lg btn-block cursor-pointer">Submit</button>
-	<br><br><br>
+		<button type="Submit" id="update-preferance-submit"  class="btn btn-primary  btn-block cursor-pointer"><b>update</b></button>
 
 	</form>
-
-
 	<br><br><br>
+
+	<script>
+		$('#custom-text').html('Update Preference');
+		$('#ok-btn-update-preferance').css('display', 'block');
+	</script>
 </div>
 @endsection

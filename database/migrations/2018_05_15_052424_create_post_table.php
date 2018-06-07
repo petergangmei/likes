@@ -23,6 +23,7 @@ class CreatePostTable extends Migration
             $table->string('country');
             $table->string('likes')->default('0');
             $table->string('comments')->default('0');
+            $table->string('comments_privacy');
             $table->timestamps();
         });
     }

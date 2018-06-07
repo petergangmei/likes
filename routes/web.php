@@ -108,3 +108,15 @@ Route::get('/try', function(){
  //                ]);
 	return view('try');
 });
+
+// setting
+Route::get('/account_setting', 'NavController@account_setting');
+Route::get('/edit_profile', 'NavController@edit_profile');
+Route::post('/update_profile', 'SettingController@update_profile');
+Route::post('/update_accountSetting', 'SettingController@update_accountSetting');
+Route::post('/update_accountStatus', 'SettingController@update_accountStatus');
+Route::post('/messages/message_privacy2', 'ChatController@message_privacy2Check');
+
+// view all photo page
+Route::get('/{name}/{id}/photos', 'UserdetailController@all_photos');
+Route::get('/{name}/{id}/{pid}', 'UserdetailController@all_photos_view1');

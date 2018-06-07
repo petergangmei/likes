@@ -177,6 +177,14 @@ public function view_post($id){
               ->where('id', $post->user_id)
               ->first();
 
+      // check if you are friend with the post owner
+    $c_friend = DB::table('profilevisitor')
+    ->where('user_id', $post->user_id)
+    ->where('visitor_id', auth()->user()->id)
+    ->where('status', 'Friend')
+    ->get();
+
+
     return view('feeds/viewpost')
     ->with('post', $post)
     ->with('userimg', $userimg)
@@ -184,6 +192,7 @@ public function view_post($id){
     ->with('unread', $unread)
     ->with('likes', $likes)
     ->with('comments', $comments)
+    ->with('checkfriend', $c_friend)
     ->with('post_by', $post_by);
    }
 
@@ -218,6 +227,8 @@ public function post_feed(Request $request){
       $u_id = auth()->user()->id;
       $u_name = auth()->user()->name;
 
+      $userdetail = DB::table('users')->where('id', $u_id)->first();
+
          // handle file upload
        if($request->hasFile('post_image')){
           //Get Filename with the extentionn
@@ -245,8 +256,6 @@ public function post_feed(Request $request){
           $fileNameToStore = 'null';
        }      
 
-       
-
       DB::table('post')
       ->insert([
         'user_id' => auth()->user()->id,
@@ -255,6 +264,7 @@ public function post_feed(Request $request){
         'image' => $fileNameToStore,
         'location' => auth()->user()->location,
         'country' => auth()->user()->country,
+        'comments_privacy' => $userdetail->comment_privacy,
         'created_at' => now(),
       ]);
 
@@ -437,6 +447,10 @@ public function like_post(Request $request){
     // 
 
 public function post_comment(Request $request){
+
+    $this->validate($request, [
+    'comment'=>'required',
+  ]);
       DB::table('comment')
       ->insert([
         'post_id' => $request->postid,

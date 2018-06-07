@@ -30,7 +30,7 @@
                    <input type="hidden" name="" id="user_id" value="{{$data1->id}}">
                    @endif
                    @if($status->status == "Request")
-                    <button type="button" class="btn btn-light btn-md" style="background-color: #28A5ED; color: white; "><i class="  fa fa-user-plus" id="addrequest"> Follow </i></button><br>
+                    <button type="button" class="btn btn-light btn-md" style="background-color: #28A5ED; color: white; "><i class="  fa fa-user-plus" id="addrequest"> Add Friend </i></button><br>
 
                    <b id="cancelrequest" style="font-size: 12px; color: red; cursor: pointer;"></b>
                    <input type="hidden" name="" id="user_id" value="{{$data1->id}}">

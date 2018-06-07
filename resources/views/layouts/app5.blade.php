@@ -27,9 +27,8 @@
 
     <div id="app">
         
-        <nav class="navbar navbar-light navbar-laravel" style="border: 1px solid silver;" >
+        <nav class="navbar navbar-light navbar-laravel fixed-top" style="border: 1px solid silver;" >
 
-<div class="dropdown">
 <!--   <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     D
   </a> -->
@@ -54,14 +53,15 @@
     <a class="dropdown-item m2" href="/myfeeds">My feeds <i class="fa fa-check-circle-o"></i></a>
     <a class="dropdown-item viewpost" href="/myfeeds" style="display: none;">View Post <i class="fa fa-eye"></i></a>
   </div>
-</div>
   
   
             <div class="navbar-brand  mx-auto" >
-                <b>Wafe - Find me!</b>
+                <b>
+                <img src="public/storage/default_image/icons/zianbam.png" height="27">
+                </b>
             </div>
 
-        <div id="noti">
+        <div id="noti" data-toggle="modal" data-target="#spinner">
             @if(count($messages) == 0)
            <a href="/messageslist" style="color: black;"> 
             <i class="fa fa-envelope-o cursor-pointer" style="font-size: 20px;"></i> 
@@ -122,10 +122,11 @@
         </nav>
         <br>
 
-        <main class="">
+        <main class=''>
+            <br><br>
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light" id="navibar" style="background-color: #F8F2F0;">
+        <nav class="navbar fixed-bottom navbar-light" data-toggle="modal" data-target="#spinner" id="navibar" style="background-color: #F8F2F0;">
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; "></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
@@ -138,6 +139,15 @@
         </nav>
 
         </main>
+<!-- spinner/loader -->
+<div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="mx-auto">
+    <i class="fa fa-spinner fa-spin" style="font-size:50px; color:white;"></i>
+    </div>
+  </div>
+</div>
+<!-- spinner/loader -->        
     </div>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>

@@ -85,3 +85,52 @@
 .cuswidth1{
 	width: 75px !important;
 }
+
+.custom-fc{
+	padding: 5px;
+	border-left: 0px solid black !important;
+	border-right: 0px solid black !important;
+	border-top: 0px solid black !important;
+	border-bottom: 1px solid black !important;
+	border-radius: 0px !important;
+	width: 100%;
+	appearance: none;
+	-webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+.custom-fc-focus{
+	padding: 5px;
+	border-left: 0px solid black !important;
+	border-right: 0px solid black !important;
+	border-bottom: 1px solid black !important;
+	border-radius: 0px !important;
+	width: 100%;
+	appearance: none;
+	-webkit-appearance: none;
+  -webkit-border-radius: 0;
+}
+
+.toast-body{
+	display:none;
+	border:1px solid #DA5A3E;
+	min-height: 35px;
+	width: 60%;
+	border-radius: 10px;
+	position: absolute;
+	margin: 120% 20px !important;
+	left: 20%;
+	background-color: #DA5A3E;
+	opacity: 0.9;
+	color: white;
+	padding: 5px;
+	font-weight: ;
+	font-size: 15px;
+	text-align: center;
+	padding-left: 0px !important;
+
+}
+
+.edit-nav{
+	display: none;
+}

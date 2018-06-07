@@ -5,15 +5,14 @@
 <div class="row">
 
 <div class="card" style="width: 100%; text-align: center;">
-  <div class="card-header bg-light">
-    Featured
-  </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Account</li>
-    <li class="list-group-item">Setting</li>
-    <a href="/preferencepage1">
-    <li class="list-group-item">Edit preference</li>
-    </a>
+
+  <ul class="list-group list-group-flush" data-toggle="modal" data-target="#spinner">
+    <li class="list-group-item"><a href="/edit_profile" style="color: black; text-decoration: none;">Edit profile</a></li>
+    
+    <li class="list-group-item"><a href="/account_setting" style="color: black; text-decoration: none;">Account Setting</a></li>
+    
+    <li class="list-group-item"><a href="/preferencepage1" style="color: black; text-decoration: none;">Update preference</a></li>
+    
     <a class="list-group-item color-black" href="{{ route('logout') }}"
        onclick="event.preventDefault();
                      document.getElementById('logout-form').submit();">
@@ -29,4 +28,8 @@
 
 </div>
 </div>
+<script>
+  $('#custom-text').html('Settings');
+  $('#custom-nav').css('background-color', '#F8F7F2');
+</script>
 @endsection

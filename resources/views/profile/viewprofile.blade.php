@@ -44,11 +44,29 @@
                     <i class="fa fa-bar-chart" style="font-size: 20px;"></i>
                   View Match Result
                 </span>
+                 @if($data->message_privacy == "Everyone")
                   <a href="/messages/{{$data->name}}{{$data->id}}" style="text-decoration: none; color: black;">
                   <span  style="border:1px solid silver; border-radius:5px; padding: 10px;"></i>
                   <i class="fa fa-comments-o" style="font-size: 25px;"></i>Message
-                </span>
-                </a>
+                  </span>
+                  </a>
+                 @else
+                  @if($friendresult == 'Friend')
+                  <a href="/messages/{{$data->name}}{{$data->id}}" style="text-decoration: none; color: black;">
+                  <span  style="border:1px solid silver; border-radius:5px; padding: 10px;"></i>
+                  <i class="fa fa-comments-o" style="font-size: 25px;"></i>Message
+                  </span>
+                  </a>
+                  @else
+                 <span data-toggle="modal" data-target="#message_notallow" style="border:1px solid silver; border-radius:5px; padding: 10px;"></i>
+                  <i class="fa fa-comments-o"  style="font-size: 25px;"></i>Message
+                  </span>
+                  @endif                  
+         
+
+                 @endif
+
+                 
 
                   @else
                   <div style="border:1px solid #F9FFFE;  border-radius: 5px; background-color: #F9FFFE;" class="cursor-pointer" data-toggle="modal" data-target="#Model-matchout">
@@ -57,7 +75,7 @@
                   <img src="/public/storage/default_image/icons/logo1.png" height="80" width="80">
                    {{$data->name}}
                   </span>
-                  <p><i>Click here to unvail the truth!</i></p>
+                  <p><i>Click here to unvail the Mystery!</i></p>
                   </div>
                   @endif
                   <div style="border:0px solid silver;">
@@ -70,7 +88,7 @@
                   <i class="fa fa-object-group glclick" id="active" value="Grid" style="font-size: 21px; color:#A0A0A0;">Grid</i>
                   <i class="fa fa-navicon glclick" id="notactive" value="List" style="font-size: 21px; margin-left: 8px; color:#A0A0A0;">List</i>
                   </article>                    
-                      <div class="col-md-12 " >
+                      <div class="col-md-12 " style="height: 80px;">
                         @foreach($photos as $photo)
                         @if($photo->image_type == 'featured_photo')
                         <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
@@ -85,13 +103,11 @@
                                 </a>
                           </div>
                         @endif
-                          
                           @endforeach
-                          <div class="cursor-pointer">
-                          <p>See more</p>
-                          </div>
+                      <a href="/{{$data->name}}/{{$data->id}}/photos" class="btn-link"><p>See more</p></a>
                       </div>
                     @else
+
                         <div class="text-center padding-lg">
                         <p>Feature photos not uploated by, {{$data->name}}</p>
                         </div>
@@ -219,5 +235,24 @@
           </div>
         </div>
       </div>
+
+<!-- Modal -->
+<div class="modal fade" id="message_notallow" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Notice!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       You can send  text message only once you and {{$data->name}} bcomes friend.<br>
+       <!-- <small><i><b>{{$data->name}}</b> set's privacy that only friends can send a message.</i></small>  -->
+
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

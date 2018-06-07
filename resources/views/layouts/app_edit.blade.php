@@ -11,7 +11,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,27 +22,43 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/pomelo-toast.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
     <div id="app">
-        
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel"  id="custom-nav">
-            <div class="container">
-                <div class="mx-auto">
-                <a class="navbar-brand" href="#">
-               <b> <div id="custom-text"></div></b>
-                </a>
-                </div>
 
-            </div>
-        </nav>
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel fixed-top"  id="custom-nav">
+    <div class="container">
 
-        <main class="">
+    <i class="fa fa-close cursor-pointer" id="close-btn" data-toggle="modal" data-target="#spinner" style="font-size: 23px; color: #807D70;"></i>
+        <div class="mx-auto">
+        <a class="navbar-brand" href="#">
+       <b> <div id="custom-text"></div></b>
+        </a>
+        </div>
+
+
+    
+    <i class="fa fa-check cursor-pointer edit-nav" id="ok-btn-update-profile" data-toggle="modal" data-target="#spinner" style="font-size: 23px; color: #807D70;"></i>
+    <i class="fa fa-check cursor-pointer edit-nav" id="ok-btn-update-account-setting" data-toggle="modal" data-target="#spinner" style="font-size: 23px; color: #807D70;"></i>
+   
+    <i class="fa fa-check cursor-pointer edit-nav" id="ok-btn-update-preferance"  style="font-size: 23px; color: #807D70;"></i>
+
+    </div>
+<div class="toast-body mx-auto"><i class="fa fa-exclamation-circle"></i> <span id="toast"></span></div>
+
+</nav>
+
+        <main class="" style="margin-top: 40px;">
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light"  data-toggle="modal" data-target="#spinner"  id="navibar" style="background-color: #F8F2F0;">
+        
+        <nav class="navbar fixed-bottom navbar-light"  data-toggle="modal" data-target="#spinner"   id="navibar" style="background-color: #F8F2F0;">
+
+          
+
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
@@ -59,12 +77,15 @@
     </div>
   </div>
 </div>
-<!-- spinner/loader -->
-        
+<!-- spinner/loader -->        
     </div>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
-    <script src="{{ asset('js/notification_check.js') }}" ></script>
+    <script src="{{ asset('js/update_profile_ajax.js') }}"></script>
+    <script src="{{ asset('js/locationajax.js') }}"></script>
+    <script src="{{ asset('js/pomelo-toast.min.js') }}"></script>
+     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
     
 </body>
 </html>

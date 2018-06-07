@@ -73,7 +73,7 @@ class ChatController extends Controller
     		->where('uid2', auth()->user()->id)
     		->update([
     			'seen' => 'unseen',
-                'created_at' => now()
+                'updated_at' => now()
     		]);
     	}else{
     	
@@ -261,4 +261,59 @@ class ChatController extends Controller
     	->with('messages', $messageslist)
     	->with('user2', $user2);
     }
+    public function message_privacy2Check(Request $request){
+        $message_p = DB::table('users')
+                        ->where('id', $request->uid)
+                        ->first();
+
+        $time = substr(now(),0,11);
+
+        $check = DB::table('chats')
+                 ->where('uid2', $request->uid)
+                 ->whereDate('created_at', $time)
+                 ->get();
+        $doublecheck = DB::table('chats')
+                ->where('uid2', $request->uid)
+                ->where('uid1', auth()->user()->id)
+                ->get();
+        $d_count = count($doublecheck);
+        // check if you are his friend
+        $check2 = DB::table("profilevisitor")
+                    ->where('user_id', $request->uid)
+                    ->where('visitor_id', auth()->user()->id)
+                    ->where('status', 'Friend')
+                    ->get();
+        $friend = count($check2);                             
+
+        $count = count($check);
+
+        $user_p = $message_p->message_privacy2;
+        
+        if($count >= $user_p ){
+            if($friend>0){
+            $return = 'Allow';
+
+            }else{
+                if($d_count>0){
+                    $return = "Allow";
+                }else{
+                    
+            $return = 'Notallow';
+                }
+            }
+        }else{
+            $return = 'Allow';
+
+        }              
+
+        // if(count($check)>0){
+        //     $result = count($check);
+
+        // }else{
+        //     $result = 'false';
+        // }
+
+        return $return;
+    }
+
 }

@@ -3,7 +3,7 @@ $(document).ready(function () {
 
 
    $('#sendMessageBtn').click(function() {
-       var token = $('input[name=_token ').val();
+       var token = $('input[name=_token ]').val();
        var message = $('#message').val();
        var user2 = $('#user2').val();
        var uid2 = $('#uid2').val();

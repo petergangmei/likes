@@ -70,10 +70,20 @@
 
 
         </main>
+<!-- spinner/loader -->
+<div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="mx-auto">
+    <i class="fa fa-spinner fa-spin" style="font-size:50px; color:white;"></i>
     </div>
-    <script src="{{ asset('js/custom.js') }}" defer></script>
-    <script src="{{ asset('js/ajax.js') }}" defer></script>
-    <script src="{{ asset('js/chat.js') }}" defer></script>
+  </div>
+</div>
+<!-- spinner/loader -->        
+    </div>
+    <script src="{{ asset('js/custom.js') }}" ></script>
+    <script src="{{ asset('js/ajax.js') }}" ></script>
+    <script src="{{ asset('js/chat.js') }}" ></script>
+    <script src="{{ asset('js/message_privacy2.js') }}" ></script>
     
 </body>
 </html>

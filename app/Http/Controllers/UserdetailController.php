@@ -248,4 +248,16 @@ public function uploadprofile_img(Request $request){
 		->with('unread', $unread);
 	}
 
+	public function all_photos($name, $id){
+		$photos = DB::table("photos")
+				->where('user_id', $id)
+				->where('deleted', 'false')
+				->get();
+		return view("profile/all_photos")
+					->with('photos', $photos);
+	}
+	public function all_photos_view1($name, $id, $pid){
+		$photo = DB::table('photos')->where('id', $pid)->first();
+		return view("profile/viewphoto")->with('photo', $photo);
+	}
 }

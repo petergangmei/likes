@@ -8,7 +8,7 @@
 	<textarea class="form-control" placeholder="New post.." style="height: 80px;" name="post"></textarea><br>
 	<input type="file" name="post_image">
 	<br><br>
-	<button type="submit" class="btn btn-primary btn-block">Post</button>
+	<button type="submit"  data-toggle="modal" data-target="#spinner" class="btn btn-primary btn-block">Post</button>
 </form>
 
 </div>

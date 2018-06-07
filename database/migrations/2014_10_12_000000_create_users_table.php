@@ -28,6 +28,11 @@ class CreateUsersTable extends Migration
             $table->string('bio')->nullable();;
             $table->string('profile_image')->default('null');
             $table->string('coins')->default('50');
+            $table->string('comment_privacy')->default('Everyone');
+            $table->string('message_privacy')->default('Everyone');
+            $table->string('message_privacy2')->default('Unlimited');
+            $table->string('account_status')->default('Active');
+            $table->string('account_adTime')->default('null');
             $table->string('profile_visits')->default('0');
             $table->string('coffeeTea')->nullable();
             $table->string('softdrinksHarddrinks')->nullable();

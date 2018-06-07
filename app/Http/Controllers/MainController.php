@@ -80,6 +80,16 @@ class MainController extends Controller
                 ->get();
 
       $data = DB::table('Users')->where('id', $id)->first();
+      $checkfriend = DB::table("profilevisitor")
+                      ->where('user_id', $data->id)
+                      ->where('visitor_id', auth()->user()->id)
+                      ->where('status', 'Friend')
+                      ->get();
+     if(count($checkfriend)>0){
+      $friendresult = "Friend";
+     }else{
+      $friendresult = "Notfriend";
+     }                      
       
       $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
 
@@ -102,6 +112,7 @@ class MainController extends Controller
       ->with('visitor', $visitor_id)
       ->with('posts', $post)
       ->with('likes', $likes)
+      ->with('friendresult', $friendresult)
       ->with('unread', $unread);
    }
 
@@ -351,39 +362,9 @@ class MainController extends Controller
         'created_at' => now()
     ]);
 
-        $cfriendlist = DB::table('friendlist')
-    ->where('user_id', auth()->user()->id)
-    ->get(); 
 
-    $cfriendlist2 = DB::table('profilevisitor')
-    ->where('user_id', auth()->user()->id)
-    ->where('status', 'Friend')->get();
-    
-    $friendlist = DB::table('friendlist')
-    ->where('user_id', auth()->user()->id)
-    ->first();
-    
-    if(count($cfriendlist) == 0){
-      DB::table('friendlist')
-          ->insert([
-            'user_id' => auth()->user()->id,
-            'user_name' => auth()->user()->name,
-            'friendsid' => '[' . $visitor->id .']' ,
-            'numberoffriends' => '1'
-          ]);
-    }
-    if(count($cfriendlist) > 0){
-      $numberoffriends = count($cfriendlist2);
 
-      $myfriendsid = '['. $friendlist->friendsid .' , ' . $visitor->id . ']';
 
-      DB::table('friendlist')
-          ->where('user_id', auth()->user()->id)
-          ->update([
-            'friendsid' => $myfriendsid,
-            'numberoffriends' => $numberoffriends
-          ]);
-    }
 
 
 

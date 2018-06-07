@@ -80,14 +80,48 @@
 	@else
 	@endif
 	<br>
-
-  	<form class="comment-form" method="post" action="/postcomment">
+	@if($post->comments_privacy == "Everyone")
+	  	<form class="comment-form" method="post" action="/postcomment">
     @csrf
   		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 78%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
   		<input type="hidden" name="postid" value="{{$post->id}}">
   		<input type="hidden" name="userid" value="{{$post->user_id}}">
-  		<button type="submit" class="btn btn-primary btn-sm float-left" style=" margin: -5px 0px; ">Post</button>
+  		<button type="submit" class="btn btn-primary btn-sm float-left" data-toggle="modal" data-target="#spinner" style=" margin: -5px 0px; ">Post</button>
   	</form>	
+
+	@else
+
+
+	<!-- {{$post->comments_privacy}} -->
+	@if(count($checkfriend)>0)
+	  	<form class="comment-form" method="post" action="/postcomment">
+    @csrf
+  		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 78%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
+  		<input type="hidden" name="postid" value="{{$post->id}}">
+  		<input type="hidden" name="userid" value="{{$post->user_id}}">
+  		<button type="submit" class="btn btn-primary btn-sm float-left" data-toggle="modal" data-target="#spinner" style=" margin: -5px 0px; ">Post</button>
+  	</form>	
+	@else
+
+	@if($post->user_id == auth()->user()->id)
+	  	<form class="comment-form" method="post" action="/postcomment">
+    @csrf
+  		<input type="text" class="form-control float-left" placeholder="Comment" name="comment" style="width: 78%; margin: -5px 10px; height: 30px; border-radius: 10px; ">
+  		<input type="hidden" name="postid" value="{{$post->id}}">
+  		<input type="hidden" name="userid" value="{{$post->user_id}}">
+
+  		<button type="submit" class="btn btn-primary btn-sm float-left" data-toggle="modal" data-target="#spinner" style=" margin: -5px 0px; ">Post</button>
+  	</form>	
+	@else
+	<div class="mx-auto">
+		Only {{$post->user_name}}'s Friends can comment in this post.
+	</div>
+
+	@endif
+	@endif
+	
+	@endif
+
 <br>
 <br>
 <br>

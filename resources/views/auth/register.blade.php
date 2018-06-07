@@ -10,6 +10,8 @@
                     <form method="POST" action="{{ route('register') }}" autocomplete="off">
                         @csrf
                         <input type="hidden" name="bio" value="Hey, I am new here! Let us be friend.">
+                        <input type="hidden" name="d_comments_privacy" value="Everyone">
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right"><b>{{ __('Name') }}</b></label>
 
@@ -138,8 +140,7 @@
                                     <option value="country">Country</option>
                                     <option value="India">India</option>
                                     <option value="China">China</option>
-                                
-                                </select>
+                            </select>
 
                             </div>
                         </div>

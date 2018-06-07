@@ -74,6 +74,16 @@
             @yield('content')
         </main>
     </div>
+<!-- spinner/loader -->
+<div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered text-center" role="document">
+    <div class="mx-auto">
+    <i class="fa fa-spinner fa-spin" style="font-size:50px; color:white;"></i>
+    </div>
+  </div>
+</div>
+<!-- spinner/loader -->
+    
     <script>
         
     </script>
