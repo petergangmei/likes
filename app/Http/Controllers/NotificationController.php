@@ -11,6 +11,11 @@ use DB;
 class NotificationController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 	Public function view(){
         $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)

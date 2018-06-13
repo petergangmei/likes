@@ -23,6 +23,8 @@
     @endif
     </div>
 
+
+</div>
     @if($post->image == 'null')
 
     @else
@@ -30,8 +32,6 @@
     @endif
     <div class="" style="padding: 5px;">
 	{{$post->post}}</div>
-</div>
-
 	<div class="card-footer " id="">
   	<button class="like btn btn-light cursor-pointer float-left" id="{{$post->id}}" value="{{$post->id}}" style="padding: ;">
 

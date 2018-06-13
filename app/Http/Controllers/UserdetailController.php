@@ -11,6 +11,11 @@ use DB;
 
 class UserdetailController extends Controller
 {
+	    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
 public function uploadprofile_img(Request $request){
 
 	$this->validate($request, [
@@ -227,7 +232,7 @@ public function uploadprofile_img(Request $request){
 		$this->validate($request,[
 			'coffee-tea' =>'required'
 		]);
-		DB::table('Users')->where('id', auth()->user()->id)->update([
+		DB::table('users')->where('id', auth()->user()->id)->update([
 			'coffeeTea'=> $request->input('coffee-tea'),
 			'softdrinksHarddrinks'=> $request->input('softdrinks-harddrinks'),
 			'vegNonveg'=> $request->input('veg-nonveg'),

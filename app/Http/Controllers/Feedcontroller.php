@@ -7,6 +7,13 @@ use DB;
 class Feedcontroller extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+
    public function feeds(){
     $posts = DB::table('post')
     ->orderBy('created_at', 'DESC')

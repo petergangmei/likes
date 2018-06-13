@@ -9,7 +9,7 @@
  		@if($u->id == $message->uid2)
  		@if($message->seen == 'unseen')
  		<b>
-		<a class="disable-linkstyle" href="/messages/{{$message->user2}}{{$message->uid2}}" style="text-decoration: none;  color: black;">
+		<a class="disable-linkstyle" href="/messages/{{$message->user2}}/{{$message->uid2}}" style="text-decoration: none;  color: black;">
 		 <div class="card" id="">
 		 	<div class="card-body">
 		 		@if($u->profile_image == "null")
@@ -20,7 +20,7 @@
 				
 		        @endif
 		 		{{$message->user2}}
-        		<small class="margin-left">{{Carbon\Carbon::createFromTimestamp(strtotime($message->created_at))->diffForHumans()}}</small>
+        		<small class="margin-left">{{Carbon\Carbon::createFromTimestamp(strtotime($message->updated_at))->diffForHumans()}}</small>
 		 		
 		 		<i class="fa fa-envelope float-right" style="font-size: 20px; margin-top: 15px;"></i>
 
@@ -29,7 +29,7 @@
 		</a>
 		</b>	
 		@else
-	<a class="disable-linkstyle" href="/messages/{{$message->user2}}{{$message->uid2}}" style="text-decoration: none; color: black;">
+	<a class="disable-linkstyle" href="/messages/{{$message->user2}}/{{$message->uid2}}" style="text-decoration: none; color: black;">
 		 <div class="card" id="">
 		 	<div class="card-body">
 		        @if($u->profile_image == "null")
@@ -39,7 +39,7 @@
 		        @endif
 		        
 		 		{{$message->user2}} <i class="fa fa-envelope-open-o float-right" style="font-size: 20px; margin-top: 15px;"></i>
-        		<small class="margin-left">{{Carbon\Carbon::createFromTimestamp(strtotime($message->created_at))->diffForHumans()}}</small>
+        		<small class="margin-left">{{Carbon\Carbon::createFromTimestamp(strtotime($message->updated_at))->diffForHumans()}}</small>
 
 
 		 	</div>

@@ -63,7 +63,7 @@
 	   				<option value="{{$currentsetting->message_privacy2}}">
 	   					{{$currentsetting->message_privacy2}} Peoples
 	   				</option>
-	   				<option value="Unlimited">Unlimited</option>
+	   				<option value="100000">Unlimited</option>
 	   				<option value="10">10 Peoples</option>
 	   				<option value="9">9 Peoples</option>
 	   				<option value="8">8 Peoples</option>

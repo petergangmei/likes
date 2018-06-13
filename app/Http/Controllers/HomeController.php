@@ -10,21 +10,46 @@ use Illuminate\Notifications\Notifiable;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+
+         public function welcome(){
+  
+
+
+        $users = DB::table('users')
+                    ->orderBy('created_at', "DESC")
+                    ->get();
+        $likes = DB::table('likes')
+                    ->orderBy('created_at', "DESC")
+                    ->get();
+        $comment = DB::table('comment')
+                    ->orderBy('created_at', "DESC")
+                    ->get();
+                    
+        $post = DB::table('post')
+                    ->orderBy('created_at', "DESC")
+                    ->get();
+        $message = DB::table('chats_messages')
+                    ->get();
+
+        
+        return view('welcome')
+            ->with('users', $users)
+            ->with('likes', $likes)
+            ->with('comments', $comment)
+            ->with('posts', $post)
+            ->with('messages', $message);
+     }
+
+
+
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
 
@@ -58,7 +83,7 @@ class HomeController extends Controller
         ->orderBy('created_at', 'DESC')
         ->where('status', 'Friend')
         ->get();
-        $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
+        $coins = DB::table('users')->where('id', auth()->user()->id)->first();
 
         $unread = DB::table('customnotification')
         ->where('user_id', auth()->user()->id)

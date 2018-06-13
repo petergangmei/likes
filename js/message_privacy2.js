@@ -1,5 +1,6 @@
 $(document).ready(function(){
-var token = $('input[name=_token ').val();
+var token = $('input[name=_token ]').val();
+
 var uid = $('#uid2').val();
           $.ajax({
             url: 'message_privacy2',

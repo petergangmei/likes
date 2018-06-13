@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@welcome');
 
 Auth::routes();
 
@@ -90,9 +88,9 @@ Route::post('/searhbyname', 'MainController@search_by_name');
 
 // chatting section
 
-Route::get('/messages/{username}{id}', 'ChatController@messageindex');
-Route::post('/messages/sendMessage', 'ChatController@sendMessage');
-Route::post('/messages/checkunseen', 'ChatController@checkunseen');
+Route::get('/messages/{username}/{id}', 'ChatController@messageindex');
+Route::post('/messages/{username}/sendMessage', 'ChatController@sendMessage');
+Route::post('/messages/{username}/checkunseen', 'ChatController@checkunseen');
 Route::post('/checkinbox', 'ChatController@check_inbox');
 Route::post('/checknotification', 'NotificationController@check_notification');
 Route::get('/messageslist', 'ChatController@messages_list');
@@ -115,7 +113,7 @@ Route::get('/edit_profile', 'NavController@edit_profile');
 Route::post('/update_profile', 'SettingController@update_profile');
 Route::post('/update_accountSetting', 'SettingController@update_accountSetting');
 Route::post('/update_accountStatus', 'SettingController@update_accountStatus');
-Route::post('/messages/message_privacy2', 'ChatController@message_privacy2Check');
+Route::post('/messages/{username}/message_privacy2', 'ChatController@message_privacy2Check');
 
 // view all photo page
 Route::get('/{name}/{id}/photos', 'UserdetailController@all_photos');

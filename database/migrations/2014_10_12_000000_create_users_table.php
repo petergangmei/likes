@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('Users', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
@@ -30,7 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('coins')->default('50');
             $table->string('comment_privacy')->default('Everyone');
             $table->string('message_privacy')->default('Everyone');
-            $table->string('message_privacy2')->default('Unlimited');
+            $table->string('message_privacy2')->default('10000');
             $table->string('account_status')->default('Active');
             $table->string('account_adTime')->default('null');
             $table->string('profile_visits')->default('0');

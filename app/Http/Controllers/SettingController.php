@@ -8,6 +8,11 @@ use DB;
 class SettingController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     public function update_profile(Request $request){
     	DB::table('users')
     	->where('id', auth()->user()->id)

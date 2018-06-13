@@ -41,7 +41,8 @@ $(document).ready(function () {
 setInterval(
 function()
 	{
-       var token = $('input[name=_token ').val();
+       var token = $('input[name=_token ]').val();
+       
        var user2 = $('#user2').val();
        var uid2 = $('#uid2').val();
 
@@ -74,7 +75,7 @@ $.ajax({
 
 	
 	console.log('sec1');
-	}, 700);
+	}, 1000);
 
 });
 

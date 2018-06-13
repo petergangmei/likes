@@ -1,7 +1,7 @@
 @extends('layouts.app5')
 @section('content')
 @csrf
-<div class="container">
+<div class="">
 @if(count($post)>0)
  
  @foreach($post as $p)
@@ -9,17 +9,18 @@
 <a href="/viewpost{{$p->id}}" style="text-decoration: none; color: black;">
   <div class="card-body">
 
-    @if($p->image == 'null')
+  </div>
+      @if($p->image == 'null')
     @else
     <img src="/public/storage/posts_image/{{$p->user_id}}/{{$p->image}}" class="w-100" style="margin: 5px 0px;">
     @endif
 
-    <span style="font-size: 20px;">{{$p->post}}</span>
+    <div style="padding: 10px;">
+      <span style="font-size: 20px;">{{$p->post}}</span>
     <br>
       <small>{{Carbon\Carbon::createFromTimestamp(strtotime($p->created_at))->diffForHumans()}}</small>
-      <footer class="blockquote-footer">Posted by <cite title="Source Title"><a href="/profileid-{{$p->user_id}}">{{$p->user_name}}</a></cite></footer>
-  </div>
-</a>
+      <footer class="blockquote-footer">Posted by <cite title="Source Title">You</a></cite></footer>
+    </div>
     <div class="card-footer ">
     	<button class="like btn btn-light cursor-pointer float-left" value="{{$p->id}}">
     	<i class="fa fa-heart-o" value="1" style="font-size: 20px;"></i>

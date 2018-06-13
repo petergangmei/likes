@@ -31,7 +31,7 @@
                 <a class="navbar-brand mx-auto" href="{{ url('/') }}">
                     @guest
                     @else
-                    <b>{{ $username }}</b>
+                    <b>{{ $user2 }}</b>
                     @endguest
                 </a>
 

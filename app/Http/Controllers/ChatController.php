@@ -8,6 +8,8 @@ class ChatController extends Controller
 {
 
 	public function messageindex($username, $id){
+
+echo "$username";
         $supercheck = DB::table('chats')->get();
 
     	$check1 = DB::table('chats')
@@ -42,11 +44,10 @@ class ChatController extends Controller
 		// ->first();
 
 		return view('chat/messageindex')
-		->with('username', $username)
 		->with('messages', $message)
 		->with('uid2', $id)
 		->with('user2', $username)
-		->with('userimg', $userimg);			
+        ->with('userimg', $userimg);        
 
 
 	}
@@ -69,10 +70,16 @@ class ChatController extends Controller
 
     	if(count($check1)> 0){
     		DB::table('chats')
-    		->where('uid1', $request->uid2)
-    		->where('uid2', auth()->user()->id)
+            ->where('uid1', $request->uid2)
+            ->where('uid2', auth()->user()->id)
+            ->update([
+                'seen' => 'unseen',
+                'updated_at' => now()
+            ]);
+            DB::table('chats')
+    		->where('uid2', $request->uid2)
+    		->where('uid1', auth()->user()->id)
     		->update([
-    			'seen' => 'unseen',
                 'updated_at' => now()
     		]);
     	}else{
@@ -92,6 +99,7 @@ class ChatController extends Controller
     			'uid1' => auth()->user()->id,
     			'uid2' => $request->uid2,
     			'seen' => 'unseen',
+                'updated_at' => now(),
     			'created_at' => now()
     		]);
     		DB::table('chats')
@@ -102,6 +110,7 @@ class ChatController extends Controller
     			'uid1' => $request->uid2,
     			'uid2' => auth()->user()->id,
     			'seen' => 'unseen',
+                'updated_at' => now(),
     			'created_at' => now()    			
     		]);
 
@@ -141,6 +150,7 @@ class ChatController extends Controller
                 'uid1' => auth()->user()->id,
                 'uid2' => $request->uid2,
                 'seen' => 'unseen',
+                'updated_at' => now(),
                 'created_at' => now()
             ]);
             DB::table('chats')
@@ -151,6 +161,7 @@ class ChatController extends Controller
                 'uid1' => $request->uid2,
                 'uid2' => auth()->user()->id,
                 'seen' => 'unseen',
+                'updated_at' => now(),
                 'created_at' => now()               
             ]);
 
@@ -253,7 +264,7 @@ class ChatController extends Controller
     public function messages_list(){
     	$messageslist = DB::table('chats')
     	->where('uid1', auth()->user()->id)
-    	->orderBy('created_at', 'DESC')
+    	->orderBy('updated_at', 'DESC')
     	->get();
     	$user2 = DB::table('users')
     	->get();
@@ -262,21 +273,28 @@ class ChatController extends Controller
     	->with('user2', $user2);
     }
     public function message_privacy2Check(Request $request){
-        $message_p = DB::table('users')
+        $message_privacy = DB::table('users')
                         ->where('id', $request->uid)
                         ->first();
 
         $time = substr(now(),0,11);
 
-        $check = DB::table('chats')
+        $chatted = DB::table('chats')
                  ->where('uid2', $request->uid)
                  ->whereDate('created_at', $time)
                  ->get();
-        $doublecheck = DB::table('chats')
+
+        $chatcount = count($chatted);
+
+        // if user have already chat history 
+        $check_his = DB::table('chats')
                 ->where('uid2', $request->uid)
                 ->where('uid1', auth()->user()->id)
                 ->get();
-        $d_count = count($doublecheck);
+        $c_his = count($check_his);
+
+
+
         // check if you are his friend
         $check2 = DB::table("profilevisitor")
                     ->where('user_id', $request->uid)
@@ -285,33 +303,39 @@ class ChatController extends Controller
                     ->get();
         $friend = count($check2);                             
 
-        $count = count($check);
 
-        $user_p = $message_p->message_privacy2;
-        
-        if($count >= $user_p ){
-            if($friend>0){
-            $return = 'Allow';
-
+        $msg_p = $message_privacy->message_privacy;
+        $msg_p2 = $message_privacy->message_privacy2;
+        if($msg_p == 'Everyone' ){
+           if ( $msg_p2 > $chatcount) {
+           $return ='Allow';
+           }else{
+            if($c_his == 0){
+                $return = "Notallow";
             }else{
-                if($d_count>0){
-                    $return = "Allow";
-                }else{
-                    
-            $return = 'Notallow';
-                }
+                $return = "Allow";
             }
+           }
+
         }else{
-            $return = 'Allow';
+           if ( $msg_p2 > $chatcount) {
+           $return ='Allow';
+           }else{
+            if ($friend == 0) {
+               if ($c_his == 0) {
+                   $return = "Notallow";
+               }else{
+                $return = "Allow";
+               }
+            }else{
+                $return = "Allow";
+
+            }
+           }
+
 
         }              
 
-        // if(count($check)>0){
-        //     $result = count($check);
-
-        // }else{
-        //     $result = 'false';
-        // }
 
         return $return;
     }

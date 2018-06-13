@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
+
 class MainController extends Controller
 {
+
+      public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
    public function search(){
 
   $unread = DB::table('customnotification')
@@ -17,13 +24,13 @@ class MainController extends Controller
         ->where('read', 'unread')
         ->get();
 
-   	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
+   	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
    	return view('pages/searchindex')->with('mypref', $mypref)->with('unread', $unread);
    }
    
 
   public function search2(){
-    $mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
+    $mypref = DB::table('users')->where('id', auth()->user()->id)->first();
 
   $unread = DB::table('customnotification')
   ->where('read', 'unread')
@@ -43,10 +50,10 @@ class MainController extends Controller
         ->get();
        
 
-   	$mypref = DB::table('Users')->where('id', auth()->user()->id)->first();
+   	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
       $val = $request->pref1;
       $def = $mypref->$val;
-      $datas = DB::table('Users')->where($request->pref1, $def)->where('id', '!=' , auth()->user()->id)->orderBy('profile_visits', 'desc')->get();
+      $datas = DB::table('users')->where($request->pref1, $def)->where('id', '!=' , auth()->user()->id)->orderBy('profile_visits', 'desc')->get();
 
 
    	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val)->with('unread', $unread);
@@ -79,7 +86,7 @@ class MainController extends Controller
                 ->orderBy('created_at', 'DESC')
                 ->get();
 
-      $data = DB::table('Users')->where('id', $id)->first();
+      $data = DB::table('users')->where('id', $id)->first();
       $checkfriend = DB::table("profilevisitor")
                       ->where('user_id', $data->id)
                       ->where('visitor_id', auth()->user()->id)
@@ -91,7 +98,7 @@ class MainController extends Controller
       $friendresult = "Notfriend";
      }                      
       
-      $coins = DB::table('Users')->where('id', auth()->user()->id)->first();
+      $coins = DB::table('users')->where('id', auth()->user()->id)->first();
 
       $post = DB::table('post')->where('user_id', $id)
               ->orderBy('created_at', 'DESC')
@@ -101,7 +108,7 @@ class MainController extends Controller
 
       $visitor = $data->profile_visits;
       $newvisitor = $visitor + '10';
-      DB::table('Users')->where('id', $id)->update([
+      DB::table('users')->where('id', $id)->update([
          'profile_visits' =>  $newvisitor
       ]);
       return view('profile/viewprofile')
@@ -136,13 +143,13 @@ class MainController extends Controller
         return 1;
       }else{
       // update coins
-      $current_coins = DB::table('Users')->where('id', auth()->user()->id)->first();
+      $current_coins = DB::table('users')->where('id', auth()->user()->id)->first();
       $mycoins = $current_coins->coins;
       if($mycoins < 10){
          return 1;
       }else{
          $newcoins = $mycoins - '10';
-         DB::table('Users')->where('id', auth()->user()->id)
+         DB::table('users')->where('id', auth()->user()->id)
          ->update([
          'coins' =>  $newcoins
       ]);
@@ -157,19 +164,19 @@ class MainController extends Controller
         'status' => 'Request' ]);
       }
 
-      $da = DB::table('Users')->where('id', $request->userid)->first();
+      $da = DB::table('users')->where('id', $request->userid)->first();
     // update visitors
       $visitor = $da->profile_visits;
       $newvisitor = $visitor + '10';
-      DB::table('Users')
+      DB::table('users')
       ->where('id', $request->user_id)
       ->update([
          'profile_visits' =>  $newvisitor
       ]);  
 
     }
-      $data1 = DB::table('Users')->where('id', $request->userid)->first();
-      $data2 = DB::table('Users')->where('id', auth()->user()->id)->first();
+      $data1 = DB::table('users')->where('id', $request->userid)->first();
+      $data2 = DB::table('users')->where('id', auth()->user()->id)->first();
        if($data1->coffeeTea == $data2->coffeeTea) { 
          $v1 = '10';
          $vv1 = "You and $data1->name  like $data1->coffeeTea (match).";

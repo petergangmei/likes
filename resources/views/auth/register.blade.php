@@ -173,7 +173,7 @@
                                 By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.
                               </samll><br>
 
-                                <button type="submit" class="btn btn-success" style="width: 40%; margin-top: 10px;">
+                                <button type="submit"  class="btn btn-success" style="width: 40%; margin-top: 10px;">
                                     <b>Sign up</b>
                                 </button>
                             </div>
