@@ -69,13 +69,13 @@
                  
 
                   @else
-                  <div style="border:1px solid #F9FFFE;  border-radius: 5px; background-color: #F9FFFE;" class="cursor-pointer" data-toggle="modal" data-target="#Model-matchout">
+                  <div style="border:1px solid #F9FFFE;  border-radius: 5px; background-color: #F9FFFE; border:1px solid gray; " class="cursor-pointer" data-toggle="modal" data-target="#Model-matchout">
                   <span style="font-size: 15px;">
                     You
                   <img src="/public/storage/default_image/icons/logo1.png" height="80" width="80">
                    {{$data->name}}
                   </span>
-                  <p><i>Click here to unvail the Mystery!</i></p>
+                  <p><i>Click here to match up!</i></p>
                   </div>
                   @endif
                   <div style="border:0px solid silver;">
@@ -91,7 +91,7 @@
                       <div class="col-md-12 " style="height: 80px;">
                         @foreach($photos as $photo)
                         @if($photo->image_type == 'featured_photo')
-                        <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                        <div  style="border:1px solid silver; width: 48%; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
                               <a href="photoid-{{$photo->id}}">
                                 <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{$data->id}}/{{ $photo->image }}'>
                                 </a>

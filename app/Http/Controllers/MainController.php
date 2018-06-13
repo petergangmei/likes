@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 
-
 class MainController extends Controller
 {
 
@@ -24,8 +23,16 @@ class MainController extends Controller
         ->where('read', 'unread')
         ->get();
 
+  $newusers = DB::table('users')
+              ->where('id', '!=', auth()->user()->id)
+              ->orderBy('created_at', 'DESC')
+              ->paginate(6);      
+
    	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
-   	return view('pages/searchindex')->with('mypref', $mypref)->with('unread', $unread);
+   	return view('pages/searchindex')
+          ->with('mypref', $mypref)
+          ->with('newusers', $newusers)
+          ->with('unread', $unread);
    }
    
 
