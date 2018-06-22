@@ -39,7 +39,8 @@
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
 
           <a class="navbar-brand" href="/search"><i class="fa fa-search" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" data-toggle="modal" data-target="#spinner" style="font-size:23px;  "></i></a>
+          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone" style="font-size:23px;  color: #CAC3C1;"></i></a>
+          
 
 
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"></i>

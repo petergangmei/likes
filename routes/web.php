@@ -23,6 +23,8 @@ Route::get('/search', 'MainController@search');
 
 Route::get('/search2', 'MainController@search2');
 
+Route::get('/swipes', 'MainController@swipes');
+
 Route::get('/notification', 'NotificationController@view');
 
 Route::get('/feeds', 'FeedController@feeds');

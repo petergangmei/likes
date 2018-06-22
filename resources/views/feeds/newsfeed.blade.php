@@ -2,6 +2,11 @@
 @section('content')
 <div class="reload" id="feeds" >
 <div class="" >
+	<div style="padding: 5px; border:0px solid black;">
+		<a href="/addfeed" style="text-decoration: none; color: black;" >
+		<button type="button" class="btn btn-block btn-outline-primary"  data-toggle="modal" data-target="#spinner">Create new post</button>
+		</a>
+	</div>
 	@if(count($posts)>0)
 	@foreach($posts as $post)
 
@@ -14,7 +19,7 @@
 	@if($post->image == 'null')
 
 	@else
-	<img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" data-toggle="modal" data-target="#spinner" class="w-100">		
+	<img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" data-toggle="modal" data-target="#spinner" class="w-100" style="height: 300px;">		
 	@endif
 	
 	<div style="padding:10px;">

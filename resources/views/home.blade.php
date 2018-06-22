@@ -58,20 +58,21 @@
 
 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active color-black" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Friends </a>
+    <a class="nav-link active  color-black" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Photos</a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link  color-black" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Photos</a>
+    <a class="nav-link  color-black" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Friends </a>
   </li>
 
+
   <li class="nav-item">
-    <a class="nav-link color-black" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">About</a>
+    <a class="nav-link color-black " id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">About</a>
   </li>
 </ul>
 <div class="tab-content" id="myTabContent">
   <!-- photo -->
-  <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
       @if(count($photos)> 0 )
                   <article class="text-center" style="border:1px solid #F6F3F3; padding: 5px;">
                   <i class="fa fa-object-group glclick" id="active" value="Grid" style="font-size: 21px; color:#A0A0A0;">Grid</i>
@@ -81,9 +82,9 @@
                   <div class="">
                     @foreach($photos as $photo)
 
-                     <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
+                     <div  style="border:1px solid silver; width:48.74%; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
                               <a href="photoid-{{$photo->id}}">
-                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{auth()->user()->id}}/{{ $photo->image }}'>
+                                <img class="fphotos" style="width: 100%; height: 140px;" src='public/storage/photos/{{auth()->user()->id}}/{{ $photo->image }}'>
                                 </a>
                           </div>
                       @endforeach
@@ -96,8 +97,9 @@
           <i class="fa fa-plus-square-o cursor-pointer" style="font-size: 80px; margin: 15px 10px; position: ; float: left;" data-toggle="modal" data-target="#Model2"></i>
 
   </div>
+
   <!-- friends -->
-  <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
 <ul class="list-group">
 
 
@@ -212,7 +214,7 @@
                 </div>
             </div>
 
-<div class="modal fade" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade hidme" id="Model1"  role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -229,12 +231,15 @@
 
           <div class="custom-file">
           <input type="file" class="custom-file-input" name="profile_pic" id="validatedCustomFile" required>
-          <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
+          <label class="custom-file-label" id="validatedCustomFile_"  for="validatedCustomFile">Choose file...</label>
           <div class="invalid-feedback">Example invalid custom file feedback</div>
         </div>
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-default">Upload</button>
+          <i class="fa fa-spinner fa-spin" id="uploading" style="font-size:24px; display: none;"></i>
+          <span id="message"></span> 
+          <span id="message2"></span> 
+            <button type="submit"  class="btn btn-default"  id="upload-img">Upload</button>
         </form>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         </div>
@@ -259,7 +264,7 @@
           <input type="hidden" name="profile_type", value="profile_image">
 
           <div class="custom-file">
-          <input type="file" class="custom-file-input" name="profile_pic2" id="validatedCustomFile" required>
+          <input type="file" class="custom-file-input" name="profile_pic2" id="validatedCustomFile"  required>
           <label class="custom-file-label" id="file1" for="validatedCustomFile">Choose file...</label>
           <div class="invalid-feedback">Example invalid custom file feedback</div>
         </div>
@@ -277,4 +282,33 @@
     </div>
 </div>
 <br><br>
+<script>
+  $('#validatedCustomFile').focusout(function(){
+    setInterval(
+function()
+    {
+    var file1 = $('#validatedCustomFile').val();
+    $('#validatedCustomFile_').html(file1);
+    if (file1 !== '') {
+      $('#message').html('Image selected').css('color', 'green');
+    }
+    }, 1000);
+
+  });
+  $('#upload-img').click(function(){
+    var file1 = $('#validatedCustomFile').val();
+    if (file1 !== "") {
+    $('#message').css('display', 'none');
+    $('#uploading').css('display', 'block');
+    $('#message2').html('uploading.....');
+
+    }else{
+      $('#message').html('Image not selected..');
+      $('#message').css('color', 'red');
+    return false;
+
+    }
+
+  });
+</script>
 @endsection

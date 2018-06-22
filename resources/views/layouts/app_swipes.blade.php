@@ -20,40 +20,34 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/swipes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
 
     <div id="">
         
-        <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container ">
-                <a class="navbar-brand" href="#">
-                    <b class="">{{ Auth::user()->name }}</b>
-                </a>
-                    <span class="float-left">
-                    {{$coins->coins}}
-                    <img src="/public/storage/default_image/icons/coin.png" width="20" height="20" style="margin-right: 10px;">
-                    <a href="/menu"><i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; " data-toggle="modal" data-target="#spinner"></i></a>
-                    </span>
-
+        <nav class="navbar fixed-top navbar-light navbar-laravel">
+            <div class="" style="text-align: center;" >
+                    <b class="" style="text-align: center;">Swipes</b>
 
             </div>
         </nav>
 
-        <main class="">
+        <main class="" style="">
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light"    id="navibar" style="background-color: #F8F2F0;">
-          <a class="navbar-brand" href="/feeds" ><i class="fa fa-home" data-toggle="modal" data-target="#spinner"  style="font-size:20px; color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/search"><i class="fa fa-search" data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone" data-toggle="modal" data-target="#spinner" style="font-size:23px;  color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/notification"><i class="fa fa-globe"   data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"> </i> 
+        <nav class="navbar fixed-bottom navbar-light"   id="navibar" style="background-color: #F8F2F0;">
+          <a class="navbar-brand" href="/feeds" ><i class="fa fa-home"  data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/search"><i class="fa fa-search"  data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone"  data-toggle="modal" data-target="#spinner" style="font-size:23px;  "></i></a>
+          
+          <a class="navbar-brand" href="/notification"><i class="fa fa-globe"  data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"> </i> 
             @if(count($unread)>0)
             <span class="badge badge-light">{{$unread->count()}}</span>
             @endif
         </a>
-          <a class="navbar-brand" href="/home"><i class="fa fa-user" data-toggle="modal" data-target="#spinner"  style="font-size:20px;"></i></a>
+          <a class="navbar-brand" href="/home"><i class="fa fa-user"  data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
         </nav>
 
         </main>
@@ -68,9 +62,10 @@
 <!-- spinner/loader -->
 
     </div>
+    <script src="{{ asset('js/swipes.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
-    <script src="{{ asset('js/notification_check.js') }}" ></script>
+    <!-- <script src="{{ asset('js/notification_check.js') }}" ></script> -->
     
     
 </body>

@@ -16,6 +16,29 @@ class MainController extends Controller
         $this->middleware('auth');
     }
     
+
+    
+   public function swipes(){
+
+  $unread = DB::table('customnotification')
+        ->where('user_id', auth()->user()->id)
+        ->where('read', 'unread')
+        ->get();
+
+  $newusers = DB::table('users')
+              ->where('id', '!=', auth()->user()->id)
+              ->where('profile_image', '!=', 'null')
+              ->where('gender', '!=', auth()->user()->gender)
+              ->orderBy('created_at', 'DESC')
+              ->paginate(20);      
+
+    $mypref = DB::table('users')->where('id', auth()->user()->id)->first();
+    return view('swipes/swipes_index')
+          ->with('mypref', $mypref)
+          ->with('users', $newusers)
+          ->with('unread', $unread);
+   }
+
    public function search(){
 
   $unread = DB::table('customnotification')
@@ -26,7 +49,7 @@ class MainController extends Controller
   $newusers = DB::table('users')
               ->where('id', '!=', auth()->user()->id)
               ->orderBy('created_at', 'DESC')
-              ->paginate(6);      
+              ->paginate(9);      
 
    	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
    	return view('pages/searchindex')

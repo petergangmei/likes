@@ -7,11 +7,11 @@
 <div class="card" style="width: 100%; text-align: center;">
 
   <ul class="list-group list-group-flush" data-toggle="modal" data-target="#spinner">
-    <li class="list-group-item"><a href="/edit_profile" style="color: black; text-decoration: none;">Edit profile</a></li>
+    <a href="/edit_profile" style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Edit profile</li></a>
     
-    <li class="list-group-item"><a href="/account_setting" style="color: black; text-decoration: none;">Account Setting</a></li>
+    <a href="/account_setting" style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Account Setting</li></a>
     
-    <li class="list-group-item"><a href="/preferencepage1" style="color: black; text-decoration: none;">Update preference</a></li>
+    <a href="/preferencepage1"  style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Update preference</li></a>
     
     <a class="list-group-item color-black" href="{{ route('logout') }}"
        onclick="event.preventDefault();

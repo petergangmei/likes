@@ -51,8 +51,8 @@ if (month == 11 && date >=22 || month == 12 && date <=21) {value = "Sagittarius"
 if (month == 11 && date > 30) {value = "Invalid Date";}
 if (month == 12 && date >=22 || month == 1 && date <=19) {value = "Capricorn";}
 if (month == 12 && date > 31) {value = "No way!";}
-// console.log(value);
-$('#zodiac').val(value);
+console.log(value);
+$('#zodi').html(value);
 
 }
 

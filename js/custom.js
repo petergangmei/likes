@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
     $(".likeimage").dblclick(function(){
   var link = ($(this).attr("src"));
   var post = ($(this).attr("id"));

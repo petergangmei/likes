@@ -13,10 +13,10 @@
                         <input type="hidden" name="d_comments_privacy" value="Everyone">
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right"><b>{{ __('Name') }}</b></label>
+                            <label for="name" class="foc col-md-4 col-form-label text-md-right"><b>{{ __('Name') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your full name" name="name" value="{{ old('name') }}"  required autofocus>
+                                <input id="name" type="text" class="foc form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="Your full name" name="name" value="{{ old('name') }}"  required autofocus>
 
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
@@ -57,7 +57,7 @@
                             <div class="col-md-6">
 
 
-                                <select class="form-control form-control-sm form-width-small date" name="date" id="date">
+                                <select class="foc form-control form-control-sm form-width-small date" name="date" id="date">
                                   <option value="none">Day</option>
                                   <option value="1">1</option>
                                   <option value="2">2</option>
@@ -92,7 +92,7 @@
                                   <option value="31">31</option>
                                 </select>
 
-                                <select class="form-control form-control-sm form-width-small month" name="month" id="month">
+                                <select class="foc form-control form-control-sm form-width-small month" name="month" id="month">
                                    <option value="none">Month</option>
                                    <option value="1">Jan</option>
                                    <option value="2">Feb</option>
@@ -108,7 +108,7 @@
                                    <option value="12">Dec</option>
                                 </select>
 
-                                <select class="form-control form-control-sm form-width-small year" name="year">
+                                <select class="foc form-control form-control-sm form-width-small year" id="year" name="year">
                                     <option value="none">Year</option>
                                     <option value="1999">1999</option>
                                     <option value="1998">1998</option>
@@ -126,7 +126,7 @@
                                     <option value="1986">1986</option>
                                 
                                 </select>
-                                <!-- <span  id="zodiac">zodiac</span> -->
+                                <span  id="zodi" style="margin-left: 5px;">Zodiac</span>
                                 <input type="hidden" name="zodiac" id="zodiac" value="Not selected">
                             </div>
                         </div>
@@ -135,8 +135,8 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Location') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="location" type="text" placeholder="State/Town/Province" class="form-control float-left" name="location" required style="width: 65%;">
-                            <select class="form-control float-left" name="country" style="width: 35%;">
+                                <input id="location" type="text"  placeholder="State/Town/Province" class="form-control float-left foc" name="location" required style="width: 65%;">
+                            <select class="form-control float-left foc" id="country" name="country" style="width: 35%;">
                                     <option value="country">Country</option>
                                     <option value="India">India</option>
                                     <option value="China">China</option>
@@ -149,7 +149,7 @@
                             <label for="password" class="col-md-4 col-form-label text-md-right"><b>{{ __('Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="Your new Password" name="password" required>
+                                <input id="password" type="password" class="foc form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"  placeholder="Your new Password" name="password" required>
 
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback">
@@ -163,7 +163,7 @@
                             <label for="password-confirm" class="col-md-4 col-form-label text-md-right"><b>{{ __('Confirm Password') }}</b></label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" placeholder="Re-enter your password" required>
+                                <input id="password-confirm" type="password" class="foc form-control" name="password_confirmation" placeholder="Re-enter your password" required>
                             </div>
                         </div>
 
@@ -173,7 +173,7 @@
                                 By clicking Sign Up, you agree to our Terms, Data Policy and Cookie Policy.
                               </samll><br>
 
-                                <button type="submit"  class="btn btn-success" style="width: 40%; margin-top: 10px;">
+                                <button type="submit" id="signup" class="btn btn-success" style="width: 40%; margin-top: 10px;">
                                     <b>Sign up</b>
                                 </button>
                             </div>

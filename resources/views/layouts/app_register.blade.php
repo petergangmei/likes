@@ -33,7 +33,7 @@
                    <b> Create a new account.</b>
                     </span>
                 </a>
-
+<div class="toast-body mx-auto"><i class="fa fa-exclamation-circle"></i> <span id="toast"></span></div>
 
         </nav>
 
@@ -55,6 +55,7 @@
     </script>
     <script src="{{ asset('js/locationajax.js') }}" ></script>
     <script src="{{ asset('js/calculate_zodiac.js') }}" ></script>
+    <script src="{{ asset('js/register_.js') }}" ></script>
     
      <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script> -->
      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>

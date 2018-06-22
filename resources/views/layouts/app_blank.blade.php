@@ -18,8 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/swipes.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -43,7 +49,8 @@
         <nav class="navbar fixed-bottom navbar-light"  data-toggle="modal" data-target="#spinner"  id="navibar" style="background-color: #F8F2F0;">
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px;  color: #CAC3C1;"></i></a>
           <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px;  color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/addfeed"><i class="fa fa-plus-square" style="font-size:23px;  color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone" style="font-size:23px;  color: #CAC3C1;"></i></a>
+          
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" style="font-size:20px; color: #CAC3C1;" ></i>
 
           </a>
@@ -62,6 +69,9 @@
 <!-- spinner/loader -->
         
     </div>
+    <script>
+        
+    </script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
     <script src="{{ asset('js/notification_check.js') }}" ></script>
