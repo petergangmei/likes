@@ -27,12 +27,12 @@
 
     <div id="">
         
-        <nav class="navbar fixed-top navbar-light navbar-laravel">
+<!--         <nav class="navbar  navbar-light navbar-laravel">
             <div class="" style="text-align: center;" >
                     <b class="" style="text-align: center;">Swipes</b>
 
             </div>
-        </nav>
+        </nav> -->
 
         <main class="" style="">
             @yield('content')
