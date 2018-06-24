@@ -26,8 +26,8 @@
 
     <div id="app">
         
-        <nav class="navbar  navbar-light navbar-laravel" >
-            <div class="mx-auto" >
+        <nav class="navbar fixed-top navbar-light navbar-laravel" >
+            <div class="mx-auto" style="font-size: 20px;">
 
                 <b>Search</b>
    
@@ -35,6 +35,7 @@
         </nav>
 
         <main class="">
+            <br><br>
             @yield('content')
 
         <nav class="navbar fixed-bottom navbar-light"  data-toggle="modal" data-target="#spinner"  id="navibar" style="background-color: #F8F2F0;">

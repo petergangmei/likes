@@ -27,14 +27,12 @@
 
     <div id="">
         
-<!--         <nav class="navbar  navbar-light navbar-laravel">
-            <div class="" style="text-align: center;" >
-                    <b class="" style="text-align: center;">Swipes</b>
+        <nav class="navbar  navbar-light navbar-laravel" style="border:0px solid yellow;text-align: center !important; font-size: 20px;">
+                    <b class="mx-auto" style="text-align: center;">Tap - Tap</b>
 
-            </div>
-        </nav> -->
+        </nav>
 
-        <main class="" style="">
+        <main class="" style="overflow: hidden;">
             @yield('content')
 
         <nav class="navbar fixed-bottom navbar-light"   id="navibar" style="background-color: #F8F2F0;">
