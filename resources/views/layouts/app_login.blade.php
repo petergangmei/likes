@@ -32,7 +32,7 @@
             <div class="container">
                 <a class="navbar-brand mx-auto" style=" color: white;"  href="{{ url('#') }}">
                     <span class="">
-                   <b id="h_text">Sing in </b>
+                   <b id="h_text">Sign in </b>
                     </span>
                     @guest
                     @else

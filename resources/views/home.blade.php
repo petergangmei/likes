@@ -58,13 +58,12 @@
 
 <ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active  color-black" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Photos</a>
+    <a class="nav-link active color-black" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Friends </a>
   </li>
 
   <li class="nav-item">
-    <a class="nav-link  color-black" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Friends </a>
+    <a class="nav-link   color-black" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Photos</a>
   </li>
-
 
   <li class="nav-item">
     <a class="nav-link color-black " id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">About</a>
@@ -72,7 +71,7 @@
 </ul>
 <div class="tab-content" id="myTabContent">
   <!-- photo -->
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+  <div class="tab-pane fade " id="home" role="tabpanel" aria-labelledby="home-tab">
       @if(count($photos)> 0 )
                   <article class="text-center" style="border:1px solid #F6F3F3; padding: 5px;">
                   <i class="fa fa-object-group glclick" id="active" value="Grid" style="font-size: 21px; color:#A0A0A0;">Grid</i>
@@ -99,7 +98,7 @@
   </div>
 
   <!-- friends -->
-  <div class="tab-pane fade " id="profile" role="tabpanel" aria-labelledby="profile-tab">
+  <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 <ul class="list-group">
 
 

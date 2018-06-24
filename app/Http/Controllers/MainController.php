@@ -49,7 +49,7 @@ class MainController extends Controller
   $newusers = DB::table('users')
               ->where('id', '!=', auth()->user()->id)
               ->orderBy('created_at', 'DESC')
-              ->paginate(9);      
+              ->paginate(12);      
 
    	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
    	return view('pages/searchindex')

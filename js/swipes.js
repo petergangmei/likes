@@ -1,10 +1,39 @@
 $(document).ready(function(){
+  setTimeout(function(){
+    $('.lpick').fadeOut(500);
+   $.when(
+    $('.showbox').fadeIn(1000)
+    ).then(function(){
+    $('.NoMoreItem').css('display', 'block');
+    });
+
+  }, 1300);
+  $.when(
+     setTimeout(function(){ 
+    $('.x-btn').css('opacity', '0.3')
+      }, 2800)
+    
+    ).then(function(){
+      setTimeout(function(){ 
+
+        $('.x-btn').css('opacity', '0.0')
+
+      }, 4800);
+    });
   
+
+
   $(".likebtn").click(function(){
     var id = $(this).attr('id');
     var pid = '#'+ id;
   console.log(pid);
     $(pid).addClass('rotate-left').delay(700).fadeOut(1);
+    $.when($('.likebtn').css('opacity', '0.6')
+      ).then(function(){
+        setTimeout(function(){
+          $('.likebtn').css('opacity', '0.0');
+        }, 100);
+      });
       // $('.buddy').find('.status').remove();
   });
 
@@ -14,6 +43,12 @@ $(document).ready(function(){
   console.log(pid);
     $(pid).addClass('rotate-right').delay(700).fadeOut(1);
       // $('.buddy').find('.status').remove();
+       $.when($('.dislikebtn').css('opacity', '0.6')
+      ).then(function(){
+        setTimeout(function(){
+          $('.dislikebtn').css('opacity', '0.0');
+        }, 100);
+      });
   });
 
     
