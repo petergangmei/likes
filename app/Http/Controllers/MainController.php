@@ -41,17 +41,19 @@ class MainController extends Controller
 
    public function search(){
 
-  $unread = DB::table('customnotification')
-        ->where('user_id', auth()->user()->id)
-        ->where('read', 'unread')
-        ->get();
+    $unread = DB::table('customnotification')
+          ->where('user_id', auth()->user()->id)
+          ->where('read', 'unread')
+          ->get();
 
-  $newusers = DB::table('users')
-              ->where('id', '!=', auth()->user()->id)
-              ->orderBy('created_at', 'DESC')
-              ->paginate(12);      
+    $newusers = DB::table('users')
+                ->where('id', '!=', auth()->user()->id)
+                ->orderBy('created_at', 'DESC')
+                ->paginate(12); 
+
 
    	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
+
    	return view('pages/searchindex')
           ->with('mypref', $mypref)
           ->with('newusers', $newusers)
@@ -68,7 +70,9 @@ class MainController extends Controller
 
 
 
-    return view('pages/searchindex2')->with('mypref', $mypref)->with('unread', $unread);
+    return view('pages/searchindex2')
+    ->with('mypref', $mypref)
+    ->with('unread', $unread);
 
    	
    }
@@ -83,7 +87,12 @@ class MainController extends Controller
    	$mypref = DB::table('users')->where('id', auth()->user()->id)->first();
       $val = $request->pref1;
       $def = $mypref->$val;
-      $datas = DB::table('users')->where($request->pref1, $def)->where('id', '!=' , auth()->user()->id)->orderBy('profile_visits', 'desc')->get();
+      $datas = DB::table('users')
+      ->where($request->pref1, $def)
+      ->where('gender', '!=', auth()->user()->gender)
+      ->where('id', '!=' , auth()->user()->id)
+      ->orderBy('profile_visits', 'desc')
+      ->get();
 
 
    	return view('pages/searchresult')->with('datas', $datas)->with('mypref', $mypref)->with('val', $val)->with('unread', $unread);

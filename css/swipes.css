@@ -18,6 +18,15 @@
   height: 100%;
   font-size: 24px;
 }
+/*.x-btn:hover{
+    width:49%;
+  border:0px solid black;
+  cursor:pointer;
+  background-color:;
+  opacity:0.5;
+  height: 100%;
+  font-size: 24px;
+}*/
 .bbar{
   text-align:center;
   height:50px;
@@ -47,9 +56,25 @@
 }
 .SupperLikeHide{
   display: none;
+      width:49%;
+  border:0px solid black;
+  cursor:pointer;
+  background-color:;
+  opacity:0.5;
+  height: 100%;
+  font-size: 24px;
 }
 
-
+.likebtn:hover {
+  opacity: 0.5;
+      width:49%;
+  border:0px solid black;
+  cursor:pointer;
+  background-color:;
+  opacity:0.5;
+  height: 100%;
+  font-size: 24px;
+}
 
 
 #container {

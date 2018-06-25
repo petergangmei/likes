@@ -52,16 +52,16 @@
 	<form method="post" action="/searchfilter">
        @csrf
 		<select class="form-control form-control " name="pref1" style="width: 100%;">
-			<option value="coffeeTea">Coffee/tea</option>
-			<option value="softdrinksHarddrinks">Drinks</option>
-			<option value="vegNonveg">Food</option>
-			<option value="bikeCar">Travel</option>
-			<option value="summerWinter">Vacation</option>
-			<option value="dayNight">Time</option>
-			<option value="catDog">Pet</option>
-			<option value="familyFriends">Surrounding</option>
-			<option value="movie">Moives</option>
-			<option value="sleepHours">Sleep hours</option>
+			<option value="coffeeTea">{{$mypref->coffeeTea}}</option>
+			<option value="softdrinksHarddrinks">{{$mypref->softdrinksHarddrinks}}</option>
+			<option value="vegNonveg">{{$mypref->vegNonveg}}</option>
+			<option value="bikeCar">{{$mypref->bikeCar}}</option>
+			<option value="summerWinter">{{$mypref->summerWinter}}</option>
+			<option value="dayNight">{{$mypref->dayNight}}</option>
+			<option value="catDog">{{$mypref->catDog}}</option>
+			<option value="familyFriends">{{$mypref->familyFriends}}</option>
+			<option value="movie">{{$mypref->movie}}</option>
+			<option value="sleepHours">{{$mypref->sleepHours}} Hours</option>
 		</select>
 		<button type="submit" class="btn btn-block btn-outline-info  ">Find</button>
   	</form>
