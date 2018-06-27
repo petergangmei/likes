@@ -146,7 +146,9 @@ class MainController extends Controller
       $likes = DB::table('likes')->where('posted_by', $id)->get();
 
       $visitor = $data->profile_visits;
-      $newvisitor = $visitor + '10';
+
+      $newvisitor = $visitor + '1';
+      
       DB::table('users')->where('id', $id)->update([
          'profile_visits' =>  $newvisitor
       ]);
@@ -203,15 +205,7 @@ class MainController extends Controller
         'status' => 'Request' ]);
       }
 
-      $da = DB::table('users')->where('id', $request->userid)->first();
     // update visitors
-      $visitor = $da->profile_visits;
-      $newvisitor = $visitor + '10';
-      DB::table('users')
-      ->where('id', $request->user_id)
-      ->update([
-         'profile_visits' =>  $newvisitor
-      ]);  
 
     }
       $data1 = DB::table('users')->where('id', $request->userid)->first();

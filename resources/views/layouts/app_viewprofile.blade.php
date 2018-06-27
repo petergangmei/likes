@@ -96,8 +96,8 @@
     </div>
     
     <script src="{{ asset('js/ajax.js') }}" ></script>
-    <script src="{{ asset('js/notification_check.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
+    <script src="{{ asset('js/check_comments.js') }}" ></script>
     
     
 </body>

@@ -42,7 +42,6 @@ $.ajax({
                 console.log('no notification');
              	$('#navibar').load(' #navibar');
 
-             	// location.reload(true);
              	
 
                 // $('#noti').load(' #noti');

@@ -21,6 +21,42 @@
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        .element {
+  cursor: pointer;
+  text-align: center;
+  height: 40px;
+  width: 40px;
+  background-color: red;
+  animation-name: stretch;
+  animation-duration: 1.5s; 
+  animation-timing-function: ease-out; 
+  animation-delay: 0;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: none;
+  animation-play-state: running;
+}
+
+@keyframes stretch {
+  0% {
+    transform: scale(.3);
+    background-color: red;
+    border-radius: 100%;
+  }
+  50% {
+    background-color: orange;
+  }
+  100% {
+    transform: scale(1.5);
+    background-color: yellow;
+  }
+}
+
+
+
+
+    </style>
 </head>
 <body>
 
@@ -28,14 +64,10 @@
         
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Notification
-
-                    @guest
-                    @else
-                    @endguest
-                     
+                <a class="navbar-brand" href="#">
+                    <b>Notification</b>
                 </a>
+                <a href="/news" style="text-decoration: none; color: black;"><div class="element"><div style="margin:0% 0px;">News</div></div></a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

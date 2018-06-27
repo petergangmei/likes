@@ -34,7 +34,9 @@
 
                    <b id="cancelrequest" style="font-size: 12px; color: red; cursor: pointer;"></b>
                    <input type="hidden" name="" id="user_id" value="{{$data1->id}}">
-
+                 <a href="/profileid-{{$data1->id}}"><br>
+                   <button type="button" class="btn btn-outline-success">Go Back by tapiing on this button</button>
+                 </a> 
 
                    @endif
                 </div>

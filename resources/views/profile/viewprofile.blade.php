@@ -37,7 +37,7 @@
 
                   </div>
                   <br>
-
+                  <div class="refresh">
                   @if($visitor == 'Matchresult')
                   <br>
                   <span data-toggle="modal" data-target="#Model-matchout" style="border:1px solid silver; border-radius:5px; padding: 10px; margin-right: 5px;" class="cursor-pointer"></i>
@@ -78,6 +78,7 @@
                   <p><i>Click here to match up!</i></p>
                   </div>
                   @endif
+                </div>
                   <div style="border:0px solid silver;">
                 </div>
                 </div>

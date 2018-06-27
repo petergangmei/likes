@@ -11,14 +11,14 @@ $(document).ready(function(){
   $.when(
      setTimeout(function(){ 
     $('.x-btn').css('opacity', '0.3')
-      }, 3800)
+      }, 2800)
     
     ).then(function(){
       setTimeout(function(){ 
 
         $('.x-btn').css('opacity', '0.0')
 
-      }, 6800);
+      }, 3800);
     });
   
 

@@ -120,3 +120,15 @@ Route::post('/messages/{username}/message_privacy2', 'ChatController@message_pri
 // view all photo page
 Route::get('/{name}/{id}/photos', 'UserdetailController@all_photos');
 Route::get('/{name}/{id}/{pid}', 'UserdetailController@all_photos_view1');
+
+
+
+
+// update news
+Route::get('/news', 'NewsController@index');
+
+
+// addmin panel
+Route::get('/admin', 'AdminController@index');
+Route::get('/admin/postnews', 'AdminController@postnews_index');
+Route::post('/admin/postnews_', 'AdminController@postnews');

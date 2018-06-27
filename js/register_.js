@@ -62,8 +62,8 @@ if (date == 'none' || month == 'none' || year == 'none') {
 });
 return false; 
 }
-if (location == '') {
-	$('#toast').html('Location field empty.');
+if (location == 'location') {
+	$('#toast').html('Region field empty.');
 	$('#location').css('border', '1px solid red');
 	console.log(' some field is empty');
 	console.log(name);

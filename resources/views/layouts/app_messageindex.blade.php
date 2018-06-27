@@ -28,10 +28,10 @@
         
         <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand mx-auto" href="{{ url('/') }}">
+                <a class="navbar-brand mx-auto" href="/profileid-{{$uid2}}">
                     @guest
                     @else
-                    <b>{{ $user2 }}</b>
+                    <b>{{ $user2 }} </b>
                     @endguest
                 </a>
 

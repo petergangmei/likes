@@ -229,7 +229,7 @@ public function post_feed(Request $request){
         $this->validate($request, [
     'post' => 'required||max:200',
     'post_image'=>'required',
-    'post_image'=> 'image|nullable|max:1999'
+    'post_image'=> 'image|nullable|max:7999'
   ]);
       $u_id = auth()->user()->id;
       $u_name = auth()->user()->name;

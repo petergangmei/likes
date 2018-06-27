@@ -11,7 +11,9 @@
     
     <a href="/account_setting" style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Account Setting</li></a>
     
-    <a href="/preferencepage1"  style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Update preference</li></a>
+    <a href="/preferencepage1"  style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">Set Preference</li></a>
+    
+    <a href="/news"  style="color: black; text-decoration: none; border-top: 1px solid silver;"><li class="list-group-item">News Updates</li></a>
     
     <a class="list-group-item color-black" href="{{ route('logout') }}"
        onclick="event.preventDefault();
