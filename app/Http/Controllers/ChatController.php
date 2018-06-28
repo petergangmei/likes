@@ -7,9 +7,8 @@ use DB;
 class ChatController extends Controller
 {
 
-	public function messageindex($username, $id){
+	public function messageindex( $id){
 
-echo "$username";
         $supercheck = DB::table('chats')->get();
 
     	$check1 = DB::table('chats')
@@ -23,7 +22,7 @@ echo "$username";
 
     	if(count($check1)>0){
 		$message = DB::table('chats_messages')
-		->where('chat_id', $ckk1->chat_id)
+        ->where('chat_id', $ckk1->chat_id)
 		->orderBy('created_at')
 		->get();
     	}else{
@@ -46,7 +45,6 @@ echo "$username";
 		return view('chat/messageindex')
 		->with('messages', $message)
 		->with('uid2', $id)
-		->with('user2', $username)
         ->with('userimg', $userimg);        
 
 
@@ -124,7 +122,7 @@ echo "$username";
     	DB::table('chats_messages')
     	->insert([
     	'chat_id' => $check2->chat_id,
-    	'sender_username' => auth()->user()->name,
+    	'sender_username' => $request->uid2,
     	'message' => $request->message,
     	'seen' => 'unseen',
     	'created_at' => now()
@@ -173,7 +171,7 @@ echo "$username";
         DB::table('chats_messages')
         ->insert([
         'chat_id' => $check2->chat_id,
-        'sender_username' => auth()->user()->name,
+        'sender_username' => $request->uid2,
         'message' => $request->message,
         'seen' => 'unseen',
         'created_at' => now()
@@ -338,6 +336,22 @@ echo "$username";
 
 
         return $return;
+    }
+
+
+    public function deletemessage($id){
+        DB::table('chats_messages')
+            ->where("id", $id)
+            ->update([
+            'deleted' => 'true'
+            ]);
+
+            $userid = DB::table('chats_messages')->where('id', $id)->first();
+            $id = $userid->sender_username;
+            $link = 'messages/userid/'.$id;
+        // return view('chat/messagedeleted');
+        return redirect($link);
+
     }
 
 }

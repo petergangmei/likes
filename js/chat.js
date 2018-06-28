@@ -70,7 +70,7 @@ $.ajax({
             // $('#messagecontent').reload(true);
         })
         .always(function() {
-            console.log("complete");
+            console.log("complete_");
         });
 
 	

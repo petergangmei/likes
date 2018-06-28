@@ -31,7 +31,7 @@
                 <a class="navbar-brand mx-auto" href="/profileid-{{$uid2}}">
                     @guest
                     @else
-                    <b>{{ $user2 }} </b>
+                    <b>{{$userimg->name}} </b>
                     @endguest
                 </a>
 
@@ -78,7 +78,14 @@
     </div>
   </div>
 </div>
-<!-- spinner/loader -->        
+<!-- spinner/loader -->   
+<!-- spinner/loader -->
+
+<!-- spinner/loader -->   
+
+
+
+
     </div>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>

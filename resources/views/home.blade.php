@@ -146,7 +146,7 @@
     </div>
 
   <div class="col-4" style="padding: 10px;">
-  <a href="/messages/{{$friend->visitor_name}}/{{$friend->visitor_id}}" style="text-decoration: none; color: black;"> 
+  <a href="/messages/userid/{{$friend->visitor_id}}" style="text-decoration: none; color: black;"> 
     <button  class="btn-outline-dark padding-sm border-radius cursor-pointer"  value="{{$friend->visitor_id}}" style="margin: -5px -50px; border-radius: 3px;" ><i  class="fa fa-comments"   id=""> </i> Message</button>
     </a>     
   </div>

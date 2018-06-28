@@ -45,7 +45,7 @@
                   View Match Result
                 </span>
                  @if($data->message_privacy == "Everyone")
-                  <a href="/messages/{{$data->name}}/{{$data->id}}" style="text-decoration: none; color: black;">
+                  <a href="/messages/userid/{{$data->id}}" style="text-decoration: none; color: black;">
                   <span  style="border:1px solid silver; border-radius:5px; padding: 10px;"></i>
                   <i class="fa fa-comments-o" style="font-size: 25px;"></i>Message
                   </span>

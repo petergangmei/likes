@@ -90,13 +90,13 @@ Route::post('/searhbyname', 'MainController@search_by_name');
 
 // chatting section
 
-Route::get('/messages/{username}/{id}', 'ChatController@messageindex');
-Route::post('/messages/{username}/sendMessage', 'ChatController@sendMessage');
-Route::post('/messages/{username}/checkunseen', 'ChatController@checkunseen');
+Route::get('/messages/userid/{id}', 'ChatController@messageindex');
+Route::post('/messages/userid/sendMessage', 'ChatController@sendMessage');
+Route::post('/messages/userid/checkunseen', 'ChatController@checkunseen');
 Route::post('/checkinbox', 'ChatController@check_inbox');
 Route::post('/checknotification', 'NotificationController@check_notification');
 Route::get('/messageslist', 'ChatController@messages_list');
-
+Route::get('/deletemessage/{id}', 'ChatController@deletemessage');
 Route::get('/addfriendsid', 'MainController@addfriendsid');
 
 Route::get('/suggestlocation', 'MainController@suggest_location');

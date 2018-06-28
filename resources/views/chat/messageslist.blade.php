@@ -9,7 +9,7 @@
  		@if($u->id == $message->uid2)
  		@if($message->seen == 'unseen')
  		<b>
-		<a class="disable-linkstyle" href="/messages/{{$message->user2}}/{{$message->uid2}}" style="text-decoration: none;  color: black;">
+		<a class="disable-linkstyle" href="/messages/userid/{{$message->uid2}}" style="text-decoration: none;  color: black;">
 		 <div class="card" id="">
 		 	<div class="card-body">
 		 		@if($u->profile_image == "null")
@@ -29,7 +29,7 @@
 		</a>
 		</b>	
 		@else
-	<a class="disable-linkstyle" href="/messages/{{$message->user2}}/{{$message->uid2}}" style="text-decoration: none; color: black;">
+	<a class="disable-linkstyle" href="/messages/userid/{{$message->uid2}}" style="text-decoration: none; color: black;">
 		 <div class="card" id="">
 		 	<div class="card-body">
 		        @if($u->profile_image == "null")
