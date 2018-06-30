@@ -19,7 +19,8 @@ class SettingController extends Controller
     	->update([
     		'name' => $request->name,
     		'location' => $request->location,
-    		'country' =>  $request->country,
+            'country' =>  $request->country,
+    		'zodiac' =>  $request->zodiac,
     		'email' => $request->email
     	]);
     	return 123;

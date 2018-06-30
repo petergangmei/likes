@@ -12,6 +12,7 @@ console.log('click');
   var location = $('#location').val();
   var country = $('#country').val();
   var email = $('#email').val();
+  var zodiac = $('#zodiac').val();
 
 if(name == ""){
 	$('#toast').html('Name field empty.');
@@ -60,6 +61,7 @@ $.ajax({
 		'name': name,
 		'location': location,
 		'country':country,
+		'zodiac':zodiac,
 		'email': email
 	},
 }).done(function(data){
