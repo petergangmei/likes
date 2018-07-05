@@ -128,6 +128,11 @@ class ChatController extends Controller
     	'created_at' => now()
     	]);
 
+        DB::table('users')
+        ->where('id', $request->uid2)
+        ->update([
+        'messagealert' => 'malert'
+        ]);
 
     	return 123;
         
@@ -175,6 +180,12 @@ class ChatController extends Controller
         'message' => $request->message,
         'seen' => 'unseen',
         'created_at' => now()
+        ]);
+
+        DB::table('users')
+        ->where('id', $request->uid2)
+        ->update([
+        'messagealert' => 'malert'
         ]);
 
         return 234;
@@ -266,6 +277,9 @@ class ChatController extends Controller
     	->get();
     	$user2 = DB::table('users')
     	->get();
+        DB::table('users')->where('id', auth()->user()->id)->update([
+            'messagealert' => ''
+        ]);
     	return view('chat/messageslist')
     	->with('messages', $messageslist)
     	->with('user2', $user2);

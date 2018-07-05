@@ -1,6 +1,6 @@
 @extends('layouts.app_swipes')
 @section('content')
-
+@csrf
 <div class="contianer" style="border:0px solid black; padding: 20px;">
 
   <div class="bblack" id='' style="width:90%; height:75%; border:0px solid black; position:absolute; overflow: hidden; background-color: white;">

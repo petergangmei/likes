@@ -9,7 +9,7 @@
 	 	<img src="/public/storage/default_image/avatar.png" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
 
 	 	@else
-	 	<img src="/public/storage/profile_image/{{$post->user_id}}/{{$userimg->profile_image}}" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
+	 	<img src="{{$userimg->profile_image}}" style="width: 40px; height: 40px; border-radius: 100%; border:1px solid silver; ">
 
 	 	@endif
 	 	<b style="">{{$post->user_name}}</b>
@@ -28,7 +28,7 @@
     @if($post->image == 'null')
 
     @else
-    <img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100 " style="margin: 5px 0px;" id="likeimage">
+    <img src="{{$post->image}}" class="w-100 " style="margin: 5px 0px;" id="likeimage">
     @endif
     <div class="" style="padding: 5px;">
 	{{$post->post}}</div>

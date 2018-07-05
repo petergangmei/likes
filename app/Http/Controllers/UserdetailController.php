@@ -16,56 +16,7 @@ class UserdetailController extends Controller
         $this->middleware('auth');
     }
     
-public function uploadprofile_img(Request $request){
 
-	$this->validate($request, [
-		'profile_pic'=>'required',
-		'profile_pic'=> 'image|nullable|max:1999'
-	]);
-			$u_id = auth()->user()->id;
-			$u_name = auth()->user()->name;
-
-		     // handle file upload
-	     if($request->hasFile('profile_pic')){
-	        //Get Filename with the extentionn
-	        $filenameWithExt = $request->file('profile_pic')->getClientOriginalName();
-	        // Get just file name
-	        $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-	        // Get just ext
-	        $extension = $request->file('profile_pic')->getClientOriginalExtension();
-	        //file name to store
-
-	        $fileNameToStore = $filename.'_'.auth()->user()->id.'_'.time().'.'.$extension;
-	        //upload image
-	        $path = $request->file('profile_pic')->storeAs('public/profile_image/'.$u_id.'/', $fileNameToStore);
-	        $path2 = $request->file('profile_pic')->storeAs('public/photos/'.$u_id.'/', $fileNameToStore);
-	     }else{
-	        $fileNameToStore = 'null';
-	     }
-
-
-            DB::table('photos')
-			->insert([ 
-				'image' => $fileNameToStore,
-				 'user_id' => $u_id,
-				  'user_name'=>$u_name,
-				   'image_type' => 'featured_photo',
-				   'deleted'=> 'false',
-				   'created_at' => now()
-				    ]);    
-
-			 DB::table('users')
-            ->where('id', auth()->user()->id)
-            ->update(['profile_image' => $fileNameToStore]);
-
-			 DB::table('profilevisitor')
-            ->where('visitor_id', auth()->user()->id)
-            ->update(['profile_image' => $fileNameToStore]);  
-
-
-
-    	return redirect('/home')->with('success','Post created!');
-	}
 
 	public function add_photo(Request $request){
 

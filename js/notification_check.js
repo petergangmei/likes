@@ -21,7 +21,7 @@ function()
 	{
        var token = $('input[name=_token ').val();
 
-$.ajax({
+    $.ajax({
             url: 'checknotification',
             type: 'post',
             data: {
@@ -38,13 +38,8 @@ $.ajax({
    			// $("html, body").animate({ scrollTop: $(document).height() }, 1000);
 			// });
             }else{
-
                 console.log('no notification');
              	$('#navibar').load(' #navibar');
-
-             	
-
-                // $('#noti').load(' #noti');
 
             }
         })
@@ -58,5 +53,44 @@ $.ajax({
 
 	
 	}, 2000);
+
+setInterval(
+function()
+    {
+       var token = $('input[name=_token ').val();
+
+$.ajax({
+            url: 'checkmessagealert',
+            type: 'post',
+            data: {
+                '_token': token,
+            },
+        })
+        .done(function(data) {
+             if (data == 'available'){
+                console.log('message available');
+                $('.message-alert').fadeIn(1000);
+
+                // $('#message2').load(' #message2');
+                    // $.when(  ).then(function( data, textStatus, jqXHR ) {
+            // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            // });
+            }else{
+                $('.message-alert').fadeOut(1000);
+                console.log('no message alert');
+
+            }
+        })
+        .fail(function() {
+            console.log('fail');
+            // $('#messagecontent').reload(true);
+        })
+        .always(function() {
+            console.log('always');
+            
+        });
+
+    
+    }, 2000);
 
 });

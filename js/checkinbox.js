@@ -2,11 +2,11 @@ $(document).ready(function(){
 
 setInterval(
 function()
-	{
+    {
        var token = $('input[name=_token ').val();
        var uid2 = $('#uid2').val();
 
-$.ajax({
+    $.ajax({
             url: 'checkinbox',
             type: 'post',
             data: {
@@ -17,11 +17,11 @@ $.ajax({
         .done(function(data) {
             console.log(data);
              if (data == 'available'){
-             	$('#message').load(' #message');
-             	// $('#message2').load(' #message2');
-                   	// $.when(  ).then(function( data, textStatus, jqXHR ) {
-   			// $("html, body").animate({ scrollTop: $(document).height() }, 1000);
-			// });
+                $('#message').load(' #message');
+                // $('#message2').load(' #message2');
+                    // $.when(  ).then(function( data, textStatus, jqXHR ) {
+            // $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            // });
             }else{
 
                 console.log('no message');
@@ -38,8 +38,10 @@ $.ajax({
             
         });
 
-	
-	console.log('sec1');
-	}, 1000);
+    
+    console.log('sec1');
+    }, 1000);
+
+
 
 });

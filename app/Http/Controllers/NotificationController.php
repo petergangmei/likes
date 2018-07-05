@@ -61,4 +61,17 @@ class NotificationController extends Controller
         }
         return $result;
     }
+    public function check_messagealert(Request $request){
+
+        $noti = DB::table('users')
+                ->where('id', auth()->user()->id)
+                ->first();
+        if($noti->messagealert == 'malert'){
+            $result = 'available';
+        }else{
+            $result = 'none';
+        }
+        return $result;
+         
+    }
 }

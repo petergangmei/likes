@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Image;
 class Feedcontroller extends Controller
 {
 
@@ -227,55 +228,33 @@ public function addfeed(){
     // 
 public function post_feed(Request $request){
         $this->validate($request, [
-    'post' => 'required||max:200',
-    'post_image'=>'required',
-    'post_image'=> 'image|nullable|max:7999'
+    'post' => 'nullable|max:200',
+    'image'=> 'required'
   ]);
+
+        // $imageData = $request->image;
+        // $info = base64_decode($imageData);
+        // $img1 = Image::make($info);
+        // $img1 ->save(public_path('public/storage/1.png'));
       $u_id = auth()->user()->id;
       $u_name = auth()->user()->name;
 
       $userdetail = DB::table('users')->where('id', $u_id)->first();
-
-         // handle file upload
-       if($request->hasFile('post_image')){
-          //Get Filename with the extentionn
-          $filenameWithExt = $request->file('post_image')->getClientOriginalName();
-          // Get just file name
-          $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-          // Get just ext
-          $extension = $request->file('post_image')->getClientOriginalExtension();
-          //file name to store
-
-          $fileNameToStore = $filename.'_'.auth()->user()->id.'_'.time().'.'.$extension;
-          //upload image
-          $path = $request->file('post_image')->storeAs('public/posts_image/'.$u_id.'/', $fileNameToStore);
-
-               DB::table('photos')
-      ->insert([ 
-        'image' => $fileNameToStore,
-         'user_id' => $u_id,
-          'user_name'=>$u_name,
-           'image_type' => 'posts_photo',
-           'deleted'=> 'false',
-           'created_at' => now()
-            ]); 
-       }else{
-          $fileNameToStore = 'null';
-       }      
+       
 
       DB::table('post')
       ->insert([
         'user_id' => auth()->user()->id,
         'user_name' => auth()->user()->name,
         'post' => $request->post,
-        'image' => $fileNameToStore,
+        'image' => $request->image,
         'location' => auth()->user()->location,
         'country' => auth()->user()->country,
         'comments_privacy' => $userdetail->comment_privacy,
-        'created_at' => now(),
+        'created_at' => now()
       ]);
 
-      return redirect('myfeeds');
+      return 123;
     }
 
 // like post controller starts here

@@ -35,7 +35,7 @@
 		        @if($u->profile_image == "null")
 				<img src="/public/storage/default_image/avatar.png " class="" style="width: 50px; height: 50px; border-radius: 100%; border: 1px solid black;">
 		        @else
-				<img src="/public/storage/profile_image/{{$message->uid2}}/{{$u->profile_image}} " class="" style="width: 50px; height: 50px; border-radius: 100%; border: 1px solid black;">
+				<img src="{{$u->profile_image}} " class="" style="width: 50px; height: 50px; border-radius: 100%; border: 1px solid black;">
 		        @endif
 		        
 		 		{{$message->user2}} <i class="fa fa-envelope-open-o float-right" style="font-size: 20px; margin-top: 15px;"></i>

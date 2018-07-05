@@ -6,10 +6,10 @@
         <div class="col-xs-12" style="width: 100%;">
             <div class="card profile-section">
                 <div class="card-body  border-blac">
-                    <button class="btn btn-default btn-sm" style="opacity: 0.8; background-color: black; color: white; position: absolute; margin: 75px 15px; border-radius: 100%; height: 25px; width: 25px;" data-toggle="modal" data-target="#Model1"><i class="fa fa-plus" style="font-size: 10px;"></i></button>
+                    <a href="/upload_profile_picture_index" style="text-decoration: none; color: black;"><button class="btn btn-default btn-sm" style="opacity: 0.8; background-color: black; color: white; position: absolute; margin: 75px 15px; border-radius: 100%; height: 25px; width: 25px;"><i class="fa fa-plus" style="font-size: 10px;"></i></button></a>
                     
                     <?php if('null' !== auth()->user()->profile_image){ ?>
-                    <img src="/public/storage/profile_image/{{auth()->user()->id}}/{{auth()->user()->profile_image}} " class="profile-pic">
+                    <img src="{{auth()->user()->profile_image}} " class="profile-pic">
 
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">
@@ -93,7 +93,8 @@
           <p>You haven't uploaded anything photo yet.</p>
           </div>
       @endif
-          <i class="fa fa-plus-square-o cursor-pointer" style="font-size: 80px; margin: 15px 10px; position: ; float: left;" data-toggle="modal" data-target="#Model2"></i>
+          <i class="fa fa-plus-square-o cursor-pointer" style="font-size: 80px; margin: 15px 10px; position: ; float: left;"></i>
+           <!-- data-toggle="modal" data-target="#Model2" -->
 
   </div>
 
@@ -282,16 +283,10 @@
 </div>
 <br><br>
 <script>
+
+  
   $('#validatedCustomFile').focusout(function(){
-    setInterval(
-function()
-    {
-    var file1 = $('#validatedCustomFile').val();
-    $('#validatedCustomFile_').html(file1);
-    if (file1 !== '') {
-      $('#message').html('Image selected').css('color', 'green');
-    }
-    }, 1000);
+
 
   });
   $('#upload-img').click(function(){

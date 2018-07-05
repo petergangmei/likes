@@ -11,7 +11,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -20,6 +20,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/post-nav.css') }}" rel="stylesheet">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
@@ -27,15 +28,21 @@
     <div id="app">
         
         <nav class="navbar  navbar-light navbar-laravel" >
+            <i class="fa fa-arrow-left post-nav-back-btn" id="index-back"></i>
+            <i class="fa fa-arrow-left post-nav-back-btn" id="crop-edit-back"></i>
+            <i class="fa fa-arrow-left post-nav-back-btn" id="text-edit-back"></i>
             <div class="mx-auto" >
                 <b>New post</b>
             </div>
+            <strong class="post-nav-next-btn" id="index-next">Next</strong>
+            <strong class="post-nav-next-btn" id="crop-edit-next">Next</strong>
+            <strong class="post-nav-next-btn" id="text-edit-next">Share</strong>
         </nav>
 
         <main class="">
             @yield('content')
 
-        <nav class="navbar fixed-bottom navbar-light"  id="navibar" style="background-color: #F8F2F0;">
+        <nav class="navbar fixed-bottom navbar-light"  id="navibar" style="background-color: #F8F2F0; float: bottom; display: none;">
           <a class="navbar-brand" href="/feeds"><i class="fa fa-home" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
 
           <a class="navbar-brand" href="/search"><i class="fa fa-search" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
@@ -44,9 +51,7 @@
 
 
           <a class="navbar-brand" href="/notification"><i class="fa fa-globe" data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"></i>
-            @if(count($unread)>0)
-            <span class="badge badge-light">{{$unread->count()}}</span>
-            @endif
+           
           </a>
           <a class="navbar-brand" href="/home"><i class="fa fa-user" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
         </nav>
@@ -62,9 +67,11 @@
 </div>
 <!-- spinner/loader -->        
     </div>
+    <script src="{{ asset('js/activeness.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
+    <script src="{{ asset('js/post-nav.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
-    <script src="{{ asset('js/notification_check.js') }}" ></script>
+    <!-- <script src="{{ asset('js/notification_check.js') }}" ></script> -->
     
 </body>
 </html>

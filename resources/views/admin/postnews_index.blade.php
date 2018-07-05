@@ -38,6 +38,29 @@
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
     </div>
+
+        <div class="col-9 ">
+      <div class="card">
+      <div class="card-body">
+        <b>News..</b>
+        @if(count($news)>0)
+        @foreach($news as $nws)
+        <div class="card">
+          <div class="card-body">
+           <div style="border:0px solid black; float: left; width: 85%;"><b> {{$nws->description}}</b></div> 
+
+           <small style="float: right;"><i>({{$nws->newstype}})</i> {{Carbon\Carbon::createFromTimestamp(strtotime($nws->created_at))->diffForHumans()}}</small>
+            
+          </div>
+        </div>
+        @endforeach
+        @else
+
+        @endif
+
+      </div>
+      </div>
+    </div>
     
   </div>
 </div>

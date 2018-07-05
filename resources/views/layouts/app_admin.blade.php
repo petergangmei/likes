@@ -72,6 +72,7 @@
 <!-- spinner/loader -->
         
     </div>
+    <script src="{{ asset('js/activeness.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
     <script src="{{ asset('js/check_msg_from_feed.js') }}" ></script>

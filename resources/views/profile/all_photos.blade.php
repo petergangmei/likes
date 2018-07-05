@@ -14,7 +14,7 @@
     <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " 
     class="fdivs border-black  cursor-pointer">
           <a href="{{$photo->id}}">
-            <img class="fphotos" style="width: 140px; height: 140px;" src="/public/storage/photos/{{$photo->user_id}}/{{$photo->image}}">
+            <img class="fphotos" style="width: 140px; height: 140px;" src="{{$photo->image}}">
 
             </a>
       </div> 
@@ -22,7 +22,7 @@
     <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " 
     class="fdivs border-black  cursor-pointer">
           <a href="{{$photo->id}}">				
-            <img class="fphotos" style="width: 140px; height: 140px;" src='/public/storage/posts_image/{{$photo->user_id}}/{{ $photo->image }}'>
+            <img class="fphotos" style="width: 140px; height: 140px;" src='{{ $photo->image }}'>
             </a>
       </div>
     @endif

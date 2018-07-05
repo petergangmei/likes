@@ -16,7 +16,7 @@
         <img src="/public/storage/default_image/avatar.png " class="noti-ico float-left">
       
       @else
-        <img src="/public/storage/profile_image/{{$data->visitor_id}}/{{$data->img}} " class="noti-ico float-left" style="border: 1px solid white;">
+        <img src="{{$data->img}} " class="noti-ico float-left" style="border: 1px solid white;">
       @endif
     
 
@@ -37,7 +37,7 @@
         <img src="/public/storage/default_image/avatar.png " class="noti-ico float-left">
       
       @else
-        <img src="/public/storage/profile_image/{{$data->visitor_id}}/{{$data->img}} " class="noti-ico float-left" style="border: 1px solid white;">
+        <img src="{{$data->img}} " class="noti-ico float-left" style="border: 1px solid white;">
       @endif
     
 
@@ -53,7 +53,7 @@
   		@if($data->img == 'null')
         <img src="/public/storage/default_image/avatar.png " class="noti-ico float-left">
       @else
-        <img src="/public/storage/profile_image/{{$data->visitor_id}}/{{$data->img}} " class="noti-ico float-left">
+        <img src="{{$data->img}} " class="noti-ico float-left">
       @endif
 		
 

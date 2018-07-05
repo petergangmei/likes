@@ -43,6 +43,11 @@
 
         <main class="">
             @yield('content')
+            <a href="/messageslist" style="text-decoration: none;">
+            <div class="message-alert blink">
+                New Message 
+            </div>
+            </a>            
 
         <nav class="navbar fixed-bottom navbar-light"    id="navibar" style="background-color: #F8F2F0;">
           <a class="navbar-brand" href="/feeds" ><i class="fa fa-home" data-toggle="modal" data-target="#spinner"  style="font-size:20px; color: #CAC3C1;"></i></a>
@@ -57,6 +62,7 @@
         </nav>
 
         </main>
+        <scr></script>
 <!-- spinner/loader -->
 <div class="modal fade" id="spinner" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered text-center" role="document">
@@ -68,6 +74,7 @@
 <!-- spinner/loader -->
 
     </div>
+    <script src="{{ asset('js/activeness.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
     <script src="{{ asset('js/notification_check.js') }}" ></script>

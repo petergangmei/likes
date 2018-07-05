@@ -1,5 +1,6 @@
 @extends('layouts.app4')
 @section('content')
+@csrf
 @if($mypref->coffeeTea == '')
 <div class="container text-center">
 	<h4>You have not updated your preference</h4>

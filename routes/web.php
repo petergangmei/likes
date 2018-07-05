@@ -45,7 +45,6 @@ Route::post('/likepost', 'FeedController@like_post');
 
 Route::post('/postcomment', 'FeedController@post_comment');
 
-Route::post('/uploadprofile_img', 'UserdetailController@uploadprofile_img');
 
 Route::post('/add_photo', 'UserdetailController@add_photo');
 
@@ -69,7 +68,15 @@ Route::post('/update_preference', 'UserdetailController@update_preference');
 
 Route::post('/searchfilter', 'MainController@searchfilter');
 
+// profile Route
+Route::get('/upload_profile_picture_index', 'ProfilesController@u_p_p_index' );
+
+Route::post('/uploadprofile_img', 'ProfilesController@uploadprofile_img');
+
+
+
 // view profile 
+Route::post('/update_activeness', 'ProfilesController@update_active');
 
 Route::get('/profileid-{id}', 'MainController@viewprofile');
 
@@ -95,9 +102,12 @@ Route::post('/messages/userid/sendMessage', 'ChatController@sendMessage');
 Route::post('/messages/userid/checkunseen', 'ChatController@checkunseen');
 Route::post('/checkinbox', 'ChatController@check_inbox');
 Route::post('/checknotification', 'NotificationController@check_notification');
+Route::post('/checkmessagealert', 'NotificationController@check_messagealert');
 Route::get('/messageslist', 'ChatController@messages_list');
 Route::get('/deletemessage/{id}', 'ChatController@deletemessage');
 Route::get('/addfriendsid', 'MainController@addfriendsid');
+
+
 
 Route::get('/suggestlocation', 'MainController@suggest_location');
 
@@ -132,3 +142,5 @@ Route::get('/news', 'NewsController@index');
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/postnews', 'AdminController@postnews_index');
 Route::post('/admin/postnews_', 'AdminController@postnews');
+
+Route::post('/admin/depositecoins', 'AdminController@depositecoins');

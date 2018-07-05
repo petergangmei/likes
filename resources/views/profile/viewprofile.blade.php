@@ -3,11 +3,16 @@
 <div class="container">
     <div class="row ">
         <div class="col-xs-12" style="width: 100%;">
+<div id="activeness_box" style="background-color: white; text-align: center;">
+  <b>Active:</b> <span id="active_now" style="display: none;">Now</span> <span id="last_seen" style="display: none;">{{Carbon\Carbon::createFromTimestamp(strtotime($data->activeness))->diffForHumans()}}</span>
+</div>
+  <input type="hidden" id="user_active" value="{{Carbon\Carbon::createFromTimestamp(strtotime($data->activeness))->diffForHumans()}}">
+
+
             <div class="card profile-section">
                 <div class="card-body  border-blac">
-                    
                     <?php if("null" !== $data->profile_image){ ?>
-                    <img src="/public/storage/profile_image/{{$data->id}}/{{$data->profile_image}} " class="profile-pic" data-toggle="modal" data-target="#Model2">
+                    <img src="{{$data->profile_image}} " class="profile-pic" data-toggle="modal" data-target="#Model2">
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">
                     <?php } ?>
@@ -94,13 +99,13 @@
                         @if($photo->image_type == 'featured_photo')
                         <div  style="border:1px solid silver; width: 48%; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
                               <a href="photoid-{{$photo->id}}">
-                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/photos/{{$data->id}}/{{ $photo->image }}'>
+                                <img class="fphotos" style="width: 140px; height: 140px;" src='{{ $photo->image }}'>
                                 </a>
                           </div> 
                         @else
                         <div  style="border:1px solid silver; width: 140px; float:left; margin:2px 2px; " class="fdivs border-black  cursor-pointer">
                               <a href="photoid-{{$photo->id}}">
-                                <img class="fphotos" style="width: 140px; height: 140px;" src='public/storage/posts_image/{{$data->id}}/{{ $photo->image }}'>
+                                <img class="fphotos" style="width: 140px; height: 140px;" src='{{ $photo->image }}'>
                                 </a>
                           </div>
                         @endif
@@ -162,7 +167,7 @@
                         <div class="card">
                         <div class="card-body">
                         <a href="/viewpost{{$post->id}}" style="text-decoration: none; color: black;">
-                        <img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100">   
+                        <img src="{{$post->image}}" class="w-100">   
                         
                         <span style="font-size: 15px;">{{$post->post}}</span>
 

@@ -18,7 +18,7 @@
 	@if($post->image == 'null')
 
 	@else
-	<img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100">		
+	<img src="{{$post->image}}" class="w-100">		
 	@endif
 	<div style="padding:10px;">
 	<span style="font-size: 15px;">{{$post->post}}</span>

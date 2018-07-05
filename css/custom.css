@@ -1,3 +1,31 @@
+.message-alert{
+	border:1px solid #42F013;
+	height: 50px; width: 300px;
+	background-color: #42F013;
+	color: #5F625E;
+	position: fixed;
+	bottom: 15%;
+	left: 10%;
+	text-align: center;
+	padding: 10px;
+	border-radius: 5px;
+	display: none;
+}
+
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.7;}
+}
+.blink{
+	text-decoration: blink;
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 0.9s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+}
+
+
 .profile-section{
 	text-align: center;
 }

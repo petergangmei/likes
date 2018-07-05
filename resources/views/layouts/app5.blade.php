@@ -125,18 +125,23 @@
         <main class=''>
             <br><br>
             @yield('content')
-
-        <nav class="navbar fixed-bottom navbar-light" data-toggle="modal" data-target="#spinner" id="navibar" style="background-color: #F8F2F0;">
-          <a class="navbar-brand" href="/feeds"><i class="fa fa-home" style="font-size:20px; "></i></a>
-          <a class="navbar-brand" href="/search"><i class="fa fa-search" style="font-size:20px; color: #CAC3C1;"></i></a>
-          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone" style="font-size:23px;  color: #CAC3C1;"></i></a>
+            <a href="/messageslist" style="text-decoration: none;">
+            <div class="message-alert blink">
+                New Message 
+            </div>
+            </a>  
+            
+        <nav class="navbar fixed-bottom navbar-light"  id="navibar" style="background-color: #F8F2F0;">
+          <a class="navbar-brand" href="/feeds"><i class="fa fa-home" data-toggle="modal" data-target="#spinner" style="font-size:20px; "></i></a>
+          <a class="navbar-brand" href="/search"><i class="fa fa-search" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/swipes"><i class="fa fa-clone" data-toggle="modal" data-target="#spinner" style="font-size:23px;  color: #CAC3C1;"></i></a>
           
-          <a class="navbar-brand" href="/notification"><i class="fa fa-globe" style="font-size:20px;  color: #CAC3C1;"></i>
+          <a class="navbar-brand" href="/notification"><i class="fa fa-globe" data-toggle="modal" data-target="#spinner" style="font-size:20px;  color: #CAC3C1;"></i>
             @if(count($unread)>0)
             <span class="badge badge-light">{{$unread->count()}}</span>
             @endif
           </a>
-          <a class="navbar-brand" href="/home"><i class="fa fa-user" style="font-size:20px; color: #CAC3C1;"></i></a>
+          <a class="navbar-brand" href="/home"><i class="fa fa-user" data-toggle="modal" data-target="#spinner" style="font-size:20px; color: #CAC3C1;"></i></a>
         </nav>
 
         </main>
@@ -150,6 +155,7 @@
 </div>
 <!-- spinner/loader -->        
     </div>
+    <script src="{{ asset('js/activeness.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>
     <script src="{{ asset('js/check_msg_from_feed.js') }}" ></script>
