@@ -18,7 +18,7 @@
   </div>
       @if($p->image == 'null')
     @else
-    <img src="{{$p->image}}" class="w-100" style="margin: 5px 0px;">
+      <img src="/public/storage/posts_image/{{$p->user_id}}/{{$p->image}}" data-toggle="modal" data-target="#spinner" class="w-100" style="max-height: 450px;"> 
     @endif
 
     <div style="padding: 10px;">

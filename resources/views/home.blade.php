@@ -9,7 +9,7 @@
                     <a href="/upload_profile_picture_index" style="text-decoration: none; color: black;"><button class="btn btn-default btn-sm" style="opacity: 0.8; background-color: black; color: white; position: absolute; margin: 75px 15px; border-radius: 100%; height: 25px; width: 25px;"><i class="fa fa-plus" style="font-size: 10px;"></i></button></a>
                     
                     <?php if('null' !== auth()->user()->profile_image){ ?>
-                    <img src="{{auth()->user()->profile_image}} " class="profile-pic">
+                    <img src="/public/storage/profile_image/{{auth()->user()->id}}/{{auth()->user()->profile_image}} " class="profile-pic">
 
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">
@@ -28,8 +28,8 @@
                     {{Auth::user()->gender}} </i>                     
                   <br>
                   Join <small>{{Auth::user()->created_at->diffforHumans()}}</small>
+
                   <br>
-                  
                   <span id="bio"><?php echo $bio->bio; ?> </span>
                    <i class="fa fa-edit cursor-pointer" id="bio-edit"></i> 
                 <form method="POST" action="update_bio">

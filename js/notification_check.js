@@ -70,7 +70,7 @@ $.ajax({
              if (data == 'available'){
                 console.log('message available');
                 $('.message-alert').fadeIn(1000);
-
+                
                 // $('#message2').load(' #message2');
                     // $.when(  ).then(function( data, textStatus, jqXHR ) {
             // $("html, body").animate({ scrollTop: $(document).height() }, 1000);

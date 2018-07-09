@@ -10,13 +10,13 @@ $(document).ready(function(){
 $uploadCrop = $('#upload-demo').croppie({
     enableExif: true,
     viewport: {
-        width: 300,
-        height: 300,
+        width: 350,
+        height: 330,
         type: 'square'
     },
     boundary: {
-        width: 300,
-        height: 300
+        width: 350,
+        height: 330
     }
 });
 

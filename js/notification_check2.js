@@ -61,8 +61,10 @@ $.ajax({
         })
         .done(function(data) {
              if (data == 'available'){
-                console.log('message available');
+                console.log('message available 2');
                 $('.message-alert').fadeIn(1000);
+
+                // var e = new Notification("You got a new message", {body:"this is body", icon: "https://www.kuwaitlocal.com/img/BusinessLogo/logo_folder/08062015164937_kuwait_local_z.png"});
 
                 // $('#message2').load(' #message2');
                     // $.when(  ).then(function( data, textStatus, jqXHR ) {

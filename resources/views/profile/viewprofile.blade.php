@@ -12,7 +12,7 @@
             <div class="card profile-section">
                 <div class="card-body  border-blac">
                     <?php if("null" !== $data->profile_image){ ?>
-                    <img src="{{$data->profile_image}} " class="profile-pic" data-toggle="modal" data-target="#Model2">
+                    <img src="/public/storage/profile_image/{{$data->id}}/{{$data->profile_image}} " class="profile-pic" data-toggle="modal" data-target="#Model2">
                     <?php } else { ?>
                     <img src="/public/storage/default_image/avatar.png " class="profile-pic">
                     <?php } ?>
@@ -167,7 +167,7 @@
                         <div class="card">
                         <div class="card-body">
                         <a href="/viewpost{{$post->id}}" style="text-decoration: none; color: black;">
-                        <img src="{{$post->image}}" class="w-100">   
+                        <img src="/public/storage/posts_image/{{$post->user_id}}/{{$post->image}}" class="w-100">   
                         
                         <span style="font-size: 15px;">{{$post->post}}</span>
 

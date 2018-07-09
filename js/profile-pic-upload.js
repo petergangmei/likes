@@ -12,7 +12,7 @@ $uploadCrop = $('#upload-demo').croppie({
     viewport: {
         width: 300,
         height: 300,
-        type: 'circle'
+        type: 'square'
     },
     boundary: {
         width: 300,
@@ -89,8 +89,10 @@ $('#text-edit-next').on('click', function (ev) {
 
             },
       success: function (data) {
-        window.location = "/home";
+        // console.log(data);
         // console.log('success');
+      window.location = "/home";
+
 
       }
     });

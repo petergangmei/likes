@@ -26,41 +26,40 @@
 
     <div id="app">
         
-        <nav class="navbar navbar-expand-md fixed-top navbar-light navbar-laravel">
+        <nav class="navbar  fixed-top navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand mx-auto" href="/profileid-{{$uid2}}">
-                    @guest
+                
+
+                <div class="" style="text-align: ;">
+                
+                <a class="" href="/profileid-{{$uid2}}" style="text-decoration: none; color: black;">
+                    @if($userimg->profile_image == 'null')
+                    <img src="/public/storage/default_image/avatar.png" style="border-radius: 100%; height: 50px; width: 50px; border:1px solid black;">
                     @else
-                    <b>{{$userimg->name}} </b>
-                    @endguest
+                    <img src="/public/storage/profile_image/{{$userimg->id}}/{{$userimg->profile_image}}" style="border-radius: 100%; height: 50px; width: 50px; border:1px solid black;">
+                    @endif
+
+                    <b style="position: absolute; margin: -10.5% 13%; font-size: 16px;">{{$userimg->name}} </b>
                 </a>
 
-                    <a href="/menu"><i class="fa fa-ellipsis-v cursor-pointer color-black" style="font-size: 20px; "></i></a>
+                <span id="activeness_box2"  style="font-size: 8px !important; background-color: white;  text-align: center; position: absolute; margin: -5% 13%;">
+                
+                <input type="hidden" id="user_active" value="{{Carbon\Carbon::createFromTimestamp(strtotime($userimg->activeness))->diffForHumans()}}">
+              
+              <span id="active_now" style="display: none;"><b>Active:</b> Now</span> 
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+              <span id="last_seen" style="display: none;"><b>Active:</b>{{Carbon\Carbon::createFromTimestamp(strtotime($userimg->activeness))->diffForHumans()}}</span>
 
-                    </ul>
+                </span>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a></li>
-                            <li><a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a></li>
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
+                </div>
+        
 
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <!-- <i class="fa fa-phone   color-black" style="font-size: 20px; "></i> -->
+                    <i class="fa fa-info-circle   color-black" style="font-size: 20px; "></i>
 
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+
+
                 </div>
             </div>
         </nav>
@@ -87,6 +86,7 @@
 
 
     </div>
+    <script src="{{ asset('js/show_active.js') }}" ></script>
     <script src="{{ asset('js/activeness.js') }}" ></script>
     <script src="{{ asset('js/custom.js') }}" ></script>
     <script src="{{ asset('js/ajax.js') }}" ></script>

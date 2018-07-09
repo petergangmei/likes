@@ -53,4 +53,34 @@ class AdminController extends Controller
         ]);
         return redirect('/admin');
     }
+    public function setvalue_index(){
+
+        return view('admin/setvalue_index');
+    }
+
+    public function set_value(Request $request){
+        echo $request->table . ' ' . $request->field .' '. $request->value . '<br>';
+        DB::table($request->table)->update([
+        $request->field => $request->value
+        ]);
+        return 021;
+    }
+
+    public function activeness(){
+        $data = DB::table('activeness')->orderBy('created_at', 'DESC')->paginate(20);
+        $t_data = DB::table('activeness')->orderBy('created_at', 'DESC')->get();
+        // foreach ($data as $key) {
+        //     $later = $key->created_at;
+        // }
+        $later = '2018-07-07 03:47:09';
+
+        $now = now();
+
+        $total_active = DB::table('users')->whereBetween('activeness', [$later, $now ])->get();
+
+        return view('admin/activeness')
+        ->with('dataa', $data)
+        ->with('total_active_users', $total_active)
+        ->with('t_dataa', $t_data);
+    }
 }

@@ -11,7 +11,12 @@
         <a href="/profileid-{{$user->id}}" style="color: black; text-decoration: none;">
         <div class="card">
           <div class="card-body">
-           <img src="{{$user->profile_image}}" height="50" width="50" style="width: 50px; height: 50px; border:1px solid black; border-radius: 100%; float: left;"> 
+            @if($user->profile_image == 'null')
+           <img src="/public/storage/default_image/avatar.png" height="50" width="50" style="width: 50px; height: 50px; border:1px solid black; border-radius: 100%; float: left;">
+
+            @else
+           <img src="/public/storage/profile_image/{{$user->id}}/{{$user->profile_image}}" height="50" width="50" style="width: 50px; height: 50px; border:1px solid black; border-radius: 100%; float: left;">
+           @endif 
            <div style="border:0px solid black; float: left; width: 90px;"><b> {{$user->name}}</b></div> <i>({{$user->gender}})</i>
         </a>
 
@@ -47,8 +52,17 @@
             Post News
             </a>
         </li>
-        <li class="list-group-item">Morbi leo risus</li>
-        <li class="list-group-item">Porta ac consectetur ac</li>
+        <li class="list-group-item">
+          <a href="/admin/setvalue" style="text-decoration: none; color: black;">
+        Hard code value
+        </a>
+      </li>
+        <li class="list-group-item">
+          <a href="/admin/activeness" style="text-decoration: none; color: black;">
+        Check activeness
+          </a>
+        </li>
+
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
       <div>

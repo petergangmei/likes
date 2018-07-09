@@ -29,9 +29,9 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel" >
             <div class="container" >
 
-                <a class="navbar-brand" href="{{ url('/') }}" >
+                <a class="mx-auto navbar-brand" href="{{ url('/') }}" >
                     <div style="text-align: center; width: 100%;">
-                    {{$data->name}}
+                   <b> {{$data->name}}</b>
                     </div>
                      
                 </a>

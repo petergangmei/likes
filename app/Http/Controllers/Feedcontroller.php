@@ -240,21 +240,48 @@ public function post_feed(Request $request){
       $u_name = auth()->user()->name;
 
       $userdetail = DB::table('users')->where('id', $u_id)->first();
-       
+     
+
+      $u_id = auth()->user()->id;
+
+      $data = $request->image;
+
+      list($type, $data) = explode(';', $data);
+      list(, $data) = explode(',', $data);
+      $data = base64_decode($data);
+
+      $path = 'public/storage/posts_image/'. $u_id .'/';
+
+      if (!is_dir($path)) {
+      //Create our directory if it does not exist
+      mkdir($path);
+      }
+
+
+      $filename =  date("Y_m_d").'_'. $u_id .'_'. time() .'.png';
+      $movefile = file_put_contents($path .$filename, $data);
+
+
+ 
+
+
+
+
 
       DB::table('post')
       ->insert([
         'user_id' => auth()->user()->id,
         'user_name' => auth()->user()->name,
         'post' => $request->post,
-        'image' => $request->image,
+        'image' => $filename,
         'location' => auth()->user()->location,
         'country' => auth()->user()->country,
         'comments_privacy' => $userdetail->comment_privacy,
         'created_at' => now()
       ]);
 
-      return 123;
+   return $movefile;       
+
     }
 
 // like post controller starts here

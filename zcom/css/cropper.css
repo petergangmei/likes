@@ -8,6 +8,10 @@
  * Date: 2018-04-01T06:26:32.417Z
  */
 
+#image {
+  width: 50%; /* This rule is very important, please do not ignore this! */
+}
+
 .cropper-container {
   direction: ltr;
   font-size: 0;

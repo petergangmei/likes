@@ -9,7 +9,7 @@
       	<b>Enter news</b>
         <form method="post" action="/admin/postnews_">
           @csrf
-          <textarea class="form-control" name="news" placeholder="Enter news..." style="width: 80%; float: left;"></textarea>
+          <textarea class="form-control" name="news" id="article-ckeditor" placeholder="Enter news..." style="width: 80%; float: left;"></textarea>
           <select name="Category" class="form-control" style="width: 19%; height: 60px; float: left;">
             <option value="">Category</option>
             <option value="Update">Update News</option>
@@ -47,9 +47,9 @@
         @foreach($news as $nws)
         <div class="card">
           <div class="card-body">
-           <div style="border:0px solid black; float: left; width: 85%;"><b> {{$nws->description}}</b></div> 
+           <div style="border:0px solid black; float: left; width: 85%;"><b> {!!$nws->description!!}</b></div> 
 
-           <small style="float: right;"><i>({{$nws->newstype}})</i> {{Carbon\Carbon::createFromTimestamp(strtotime($nws->created_at))->diffForHumans()}}</small>
+           <small style="float: right;"><i>({!!$nws->newstype!!})</i> {{Carbon\Carbon::createFromTimestamp(strtotime($nws->created_at))->diffForHumans()}}</small>
             
           </div>
         </div>

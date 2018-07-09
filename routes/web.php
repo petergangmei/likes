@@ -23,7 +23,6 @@ Route::get('/search', 'MainController@search');
 
 Route::get('/search2', 'MainController@search2');
 
-Route::get('/swipes', 'MainController@swipes');
 
 Route::get('/notification', 'NotificationController@view');
 
@@ -73,6 +72,11 @@ Route::get('/upload_profile_picture_index', 'ProfilesController@u_p_p_index' );
 
 Route::post('/uploadprofile_img', 'ProfilesController@uploadprofile_img');
 
+//Events
+
+Route::get('/swipes', 'EventsController@Event_swipes');
+Route::get('/taptapevent', 'EventsController@taptapevent_index');
+
 
 
 // view profile 
@@ -118,7 +122,7 @@ Route::get('/try', function(){
  //                ]);
 	return view('try');
 });
-
+Route::get('movefile', 'ProfilesController@move_file');
 // setting
 Route::get('/account_setting', 'NavController@account_setting');
 Route::get('/edit_profile', 'NavController@edit_profile');
@@ -141,6 +145,12 @@ Route::get('/news', 'NewsController@index');
 // addmin panel
 Route::get('/admin', 'AdminController@index');
 Route::get('/admin/postnews', 'AdminController@postnews_index');
+Route::get('/admin/setvalue', 'AdminController@setvalue_index');
+
 Route::post('/admin/postnews_', 'AdminController@postnews');
 
 Route::post('/admin/depositecoins', 'AdminController@depositecoins');
+
+
+Route::post('/admin/set_default_value', 'AdminController@set_value');
+Route::get('/admin/activeness', 'AdminController@activeness');

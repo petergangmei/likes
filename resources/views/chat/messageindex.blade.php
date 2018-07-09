@@ -9,16 +9,18 @@
 		@if($message->sender_username != $userimg->id )
 	<div class="card-body" > 
 		@if($userimg->profile_image == 'null')
-		<img src="/public/storage/default_image/avatar.png" style="width: 50px; height: 50px; border-radius: 100%; position: absolute; margin: -18px -19px;">
+		<img src="/public/storage/default_image/avatar.png" style="width: 45px; height: 45px; border-radius: 100%; position: absolute; margin: -18px -19px;">
 		@else
-		<img src="/public/storage/profile_image/{{$userimg->id}}/{{$userimg->profile_image}}" style="width: 50px; height: 50px; border-radius: 100%; position: absolute; margin: -18px -19px;">
+		<img src="/public/storage/profile_image/{{$userimg->id}}/{{$userimg->profile_image}}" style="width: 45px; height: 45px; border-radius: 100%; position: absolute; margin: -18px -19px;">
 		@endif
 
 	 	<div style="border: 1px solid silver; margin-left:30px; margin-top: -10px; padding: 5px; float: left; border-radius: 10px; max-width: 90%;;">
 	 		@if($message->deleted != 'true')
 	 		{{$message->message}}
 	 		@else
-	 		<small style="color: red;">Message deleted</small>
+	 		<small style="color: red;">
+	 		<i class="fa fa-ban"></i>
+	 		Message deleted</small>
 	 		@endif
 	 	</div>
 	</div>
@@ -33,7 +35,9 @@
 	 		@if($message->deleted != 'true')
 	 		{{$message->message}}
 	 		@else
-	 		<small style="color: red;">Message deleted</small>
+	 		<small style="color: red;">
+	 		<i class="fa fa-ban"></i>
+	 		Message deleted</small>
 	 		@endif
 
 	 	</div>
